@@ -11,24 +11,24 @@ const payload = {
 
 const params = {
     params: object({
-        productId: string().nonempty("ProductId is required"),
+        projectId: string().nonempty("ProjectId is required"),
     })
 }
 
 
-export const updateProductSchema = object({
+export const updateProjectSchema = object({
  ...payload,
  ...params
 })
 
-export const createProductSchema = object({
+export const createProjectSchema = object({
     ...payload
 })
 
-export const findProductSchema = object({
+export const findProjectSchema = object({
     ...params
 })
 
-export type CreateProductInput = TypeOf<typeof createProductSchema>
-export type UpdateProductInput = TypeOf<typeof updateProductSchema>
-export type FindProductInput = TypeOf<typeof findProductSchema>
+export type CreateProjectInput = TypeOf<typeof createProjectSchema>
+export type UpdateProjectInput = TypeOf<typeof updateProjectSchema>
+export type FindProjectInput = TypeOf<typeof findProjectSchema>

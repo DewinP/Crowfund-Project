@@ -6,7 +6,7 @@ import { number, string } from 'zod'
 //create custom id 
 const nanoId = customAlphabet("0123456789qwertyuioplkjhgfdsazxcvbnm",10)
 
-export interface ProductDocument extends mongoose.Document {
+export interface ProjectDocument extends mongoose.Document {
     user: UserDocument["_id"];
     title:string;
     description: string;
@@ -15,14 +15,14 @@ export interface ProductDocument extends mongoose.Document {
     updatedAt: Date;
 }
 
-const productSchema = new mongoose.Schema(
+const projectSchema = new mongoose.Schema(
     {
         user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-        productId:{
+        projectId:{
             type: string,
             required:true,
             unique: true,
-            default:()=> `product_${nanoId()}`
+            default:()=> `project_${nanoId()}`
 
         },
         title:{type:string, required:true},
@@ -34,7 +34,7 @@ const productSchema = new mongoose.Schema(
       }
 )
 
-const ProductModel = mongoose.model<ProductDocument>("Product", productSchema)
+const ProjectModel = mongoose.model<ProjectDocument>("Project", projectSchema)
 
-export default ProductModel;
+export default ProjectModel;
 
