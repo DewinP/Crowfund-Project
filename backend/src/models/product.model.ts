@@ -3,7 +3,7 @@ import {UserDocument} from './user.model'
 import {customAlphabet} from 'nanoid'
 import { number, string } from 'zod'
 
-//create custom id
+//create custom id 
 const nanoId = customAlphabet("0123456789qwertyuioplkjhgfdsazxcvbnm",10)
 
 export interface ProductDocument extends mongoose.Document {

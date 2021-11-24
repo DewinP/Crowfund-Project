@@ -4,8 +4,8 @@ import {number, object, string, TypeOf} from 'zod'
 const payload = {
     body: object({
         title: string().nonempty("Email is required"),
-        pledeGoal: number().nonnegative("Number must be positive"),
-        description: string().nonempty("Description can't be empty")
+        pledgeGoal: number().nonnegative("Number must be positive"),
+        description: string().nonempty("Description can't be empty"),
     })
 }
 
@@ -29,6 +29,6 @@ export const findProductSchema = object({
     ...params
 })
 
-export type createProductSchema = TypeOf<typeof createProductSchema>
-export type updateProductSchema = TypeOf<typeof updateProductSchema>
-export type findProductSchema = TypeOf<typeof findProductSchema>
+export type CreateProductInput = TypeOf<typeof createProductSchema>
+export type UpdateProductInput = TypeOf<typeof updateProductSchema>
+export type FindProductInput = TypeOf<typeof findProductSchema>
