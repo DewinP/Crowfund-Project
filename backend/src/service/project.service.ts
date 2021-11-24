@@ -1,5 +1,5 @@
 import { DocumentDefinition, FilterQuery, QueryOptions, UpdateQuery } from "mongoose"
-import ProjectModel, { ProjectDocument } from "src/models/project.model"
+import ProjectModel, { ProjectDocument } from "../models/project.model"
 
 export const findProject = async(query:FilterQuery<ProjectDocument>,options:QueryOptions = {lean:true})=>{
     return ProjectModel.findOne(query,{},options)

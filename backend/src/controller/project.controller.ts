@@ -1,6 +1,6 @@
 import {Request,Response} from 'express'
-import { CreateProjectInput, UpdateProjectInput } from 'src/schema/project.schema'
-import { createProject, findAndUpdateProject, findProject } from 'src/service/project.service'
+import { CreateProjectInput, UpdateProjectInput } from '../schema/project.schema'
+import { createProject, findAndUpdateProject, findProject } from '../service/project.service'
 
 export const createProjectHandler = async (req: Request<{},{},CreateProjectInput["body"]>, res: Response) => {
     const userId= res.locals.user._id

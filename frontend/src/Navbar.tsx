@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useAppSelector } from '../app/hooks';
 import { selectCurrentUser } from '../app/services/Auth.slice';
+import Link from 'next/link'
 
 
 const Navbar: React.FC = () => {
@@ -16,8 +17,12 @@ const Navbar: React.FC = () => {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Crowfund
             </Typography>
-            <Button color="inherit">Login</Button>
+            <Link href="/signup">
             <Button color="inherit">Signup</Button>
+            </Link>
+            <Link href="/login">
+            <Button color="inherit">Login</Button>
+            </Link>
           </Toolbar>
         </AppBar>
       </Box>

@@ -1,4 +1,4 @@
-import createTheme from '@mui/material/styles/createTheme';
+import  createTheme  from '@mui/material/styles/createTheme';
 import { red } from '@mui/material/colors';
 
 // Create a theme instance.
@@ -9,6 +9,9 @@ const theme = createTheme({
     },
     secondary: {
       main: '#19857b',
+    },
+    error: {
+      main: red.A400,
     },
   },
 });

@@ -8,6 +8,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.2.0",
     "@mui/material": "latest",
     "@mui/styled-engine-sc": "latest",
     "@reduxjs/toolkit": "^1.6.2",
