@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IUser} from '../../interfaces'
+import {  IUser } from "../../intefaces";
 import { RootState } from "../store";
 import { api } from "./api";
 
@@ -21,9 +21,11 @@ export const authSlice = createSlice({
   reducers: {},
   extraReducers: (build) => {
     build.addMatcher(api.endpoints.me.matchFulfilled, (state, { payload }) => {
-      state.user = payload;
+      if(payload._id){
+        state.user = payload;
+        state.isLoggedIn = true;
+      }
       state.isFetching = false;
-      state.isLoggedIn = true;
     });
     build.addMatcher(api.endpoints.me.matchPending, (state) => {
       state.isFetching = true;

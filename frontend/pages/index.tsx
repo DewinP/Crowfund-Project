@@ -1,13 +1,11 @@
-import * as React from 'react';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Layout from '../src/Layout';
+import Layout from "../components/Layout";
 
-export default function Index() {
+const Index: React.FC = () => {
   return (
     <Layout>
-      herro
+      <h1>Hello Next.js</h1>
     </Layout>
   );
-}
+};
+
+export default Index;

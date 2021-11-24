@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ILoginInput, ISignupInput, IUser } from "../../interfaces/"
+import { ILoginInput, ISignupInput, IUser } from "../../intefaces";
 
 export const api = createApi({
   reducerPath: "apiPath",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/api/`,
+    baseUrl: `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}`,
   }),
-  tagTypes: ["Me", "Project"],
+  tagTypes: ["User", "Me"],
   endpoints: (build) => {
     return {
       signupUser: build.mutation<{}, ISignupInput>({
