@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IMe, IUser } from "../../intefaces";
+import { IUser} from '../../interfaces'
 import { RootState } from "../store";
 import { api } from "./api";
 

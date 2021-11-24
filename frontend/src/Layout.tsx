@@ -1,9 +1,11 @@
 import { Box } from '@mui/system';
+import Navbar from './Navbar';
 
 
 const Layout: React.FC<{}> = ({ children }) => {
     return (
-      <Box p={8}>
+      <Box>
+        <Navbar/>
         <Box>{children}</Box>
       </Box>
     );
