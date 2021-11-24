@@ -10,15 +10,19 @@
   "dependencies": {
     "@mui/material": "latest",
     "@mui/styled-engine-sc": "latest",
+    "@reduxjs/toolkit": "^1.6.2",
+    "formik": "^2.2.9",
     "next": "latest",
     "next-transpile-modules": "latest",
     "react": "latest",
-    "react-dom": "latest",
+    "react-dom": "^17.0.2",
     "react-is": "latest",
+    "react-redux": "^7.2.6",
     "styled-components": "latest"
   },
   "devDependencies": {
     "@types/react": "latest",
+    "@types/react-dom": "^17.0.11",
     "@types/styled-components": "latest",
     "babel-plugin-styled-components": "latest",
     "typescript": "latest"
