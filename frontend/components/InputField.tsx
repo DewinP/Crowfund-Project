@@ -4,22 +4,29 @@ import {
   FormLabel,
 } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
-import { IconButton, InputGroup, InputProps, InputRightElement } from "@chakra-ui/react";
+import {
+  FormHelperText,
+  IconButton,
+  InputGroup,
+  InputProps,
+  InputRightElement,
+} from "@chakra-ui/react";
 import { useField } from "formik";
-import React, { InputHTMLAttributes } from "react";
-import { BiShow, BiHide } from "react-icons/bi";
+import React from "react";
+import { BiHide, BiShow } from "react-icons/bi";
 
-type InputFieldProps =  InputProps & {
+type InputFieldProps = InputProps & {
   label: string;
-  setImageURL?: (url: string) => void;
+  helperText?: string;
 };
 
 export const InputField: React.FC<InputFieldProps> = ({
   label,
+  helperText,
   size: _,
   ...props
 }) => {
-  const [field, { error }] = useField(props.name);
+  const [field, { error }, { setValue }] = useField(props.name);
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
   return (
@@ -43,6 +50,9 @@ export const InputField: React.FC<InputFieldProps> = ({
           </InputRightElement>
         )}
       </InputGroup>
+      {!error && helperText && (
+        <FormHelperText m={0}>{helperText}</FormHelperText>
+      )}
 
       {error && <FormErrorMessage>{error}</FormErrorMessage>}
     </FormControl>

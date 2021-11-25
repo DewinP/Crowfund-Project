@@ -4,7 +4,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 
-const DesktopNav: React.FC<{ isLoggedIn: string }> = ({ isLoggedIn }) => {
+const DesktopNav: React.FC<{ isLoggedIn?: string }> = ({
+  isLoggedIn = true,
+}) => {
   const router = useRouter();
   const pathName = router.pathname;
   return (

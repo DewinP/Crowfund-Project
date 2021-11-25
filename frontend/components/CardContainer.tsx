@@ -1,22 +1,21 @@
-import { Flex, Box } from "@chakra-ui/layout";
+import { Box, Flex } from "@chakra-ui/layout";
 import React from "react";
 
 interface CardContainerProps {
   children: React.ReactNode;
-  maxWidth?: string;
+  width?: string;
 }
 
 const CardContainer: React.FC<CardContainerProps> = ({
   children,
-  maxWidth = "500px",
+  width = "500px",
 }) => {
   return (
     <Flex width="full" align="center" justifyContent="center">
       <Box
         borderWidth={1}
         p={4}
-        width="full"
-        maxWidth={maxWidth}
+        width={width}
         borderRadius={8}
         textAlign="center"
         boxShadow="lg"
