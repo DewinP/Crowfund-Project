@@ -1,11 +1,33 @@
-import { Box, Center, Heading } from "@chakra-ui/layout";
+import { Button } from "@chakra-ui/button";
+import { FormControl, FormLabel } from "@chakra-ui/form-control";
+import { Box, Center, Flex, Heading } from "@chakra-ui/layout";
 import { Form, Formik } from "formik";
 import React from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import CardContainer from "../components/CardContainer";
 import InputField from "../components/InputField";
 import Layout from "../components/Layout";
 
+interface IProjectInput {
+  title: string;
+  description: string;
+  dueDate: Date;
+  pledgeGoal: number;
+}
+
 const CreateProject: React.FC = () => {
+  const [startDate, setStartDate] = React.useState<Date>(new Date());
+  const handleSetStartDate = (date: Date) => {
+    setStartDate(date);
+  };
+
+  const initalValues: IProjectInput = {
+    title: "",
+    description: "",
+    dueDate: new Date(),
+    pledgeGoal: 1000,
+  };
   return (
     <Layout>
       <CardContainer>
@@ -13,27 +35,60 @@ const CreateProject: React.FC = () => {
           <Heading>Create Project</Heading>
         </Center>
         <Box my={8} textAlign="left">
-          <Formik initialValues={null} onSubmit={() => console.log("hello")}>
-            {() => (
+          <Formik
+            initialValues={initalValues}
+            onSubmit={(values) => console.log(values)}
+          >
+            {({ isSubmitting, values }) => (
               <Form>
-                <InputField type="text" name="title" label="Project Title" />
+                <InputField
+                  type="text"
+                  limit={50}
+                  name="title"
+                  label="Project Title"
+                  helperText="Can be changed later"
+                />
 
                 <InputField
                   type="text"
                   name="description"
                   label="Describe your project"
-                  helperText="You can change this later"
+                  helperText="Can be changed later"
+                  textArea
                 />
-                <InputField
-                  type="number"
-                  name="pledgeGoal"
-                  label="Funding Goal"
-                />
-                <InputField
-                  type="date"
-                  name="dueDate"
-                  label="Choose Due Date"
-                />
+                <Flex flexDir={{ base: "column", md: "row" }}>
+                  <InputField
+                    type="number"
+                    name="pledgeGoal"
+                    label="Funding Goal"
+                    marginRight={{ md: 6 }}
+                    min={1000}
+                    helperText="Minimum: 1000"
+                  />
+                  <FormControl mt={4}>
+                    <FormLabel htmlFor="published-date">
+                      Choose due date
+                    </FormLabel>
+                    <DatePicker
+                      selected={startDate}
+                      allowSameDay={false}
+                      minDate={new Date()}
+                      name="dueDate"
+                      onChange={(val: Date) => {
+                        handleSetStartDate(val);
+                      }}
+                    />
+                  </FormControl>
+                </Flex>
+                <Button
+                  type="submit"
+                  isLoading={isSubmitting}
+                  colorScheme="teal"
+                  width="full"
+                  mt={4}
+                >
+                  Create Project
+                </Button>
               </Form>
             )}
           </Formik>

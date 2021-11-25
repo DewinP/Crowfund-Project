@@ -1,14 +1,13 @@
-import { FormControl, FormLabel } from "@chakra-ui/form-control";
-import { Box, Stack, Link as ChakraLink } from "@chakra-ui/layout";
-import { Input, Button, Avatar, Flex } from "@chakra-ui/react";
-import { Form, Formik, useField } from "formik";
+import { Box, Link as ChakraLink, Stack } from "@chakra-ui/layout";
+import { Button, Flex } from "@chakra-ui/react";
+import { Form, Formik } from "formik";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import { useSignupUserMutation } from "../app/services/api";
 import { ISignupInput } from "../intefaces";
-import { useRouter } from "next/router";
-import InputField from "./InputField";
 import { toErrorMap } from "../utils/toErrorMap";
+import InputField from "./InputField";
 
 const SignupForm: React.FC = () => {
   const router = useRouter();
@@ -37,22 +36,22 @@ const SignupForm: React.FC = () => {
           }
         }}
       >
-        {({ isSubmitting, values }) => (
+        {({ isSubmitting }) => (
           <Form>
-            <Flex >
-            <InputField
-              label="First Name"
-              type="text"
-              name="firstName"
-              placeholder="First name"
-              marginRight={6}
-            />
-            <InputField
-              label="Last Name"
-              type="text"
-              name="lastName"
-              placeholder="Last name"
-            />
+            <Flex flexDir={{ base: "column", md: "row" }}>
+              <InputField
+                label="First Name"
+                type="text"
+                name="firstName"
+                placeholder="First name"
+                marginRight={{ md: 6 }}
+              />
+              <InputField
+                label="Last Name"
+                type="text"
+                name="lastName"
+                placeholder="Last name"
+              />
             </Flex>
 
             <InputField

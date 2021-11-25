@@ -1,4 +1,4 @@
-import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import { Heading, Stack, Text } from "@chakra-ui/react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React from "react";
@@ -11,20 +11,12 @@ const ProjectPage: NextPage = () => {
   return (
     <Layout>
       <ProjectHero />
-      <Tabs mt={4} size="lg" variant="enclosed">
-        <TabList>
-          <Tab>Description</Tab>
-          <Tab>Comments</Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel>
-            <p>lqkrqwrqr qrwqwrqwr qwr qwrqw rwqr qwr</p>
-          </TabPanel>
-          <TabPanel>
-            <p>two!</p>
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+      <Stack my={4}>
+        <Heading>Description</Heading>
+        <Text>
+          dkqwldnlkwqmnfwqklmflwqkmfqwmkfq wfqwmf;qlwmfwqmfmqwf qwfmqwflm
+        </Text>
+      </Stack>
     </Layout>
   );
 };

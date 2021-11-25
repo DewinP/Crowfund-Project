@@ -21,19 +21,19 @@ const ProjectHero: React.FC = () => {
       />
       <Stack>
         <Heading>Project Title</Heading>
-        <Stack flexDir={{ base: "column", md: "row" }}>
-          <Stat p={2}>
-            <StatNumber fontSize={{ base: "25px", md: "40px" }}>
+        <Stack>
+          <Stat>
+            <StatNumber fontSize={{ base: "25px", md: "35px" }}>
               $10,340
             </StatNumber>
             <StatHelpText fontSize="20">Pledged</StatHelpText>
           </Stat>
           <Stat>
-            <StatNumber fontSize={{ base: "25px", md: "40px" }}>400</StatNumber>
+            <StatNumber fontSize={{ base: "25px", md: "35px" }}>400</StatNumber>
             <StatHelpText fontSize="20">Backers</StatHelpText>
           </Stat>
           <Stat>
-            <StatNumber fontSize={{ base: "25px", md: "40px" }}>30</StatNumber>
+            <StatNumber fontSize={{ base: "25px", md: "35px" }}>30</StatNumber>
             <StatHelpText fontSize="20">Days Left</StatHelpText>
           </Stat>
         </Stack>
@@ -47,7 +47,7 @@ const ProjectHero: React.FC = () => {
                 80%
               </Text>
             </Flex>
-            <Progress mb={8} height="32px" colorScheme="teal" value={80} />
+            <Progress height="32px" colorScheme="teal" value={80} />
           </Box>
           <Button isFullWidth size="lg" colorScheme="pink">
             Become a Backer

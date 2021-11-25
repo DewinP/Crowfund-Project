@@ -13,7 +13,7 @@ const Layout: React.FC<{}> = ({ children }) => {
       <Navbar />
       <Divider />
       <Center>
-        <Box marginTop={8} maxW="1400px">
+        <Box marginTop={8} maxW="1400px" minW={{ base: "100%" }}>
           {children}
         </Box>
       </Center>
