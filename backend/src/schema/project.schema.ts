@@ -1,4 +1,4 @@
-import {number, object, string, TypeOf} from 'zod'
+import {date, number, object, string, TypeOf} from 'zod'
 
 
 const payload = {
@@ -6,6 +6,7 @@ const payload = {
         title: string().nonempty("Email is required"),
         pledgeGoal: number().nonnegative("Number must be positive"),
         description: string().nonempty("Description can't be empty"),
+        dueDate: date()
     })
 }
 

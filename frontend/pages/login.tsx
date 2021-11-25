@@ -31,7 +31,7 @@ const Login: React.FC = () => {
         transition={{ duration: "0.4" }}
       >
       <CardContainer>
-        <Box textAlign="center" p={8}>
+        <Box textAlign="center" >
           <Heading>Login into DSP</Heading>
         </Box>
         <LoginForm />

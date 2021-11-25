@@ -7,10 +7,10 @@ import Navbar from "./Navbar/Navbar";
 
 export const MotionBox = motion<BoxProps>(Box);
 const Layout: React.FC<{}> = ({ children }) => {
-  const {isFetching} = useMeQuery()
+  useMeQuery()
   return (
     <Box p={8}>
-      {isFetching ? <Skeleton/> : <Navbar />}
+      <Navbar/>
         <Box>
           {children}
         </Box>

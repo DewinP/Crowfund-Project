@@ -4,7 +4,7 @@ import NavMenu from "./NavMenu";
 import MobileMenu from "./MobileMenu";
 import { useAppSelector } from "../../app/hooks";
 import { selectCurrentUser } from "../../app/services/Auth.slice";
-import { Skeleton } from "@chakra-ui/react";
+import { Button, Skeleton } from "@chakra-ui/react";
 
 const Navbar: FC = () => {
   let { user, isLoggedIn } = useAppSelector(selectCurrentUser);
@@ -21,10 +21,11 @@ const Navbar: FC = () => {
     >
       <Box>
         <Text fontSize="xl" fontWeight="bold">
-          DSP
+          Crowfund
         </Text>
       </Box>
-
+      <Box>
+      </Box>
       <MobileMenu
         user={user}
         isLoggedIn={isLoggedIn}

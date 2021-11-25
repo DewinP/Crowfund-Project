@@ -29,3 +29,13 @@ export interface IUser {
     iat: number;
     exp: number;
   }
+
+  export interface IProject {
+    _id: string;
+    title:string;
+    description: string;
+    pledgeGoal: number;
+    createdAt: Date;
+    updatedAt: Date;
+    dueDate: Date;
+  }

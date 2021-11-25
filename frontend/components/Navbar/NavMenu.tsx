@@ -26,6 +26,16 @@ const NavMenu: React.FC<NavMenuProps> = ({ isOpen, isLoggedIn, user }) => {
         pt={[4, 4, 0, 0]}
         alignItems="center"
       >
+         <Link href="/projects">
+              <Button variant="ghost" width={isOpen && "100%"}>
+                Projects
+              </Button>
+            </Link> 
+            <Link href="/create-project">
+              <Button variant="ghost" width={isOpen && "100%"}>
+                Create Project
+              </Button>
+            </Link> 
         {!isLoggedIn ? (
           <>
             <Link href="/login">
