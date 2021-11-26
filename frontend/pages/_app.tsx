@@ -4,7 +4,7 @@ import { AppProps } from "next/app";
 import React from "react";
 import { Provider } from "react-redux";
 import { store } from "../app/store";
-import "../components/DatePicker/DatePicker.css";
+import "../styles/DatePicker.css";
 import theme from "../theme";
 
 function MyApp({ Component, pageProps }: AppProps) {

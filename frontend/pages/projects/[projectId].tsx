@@ -2,20 +2,28 @@ import { Heading, Stack, Text } from "@chakra-ui/react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React from "react";
+import { useFindProjectQuery } from "../../app/services/api";
 import Layout from "../../components/Layout";
 import ProjectHero from "../../components/ProjectHero";
 
 const ProjectPage: NextPage = () => {
   const router = useRouter();
-  const pathName = router.pathname;
+  const projectId = router.query.projectId as string;
+  const { isLoading, data: project, isError } = useFindProjectQuery(projectId);
+  if (isLoading)
+    return (
+      <Layout>
+        <Heading>Loading...</Heading>
+      </Layout>
+    );
+  if (!isLoading && isError) {
+  }
   return (
     <Layout>
-      <ProjectHero />
+      <ProjectHero p={project} />
       <Stack my={4}>
         <Heading>Description</Heading>
-        <Text>
-          dkqwldnlkwqmnfwqklmflwqkmfqwmkfq wfqwmf;qlwmfwqmfmqwf qwfmqwflm
-        </Text>
+        <Text>{project?.description}</Text>
       </Stack>
     </Layout>
   );

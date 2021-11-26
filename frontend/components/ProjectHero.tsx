@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, SimpleGrid, Stack } from "@chakra-ui/layout";
+import { Heading, SimpleGrid, Stack } from "@chakra-ui/layout";
 import {
   Button,
   Image,
@@ -9,8 +9,10 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
+import { IProject } from "../intefaces";
+import { calculateTimeUntil } from "../utils/calculateTimeUntil";
 
-const ProjectHero: React.FC = () => {
+const ProjectHero: React.FC<{ p: IProject }> = ({ p }) => {
   return (
     <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
       <Image
@@ -20,35 +22,35 @@ const ProjectHero: React.FC = () => {
         objectFit={"cover"}
       />
       <Stack>
-        <Heading>Project Title</Heading>
-        <Stack>
+        <Heading>{p?.title}</Heading>
+        <Stack spacing={0}>
           <Stat>
-            <StatNumber fontSize={{ base: "25px", md: "35px" }}>
-              $10,340
+            <StatNumber fontSize={{ base: "20px", md: "30px" }}>
+              <Text as="span" fontWeight="bold" color="green">
+                10,340
+              </Text>
             </StatNumber>
-            <StatHelpText fontSize="20">Pledged</StatHelpText>
+            <StatHelpText fontSize="15">
+              Pledged out of ${p?.pledgeGoal.toLocaleString("en-US")} goal
+            </StatHelpText>
           </Stat>
           <Stat>
-            <StatNumber fontSize={{ base: "25px", md: "35px" }}>400</StatNumber>
-            <StatHelpText fontSize="20">Backers</StatHelpText>
+            <StatNumber fontSize={{ base: "20px", md: "30px" }}>400</StatNumber>
+            <StatHelpText fontSize="15">Backers</StatHelpText>
           </Stat>
           <Stat>
-            <StatNumber fontSize={{ base: "25px", md: "35px" }}>30</StatNumber>
-            <StatHelpText fontSize="20">Days Left</StatHelpText>
+            <StatNumber fontSize={{ base: "20px", md: "30px" }}>
+              {calculateTimeUntil(p?.dueDate)}
+            </StatNumber>
+            <StatHelpText fontSize="15">Days Left</StatHelpText>
           </Stat>
         </Stack>
         <Stack>
-          <Box>
-            <Flex justifyContent="space-between">
-              <Text fontSize="25px">
-                Goal:<Text as="span">13,000</Text>
-              </Text>
-              <Text color="teal" fontSize="25px" fontWeight="bold">
-                80%
-              </Text>
-            </Flex>
-            <Progress height="32px" colorScheme="teal" value={80} />
-          </Box>
+          <Text size="20px" fontWeight="bold" align="right">
+            80% funded
+          </Text>
+          <Progress height="32px" colorScheme="teal" value={80} />
+
           <Button isFullWidth size="lg" colorScheme="pink">
             Become a Backer
           </Button>

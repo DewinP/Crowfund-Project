@@ -1,9 +1,9 @@
-import { signJWT } from './../utils/jwt.utils';
-import {Request, Response} from 'express'
-import { createSession, deleteSessions, findSession } from '../service/session.service'
-import { validatePassword } from '../service/user.service'
-import config from 'config'
+import config from 'config';
+import { Request, Response } from 'express';
 import AuthUser from '../interfaces';
+import { createSession, deleteSessions, findSession } from '../service/session.service';
+import { validatePassword } from '../service/user.service';
+import { signJWT } from './../utils/jwt.utils';
 
 export async function createSessionHandler(req: Request, res: Response) {
 
@@ -25,7 +25,7 @@ export async function createSessionHandler(req: Request, res: Response) {
     );
     
     res.cookie("accessToken", accessToken,{
-        maxAge: 900000,
+        maxAge: 90000000000,
         httpOnly: true,
         domain: config.get<string>('cookieDomain'),
         path: '/',

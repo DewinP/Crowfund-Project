@@ -1,29 +1,26 @@
-import {
-  Box,
-  Button,
-  Center,
-  Flex,
-  Heading,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Button, Center, Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
+import { IProject } from "../intefaces";
 
-const ProjectCard = () => {
+interface ProjectCardProps {
+  project: IProject;
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
     <Center py={6}>
-      <Box
-        maxW="445px"
+      <Stack
+        height={{ base: "400px", md: "300px" }}
+        w={{ base: "100%", md: "450px" }}
         boxShadow="rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"
         rounded={"md"}
         p={6}
         overflow="hidden"
+        justifyContent="space-between"
       >
         <Stack>
-          <Heading fontSize="2xl">
-            Boost your conversion rate wawa wa fj ff wq f
-          </Heading>
+          <Heading fontSize="2xl">{project?.title}</Heading>
           <Flex justifyContent="space-between" textAlign="center">
             <Text
               color="green.500"
@@ -32,7 +29,7 @@ const ProjectCard = () => {
               letterSpacing={1.1}
               textAlign="center"
             >
-              400% funded
+              000% funded
             </Text>
             <Text
               color="gray.500"
@@ -41,14 +38,11 @@ const ProjectCard = () => {
               textAlign="center"
               letterSpacing={1.1}
             >
-              10 days left
+              {project?.dueDate} days left
             </Text>
           </Flex>
           <Text color="gray.500">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-            et ea rebum...
+            {project?.description.substring(0, 200) + "..."}
           </Text>
         </Stack>
         <Stack
@@ -58,14 +52,14 @@ const ProjectCard = () => {
           alignItems="center"
           justifyContent="space-between"
         >
-          <Link href="projects/1">
+          <Link href={`projects/${project.projectId}`}>
             <Button variant="ghost" colorScheme="red">
               Read more
             </Button>
           </Link>
-          <Text fontWeight={600}>By Achim Rolle</Text>
+          <Text fontWeight={600}>By Someone</Text>
         </Stack>
-      </Box>
+      </Stack>
     </Center>
   );
 };

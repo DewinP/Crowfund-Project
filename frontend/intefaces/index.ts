@@ -38,4 +38,12 @@ export interface IUser {
     createdAt: Date;
     updatedAt: Date;
     dueDate: Date;
+    projectId:string
+  }
+
+  export interface IProjectInput{
+      title:string;
+      description: string;
+      pledgeGoal: number;
+      dueDate: Date;
   }

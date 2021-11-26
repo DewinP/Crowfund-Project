@@ -11,7 +11,6 @@ import {
   InputGroup,
   InputProps,
   InputRightElement,
-  Text,
   Textarea,
   TextareaProps,
 } from "@chakra-ui/react";
@@ -71,11 +70,6 @@ export const InputField: React.FC<InputFieldProps> = ({
         <Flex justifyContent="space-between">
           {!error && helperText && (
             <FormHelperText m={0}>{helperText}</FormHelperText>
-          )}
-          {limit && (
-            <Text fontSize="sm">
-              {field.value.length}/{limit}
-            </Text>
           )}
         </Flex>
       )}

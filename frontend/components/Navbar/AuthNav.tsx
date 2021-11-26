@@ -5,21 +5,19 @@ import {
   MenuItem,
   MenuList,
 } from "@chakra-ui/menu";
-import { Button, Avatar, Flex } from "@chakra-ui/react";
+import { Button, Flex, Icon } from "@chakra-ui/react";
 import router from "next/router";
 import React from "react";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { FiPower } from "react-icons/fi";
 import { useLogoutMutation } from "../../app/services/api";
 import { IUser } from "../../intefaces";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
-const AuthMenu: React.FC<{ isMobile?: boolean; user: IUser }> = ({
-  isMobile,
-  user,
-}) => {
+const AuthNav: React.FC<{ user: IUser }> = ({ user }) => {
   const [logout] = useLogoutMutation();
   return (
     <Flex>
-      <Menu>
+      <Menu closeOnBlur>
         {({ isOpen }) => (
           <>
             <MenuButton
@@ -29,11 +27,11 @@ const AuthMenu: React.FC<{ isMobile?: boolean; user: IUser }> = ({
               rightIcon={!isOpen ? <FaChevronDown /> : <FaChevronUp />}
               isActive={isOpen}
             >
-              {user.firstName + " " + user.lastName}
+              {user.firstName + " " + user.lastName.charAt(0) + "."}
             </MenuButton>
             <MenuList m={0} p={0}>
-              <MenuItem>Settings</MenuItem>
-              <MenuItem>Something else</MenuItem>
+              <MenuItem>Backed Projects</MenuItem>
+              <MenuItem>Owned Projects</MenuItem>
               <MenuDivider p={0} m={0} />
               <MenuItem
                 onClick={() => {
@@ -41,6 +39,7 @@ const AuthMenu: React.FC<{ isMobile?: boolean; user: IUser }> = ({
                   router.replace("/login");
                 }}
               >
+                <Icon as={FiPower} mr={2} />
                 Logout
               </MenuItem>
             </MenuList>
@@ -51,4 +50,4 @@ const AuthMenu: React.FC<{ isMobile?: boolean; user: IUser }> = ({
   );
 };
 
-export default AuthMenu;
+export default AuthNav;

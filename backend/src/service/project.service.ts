@@ -5,7 +5,12 @@ export const findProject = async(query:FilterQuery<ProjectDocument>,options:Quer
     return ProjectModel.findOne(query,{},options)
 }
 
-export const createProject = async(input: DocumentDefinition<Omit<ProjectDocument,"createdAt" | "updatedAt">>)=>{
+export const findAllProjects = async()=>{
+    return ProjectModel.find({},{},{lean:true})
+}
+
+
+export const createProject = async(input: DocumentDefinition<Omit<ProjectDocument,"createdAt" | "updatedAt"|"projectId">>)=>{
     return ProjectModel.create(input)
 }
 

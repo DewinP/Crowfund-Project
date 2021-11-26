@@ -24,12 +24,10 @@ const SignupForm: React.FC = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={async (values, { setErrors }) => {
-          console.log(values);
           try {
             await singupUser(values).unwrap();
             router.push("/login");
           } catch (error) {
-            console.log(error.data);
             if (error.status === 400) {
               setErrors(toErrorMap(error.data));
             }

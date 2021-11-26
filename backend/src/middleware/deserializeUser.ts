@@ -1,8 +1,8 @@
-import { verifyJWT } from './../utils/jwt.utils';
+import config from 'config';
 import { NextFunction, Request, Response } from "express";
-import {get} from 'lodash'
-import config from 'config'
+import { get } from 'lodash';
 import { reIssueAccessToken } from '../service/session.service';
+import { verifyJWT } from './../utils/jwt.utils';
 
 const deserializeUser = async (
     req: Request,
@@ -31,7 +31,7 @@ const deserializeUser = async (
   
       if (newAccessToken) {
         res.setHeader("x-access-token", newAccessToken);
-        res.cookie("acessToken", newAccessToken,{
+        res.cookie("accessToken", newAccessToken,{
           maxAge: 900000,
           httpOnly: true,
           domain: config.get<string>('cookieDomain'),

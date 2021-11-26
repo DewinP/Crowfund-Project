@@ -1,12 +1,18 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ILoginInput, ISignupInput, IUser } from "../../intefaces";
+import {
+  ILoginInput,
+  IProject,
+  IProjectInput,
+  ISignupInput,
+  IUser,
+} from "../../intefaces";
 
 export const api = createApi({
   reducerPath: "apiPath",
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}`,
   }),
-  tagTypes: ["User", "Me"],
+  tagTypes: ["Project", "Me"],
   endpoints: (build) => {
     return {
       signupUser: build.mutation<{}, ISignupInput>({
@@ -40,6 +46,27 @@ export const api = createApi({
         }),
         providesTags: ["Me"],
       }),
+      createProject: build.mutation<string, IProjectInput>({
+        query: (input) => ({
+          url: "projects",
+          method: "POST",
+          body: input,
+          credentials: "include",
+        }),
+        invalidatesTags: [{ type: "Project", id: "LIST" }],
+      }),
+      findProject: build.query<IProject, string>({
+        query: (projectId) => ({
+          url: `projects/${projectId}`,
+        }),
+        providesTags: (p) => [{ type: "Project", id: p?.projectId }],
+      }),
+      findAllProjects: build.query<IProject[], void>({
+        query: () => ({
+          url: "projects",
+        }),
+        providesTags: [{ type: "Project", id: "LIST" }],
+      }),
     };
   },
 });
@@ -49,4 +76,7 @@ export const {
   useLoginUserMutation,
   useLogoutMutation,
   useMeQuery,
+  useFindProjectQuery,
+  useFindAllProjectsQuery,
+  useCreateProjectMutation,
 } = api;

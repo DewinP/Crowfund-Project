@@ -1,31 +1,32 @@
 import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Box, Center, Flex, Heading } from "@chakra-ui/layout";
+import dayjs from "dayjs";
 import { Form, Formik } from "formik";
+import { useRouter } from "next/router";
 import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useCreateProjectMutation } from "../app/services/api";
 import CardContainer from "../components/CardContainer";
 import InputField from "../components/InputField";
 import Layout from "../components/Layout";
-
-interface IProjectInput {
-  title: string;
-  description: string;
-  dueDate: Date;
-  pledgeGoal: number;
-}
+import { IProjectInput } from "../intefaces";
+import { toErrorMap } from "../utils/toErrorMap";
 
 const CreateProject: React.FC = () => {
-  const [startDate, setStartDate] = React.useState<Date>(new Date());
+  const monthFromNow = new Date(dayjs().add(1, "month").format("YYYY-MM-DD"));
+  const [startDate, setStartDate] = React.useState<Date>(monthFromNow);
+
   const handleSetStartDate = (date: Date) => {
     setStartDate(date);
   };
-
+  const router = useRouter();
+  const [createProject] = useCreateProjectMutation();
   const initalValues: IProjectInput = {
     title: "",
     description: "",
-    dueDate: new Date(),
+    dueDate: monthFromNow,
     pledgeGoal: 1000,
   };
   return (
@@ -37,23 +38,31 @@ const CreateProject: React.FC = () => {
         <Box my={8} textAlign="left">
           <Formik
             initialValues={initalValues}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={async (values, { setErrors }) => {
+              try {
+                const projectId = await createProject(values).unwrap();
+                router.push(`projects/${projectId}`);
+              } catch (error) {
+                console.log(error);
+                if (error.status === 400) {
+                  setErrors(toErrorMap(error.data));
+                }
+              }
+            }}
           >
-            {({ isSubmitting, values }) => (
+            {({ isSubmitting }) => (
               <Form>
                 <InputField
                   type="text"
-                  limit={50}
                   name="title"
                   label="Project Title"
-                  helperText="Can be changed later"
+                  helperText="Limit: 50 chars"
                 />
 
                 <InputField
                   type="text"
                   name="description"
                   label="Describe your project"
-                  helperText="Can be changed later"
                   textArea
                 />
                 <Flex flexDir={{ base: "column", md: "row" }}>
@@ -66,13 +75,11 @@ const CreateProject: React.FC = () => {
                     helperText="Minimum: 1000"
                   />
                   <FormControl mt={4}>
-                    <FormLabel htmlFor="published-date">
-                      Choose due date
-                    </FormLabel>
+                    <FormLabel htmlFor="dueDate">Choose due date</FormLabel>
                     <DatePicker
                       selected={startDate}
                       allowSameDay={false}
-                      minDate={new Date()}
+                      minDate={monthFromNow}
                       name="dueDate"
                       onChange={(val: Date) => {
                         handleSetStartDate(val);

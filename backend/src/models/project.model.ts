@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
-import {UserDocument} from './user.model'
-import {customAlphabet} from 'nanoid'
+import { customAlphabet } from 'nanoid'
+import { UserDocument } from './user.model'
 
 //create custom id 
 const nanoId = customAlphabet("0123456789qwertyuioplkjhgfdsazxcvbnm",10)
@@ -10,6 +10,7 @@ export interface ProjectDocument extends mongoose.Document {
     title:string;
     description: string;
     pledgeGoal: number;
+    projectId: string;
     createdAt: Date;
     updatedAt: Date;
 }

@@ -9,11 +9,21 @@ export const MotionBox = motion<BoxProps>(Box);
 const Layout: React.FC<{}> = ({ children }) => {
   useMeQuery();
   return (
-    <Box px={8}>
+    <Box px={{ base: 4, md: 8 }}>
       <Navbar />
       <Divider />
       <Center>
-        <Box marginTop={8} maxW="1400px" minW={{ base: "100%" }}>
+        <Box
+          marginTop={8}
+          maxW="1400px"
+          minW={{
+            base: "100%",
+            sm: "40em",
+            md: "52em",
+            lg: "64em",
+            xl: "80em",
+          }}
+        >
           {children}
         </Box>
       </Center>
