@@ -1,12 +1,12 @@
-import express from 'express';
-import config from 'config'
-import connect from './utils/connect';
-import logger from './utils/logger'
-import routes from './routes';
-import deserializeUser from './middleware/deserializeUser';
-import cors from 'cors';
+import config from 'config';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import express from 'express';
 import morgan from 'morgan';
+import deserializeUser from './middleware/deserializeUser';
+import routes from './routes';
+import connect from './utils/connect';
+import logger from './utils/logger';
 
 const port = config.get<number>('port')
 
@@ -27,5 +27,5 @@ app.use(deserializeUser);
 app.listen(port, async ()=>{
     await connect();
     logger.info(`Server is listening on port http://localhost:${port}`)
-    routes(app)
+    routes(app);
 });
