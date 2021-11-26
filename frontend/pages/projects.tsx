@@ -7,22 +7,44 @@ import Layout from "../components/Layout";
 import ProjectCard from "../components/ProjectCard";
 
 const Projects: React.FC = () => {
-  const { data: projects } = useFindAllProjectsQuery();
+  const { data } = useFindAllProjectsQuery();
+  const [searchTerm, setSearchTerm] = React.useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+    console.log(searchTerm);
+  };
+  const projects = searchTerm
+    ? data.filter((project) => {
+        if (project.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+          return project;
+        }
+      })
+    : data;
+
+  console.log(projects);
+
   return (
     <Layout>
       <Stack alignItems="center">
         <InputGroup maxW="600px">
           <InputLeftElement children={<FaSearch />} />
-          <Input type="text" placeholder="Search projects" />
+          <Input
+            type="text"
+            value={searchTerm}
+            onChange={handleChange}
+            placeholder="Search projects"
+          />
         </InputGroup>
         <Stack
           direction={["column", "row"]}
           wrap="wrap"
           justifyContent="center"
         >
-          {projects?.map((project) => (
-            <ProjectCard key={project.projectId} project={project} />
-          ))}
+          {projects?.length > 0 &&
+            projects?.map((project) => (
+              <ProjectCard key={project.projectId} project={project} />
+            ))}
         </Stack>
       </Stack>
     </Layout>
