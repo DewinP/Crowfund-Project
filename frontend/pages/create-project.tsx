@@ -43,7 +43,6 @@ const CreateProject: React.FC = () => {
                 const projectId = await createProject(values).unwrap();
                 router.push(`projects/${projectId}`);
               } catch (error) {
-                console.log(error);
                 if (error.status === 400) {
                   setErrors(toErrorMap(error.data));
                 }

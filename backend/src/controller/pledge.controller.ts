@@ -2,7 +2,7 @@ import config from 'config';
 import { Request, Response } from 'express';
 import Stripe from 'stripe';
 import { CreatePledgeInput, FindPledgeInput } from '../schema/pledge.schema';
-import { findAllPledges } from '../service/pledge.service';
+import { createPledge, findAllPledges } from '../service/pledge.service';
 import { findProject } from '../service/project.service';
 
 const stripe = new Stripe(config.get<string>("stripeKey"),{
@@ -10,28 +10,27 @@ const stripe = new Stripe(config.get<string>("stripeKey"),{
 })
 
 
-export const createPledgeHandler = async (req: Request<CreatePledgeInput["params"],{},CreatePledgeInput["body"]>, res: Response) => {
+export const createPledgeHandler = async (req: Request<{},{},CreatePledgeInput["body"]>, res: Response) => {
     const userId= res.locals.user._id
     const projectId = req.body.projectId;
     const sessionId = req.body.sessionId;
     
     //check if payment with this sessionID exist
     const session = await stripe.checkout.sessions.retrieve(sessionId);
-    if(!session){
+    console.log(session)
+    
+    const p = await findProject({projectId:projectId})
+
+  if(p){
+    try {
+    await createPledge({amount: session.amount_total!, user:userId,project:p,projectName:p.title,sessionId: session.id })
+    return res.sendStatus(201)
+    } catch (error) {
+ console.error(error)
       return res.sendStatus(403)
     }
+  }
 
-    try {
-      const project = await findProject({projectId:projectId})
-     
-    } catch (error) {
-      
-    }
-    
-
-
-
-    // await createPledge({...body, user:userId,project:projectId })
     return res.status(200)
 }
 

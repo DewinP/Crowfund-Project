@@ -29,20 +29,17 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ project }) => {
     e.preventDefault();
     setLoading(true);
     // Create a Checkout Session.
-    const data: any = await createSession({
+    const session = await createSession({
       amount: input.customPayment,
       projectName: project.title,
       projectId: project.projectId,
-    });
-    if (data.data.id) {
-    }
+    }).unwrap();
 
     // Redirect to Checkout.
     const stripe = await getStripe();
     const { error } = await stripe!.redirectToCheckout({
-      sessionId: data.data.id,
+      sessionId: session.id,
     });
-    console.log(error);
     setLoading(false);
   };
 

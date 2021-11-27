@@ -1,8 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
   ILoginInput,
-  IPaymentPayload,
+  IPaymentSession,
   IPaymentSessionInput,
+  IPledge,
   IPledgeInput,
   IProject,
   IProjectInput,
@@ -71,7 +72,7 @@ export const api = createApi({
         providesTags: [{ type: "Project", id: "LIST" }],
       }),
       createCheckoutSession: build.mutation<
-        IPaymentPayload,
+        IPaymentSession,
         IPaymentSessionInput
       >({
         query: (input) => ({
@@ -81,7 +82,7 @@ export const api = createApi({
           credentials: "include",
         }),
       }),
-      createPledge: build.mutation<{}, IPledgeInput>({
+      createPledge: build.mutation<IPledge, IPledgeInput>({
         query: (input) => ({
           url: "pledges",
           method: "POST",

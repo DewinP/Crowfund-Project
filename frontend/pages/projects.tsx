@@ -12,7 +12,6 @@ const Projects: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
-    console.log(searchTerm);
   };
   const projects = searchTerm
     ? data.filter((project) => {
@@ -21,8 +20,6 @@ const Projects: React.FC = () => {
         }
       })
     : data;
-
-  console.log(projects);
 
   return (
     <Layout>

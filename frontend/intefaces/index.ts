@@ -55,18 +55,21 @@ export interface IUser {
   }
 
 
-  export interface IPaymentPayload{
-      data?: IPaymentPayload
-      error?: string
-  }
+
 
   export interface IPaymentSession{
     id:string,
-    intent:string,
-    totalAmount:number
   }
 
   export interface IPledgeInput{
       projectId:string;
       sessionId:string;
+  }
+
+  export interface IPledge{
+      _id:string;
+      project: string;
+      projectName:string;
+      amount:string;
+      user:string;
   }

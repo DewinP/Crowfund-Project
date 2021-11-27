@@ -18,10 +18,10 @@ const stripe = new Stripe(config.get<string>("stripeKey"),{
       line_items:[
         {
           name:"Crowfund Company",
-          amount: amount,
+          amount: amount*100,
           currency: 'usd',
           quantity: 1,
-          description: `You are pledging ${amount} towards the project: ${projectName}`
+          description: `You are pledging $${amount} towards the project: ${projectName}`
         }
       ],
 
