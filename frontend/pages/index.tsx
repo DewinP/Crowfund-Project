@@ -1,11 +1,5 @@
-import Layout from "../components/Layout";
-
 const Index: React.FC = () => {
-  return (
-    <Layout>
-      <h1>Hello Next.js</h1>
-    </Layout>
-  );
+  return <h1>Hello Next.js</h1>;
 };
 
 export default Index;

@@ -1,6 +1,7 @@
 import { Button } from "@chakra-ui/button";
 import { Text } from "@chakra-ui/layout";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useAppSelector } from "../app/hooks";
 import { useCreateCheckoutSessionMutation } from "../app/services/api";
@@ -14,12 +15,13 @@ interface PaymentFormProps {
 }
 
 const PaymentForm: React.FC<PaymentFormProps> = ({ project }) => {
+  const router = useRouter();
   const MAX_AMOUNT = 1000;
   const AMOUNT_STEP = 5;
   const MIN_AMOUNT = 5;
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState({
-    customPayment: Math.round(MAX_AMOUNT / AMOUNT_STEP),
+    customPayment: MIN_AMOUNT,
   });
   let { isLoggedIn } = useAppSelector(selectCurrentUser);
 
@@ -60,13 +62,18 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ project }) => {
         step={AMOUNT_STEP}
         onChange={handleInputChange}
       />
-      <Text>Use stripe's test card: 4242 4242 4242</Text>
-
-      <Link href={!isLoggedIn ? "/login" : "#"}>
-        <Button type="submit" isLoading={loading}>
-          Donate
+      <Text align="left">Use stripe's test card: 4242 4242 4242</Text>
+      {isLoggedIn ? (
+        <Button my={4} type="submit" colorScheme="teal" isLoading={loading}>
+          Pledge Now
         </Button>
-      </Link>
+      ) : (
+        <Link href="/login">
+          <Button my={4} type="submit">
+            Login to Pledge
+          </Button>
+        </Link>
+      )}
     </form>
   );
 };
