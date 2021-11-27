@@ -2,15 +2,16 @@ import { Box, Flex, Stack, Text } from "@chakra-ui/layout";
 import { Collapse, IconButton, useDisclosure } from "@chakra-ui/react";
 import React from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { useAppSelector } from "../../app/hooks";
-import { selectCurrentUser } from "../../app/services/Auth.slice";
+import { IUser } from "../../intefaces";
 import AuthNav from "./AuthNav";
 import LeftNav from "./LeftNav";
 import NotAuthNav from "./NotAuthNav";
 
-const Navbar: React.FC = () => {
+const Navbar: React.FC<{ isLoggedIn: boolean; user: IUser }> = ({
+  isLoggedIn,
+  user,
+}) => {
   const { isOpen, onToggle } = useDisclosure();
-  let { isLoggedIn, user } = useAppSelector(selectCurrentUser);
   return (
     <Box>
       <Flex minH="60px" align="center">

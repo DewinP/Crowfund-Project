@@ -1,4 +1,12 @@
-import { FormControl, FormLabel, Input } from "@chakra-ui/react";
+import {
+  FormControl,
+  FormLabel,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+} from "@chakra-ui/react";
 import React from "react";
 
 type Props = {
@@ -18,23 +26,23 @@ const CustomPaymentInput = ({
   min,
   max,
   step,
-  projectName,
-  projectGoal,
   onChange,
 }: Props) => (
   <FormControl>
-    <FormLabel>
-      Help Us reach our ${projectGoal.toLocaleString("en-US")}
-    </FormLabel>
-    <Input
-      type="number"
-      name={name}
-      value={value}
+    <FormLabel>Amoun to pledge</FormLabel>
+    <NumberInput
       min={min}
+      name={name}
       max={max}
       step={step}
-      onChange={onChange}
-    />
+      defaultValue={value}
+    >
+      <NumberInputField onChange={onChange} />
+      <NumberInputStepper>
+        <NumberIncrementStepper />
+        <NumberDecrementStepper />
+      </NumberInputStepper>
+    </NumberInput>
   </FormControl>
 );
 

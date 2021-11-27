@@ -90,12 +90,20 @@ export const api = createApi({
           credentials: "include",
         }),
       }),
+      findAllPledges: build.query<IPledge[], void>({
+        query: () => ({
+          url: "pledges",
+          method: "GET",
+          credentials: "include",
+        }),
+      }),
     };
   },
 });
 
 export const {
   useSignupUserMutation,
+  useFindAllPledgesQuery,
   useLoginUserMutation,
   useLogoutMutation,
   useMeQuery,

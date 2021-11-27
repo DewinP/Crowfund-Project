@@ -10,7 +10,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useCreateProjectMutation } from "../app/services/api";
 import CardContainer from "../components/CardContainer";
 import InputField from "../components/InputField";
-import Layout from "../components/Layout";
 import { IProjectInput } from "../intefaces";
 import { toErrorMap } from "../utils/toErrorMap";
 
@@ -30,77 +29,75 @@ const CreateProject: React.FC = () => {
     pledgeGoal: 1000,
   };
   return (
-    <Layout>
-      <CardContainer>
-        <Center>
-          <Heading>Create Project</Heading>
-        </Center>
-        <Box my={8} textAlign="left">
-          <Formik
-            initialValues={initalValues}
-            onSubmit={async (values, { setErrors }) => {
-              try {
-                const projectId = await createProject(values).unwrap();
-                router.push(`projects/${projectId}`);
-              } catch (error) {
-                if (error.status === 400) {
-                  setErrors(toErrorMap(error.data));
-                }
+    <CardContainer>
+      <Center>
+        <Heading>Create Project</Heading>
+      </Center>
+      <Box my={8} textAlign="left">
+        <Formik
+          initialValues={initalValues}
+          onSubmit={async (values, { setErrors }) => {
+            try {
+              const projectId = await createProject(values).unwrap();
+              router.push(`projects/${projectId}`);
+            } catch (error) {
+              if (error.status === 400) {
+                setErrors(toErrorMap(error.data));
               }
-            }}
-          >
-            {({ isSubmitting }) => (
-              <Form>
-                <InputField
-                  type="text"
-                  name="title"
-                  label="Project Title"
-                  helperText="Limit: 50 chars"
-                />
+            }
+          }}
+        >
+          {({ isSubmitting }) => (
+            <Form>
+              <InputField
+                type="text"
+                name="title"
+                label="Project Title"
+                helperText="Limit: 50 chars"
+              />
 
+              <InputField
+                type="text"
+                name="description"
+                label="Describe your project"
+                textArea
+              />
+              <Flex flexDir={{ base: "column", md: "row" }}>
                 <InputField
-                  type="text"
-                  name="description"
-                  label="Describe your project"
-                  textArea
+                  type="number"
+                  name="pledgeGoal"
+                  label="Funding Goal"
+                  marginRight={{ md: 6 }}
+                  min={1000}
+                  helperText="Minimum: 1000"
                 />
-                <Flex flexDir={{ base: "column", md: "row" }}>
-                  <InputField
-                    type="number"
-                    name="pledgeGoal"
-                    label="Funding Goal"
-                    marginRight={{ md: 6 }}
-                    min={1000}
-                    helperText="Minimum: 1000"
+                <FormControl mt={4}>
+                  <FormLabel htmlFor="dueDate">Choose due date</FormLabel>
+                  <DatePicker
+                    selected={startDate}
+                    allowSameDay={false}
+                    minDate={monthFromNow}
+                    name="dueDate"
+                    onChange={(val: Date) => {
+                      handleSetStartDate(val);
+                    }}
                   />
-                  <FormControl mt={4}>
-                    <FormLabel htmlFor="dueDate">Choose due date</FormLabel>
-                    <DatePicker
-                      selected={startDate}
-                      allowSameDay={false}
-                      minDate={monthFromNow}
-                      name="dueDate"
-                      onChange={(val: Date) => {
-                        handleSetStartDate(val);
-                      }}
-                    />
-                  </FormControl>
-                </Flex>
-                <Button
-                  type="submit"
-                  isLoading={isSubmitting}
-                  colorScheme="teal"
-                  width="full"
-                  mt={4}
-                >
-                  Create Project
-                </Button>
-              </Form>
-            )}
-          </Formik>
-        </Box>
-      </CardContainer>
-    </Layout>
+                </FormControl>
+              </Flex>
+              <Button
+                type="submit"
+                isLoading={isSubmitting}
+                colorScheme="teal"
+                width="full"
+                mt={4}
+              >
+                Create Project
+              </Button>
+            </Form>
+          )}
+        </Formik>
+      </Box>
+    </CardContainer>
   );
 };
 

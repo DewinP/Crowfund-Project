@@ -1,23 +1,27 @@
 import { Button } from "@chakra-ui/button";
 import { Text } from "@chakra-ui/layout";
+import Link from "next/link";
 import React, { useState } from "react";
+import { useAppSelector } from "../app/hooks";
 import { useCreateCheckoutSessionMutation } from "../app/services/api";
-import CustomPaymentInput from "../components/CustomPaymentInput";
+import { selectCurrentUser } from "../app/services/Auth.slice";
 import { IProject } from "../intefaces";
 import getStripe from "../utils/getStripe";
+import CustomPaymentInput from "./CustomPaymentInput";
 
 interface PaymentFormProps {
   project: IProject;
 }
 
 const PaymentForm: React.FC<PaymentFormProps> = ({ project }) => {
-  const MAX_AMOUNT = 10000;
+  const MAX_AMOUNT = 1000;
   const AMOUNT_STEP = 5;
-  const MIN_AMOUNT = 10;
+  const MIN_AMOUNT = 5;
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState({
     customPayment: Math.round(MAX_AMOUNT / AMOUNT_STEP),
   });
+  let { isLoggedIn } = useAppSelector(selectCurrentUser);
 
   const [createSession] = useCreateCheckoutSessionMutation();
   const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) =>
@@ -40,6 +44,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ project }) => {
     const { error } = await stripe!.redirectToCheckout({
       sessionId: session.id,
     });
+    console.warn(error.message);
     setLoading(false);
   };
 
@@ -56,9 +61,12 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ project }) => {
         onChange={handleInputChange}
       />
       <Text>Use stripe's test card: 4242 4242 4242</Text>
-      <Button type="submit" isLoading={loading}>
-        Donate
-      </Button>
+
+      <Link href={!isLoggedIn ? "/login" : "#"}>
+        <Button type="submit" isLoading={loading}>
+          Donate
+        </Button>
+      </Link>
     </form>
   );
 };

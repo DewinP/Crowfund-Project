@@ -1,10 +1,12 @@
-import { Heading } from "@chakra-ui/layout";
+import { Heading, Text } from "@chakra-ui/layout";
+import { Box, Button, ButtonGroup, Icon } from "@chakra-ui/react";
 import { NextPage } from "next";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { SiCheckmarx } from "react-icons/si";
 import { useCreatePledgeMutation } from "../../../app/services/api";
 import CardContainer from "../../../components/CardContainer";
-import Layout from "../../../components/Layout";
 import { IPledge } from "../../../intefaces";
 
 const Pledge: NextPage = () => {
@@ -13,24 +15,53 @@ const Pledge: NextPage = () => {
   let sessionId = router.query.session_id as string;
   const [createPledge] = useCreatePledgeMutation();
   const [isLoading, setIsLoading] = useState(true);
-  const [order, setPledge] = useState<IPledge | null>(null);
+  const [pledge, setPledge] = useState<IPledge | null>(null);
 
   useEffect(() => {
     const createOrder = async () => {
       try {
-        let order = await createPledge({ projectId, sessionId }).unwrap();
+        let pledge = await createPledge({ projectId, sessionId }).unwrap();
         setIsLoading(false);
-        setPledge(order);
-      } catch (error) {}
+        setPledge(pledge);
+      } catch (error) {
+        router.push(`/projects/${projectId}`);
+      }
     };
     sessionId && projectId && createOrder();
   }, [sessionId, projectId]);
-
-  console.log(order);
+  console.log(pledge);
   return (
-    <Layout>
-      <CardContainer>{isLoading && <Heading>Loading</Heading>}</CardContainer>
-    </Layout>
+    <CardContainer>
+      {isLoading && !pledge && <Heading>Loading</Heading>}
+      {pledge && (
+        <Box textAlign="center" py={10} px={6}>
+          <Icon as={SiCheckmarx} boxSize={"50px"} color={"green.500"} />
+          <Heading as="h3" size="xl" mt={6} mb={2}>
+            Successfully pledged{" "}
+            <Text as="span" color="green">
+              {" "}
+              ${pledge?.amount}
+            </Text>
+          </Heading>
+          <Text color={"gray.500"}>
+            Thank you for believing in {pledge?.projectName}
+          </Text>
+          <ButtonGroup
+            mt={3}
+            variant="link"
+            justifyContent="space-between"
+            spacing={6}
+          >
+            <Link href="/pledges">
+              <Button color="green">Check all your pledges</Button>
+            </Link>
+            <Link href={`/projects/${projectId}`}>
+              <Button>Project page</Button>
+            </Link>
+          </ButtonGroup>
+        </Box>
+      )}
+    </CardContainer>
   );
 };
 export default Pledge;

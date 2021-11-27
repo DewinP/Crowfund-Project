@@ -3,8 +3,8 @@ import { object, string, TypeOf } from 'zod'
 
 const payload = {
     body: object({
-        sessionId: string(),
-        projectId:string()
+        sessionId: string().nonempty(),
+        projectId:string().nonempty()
     })
 }
 

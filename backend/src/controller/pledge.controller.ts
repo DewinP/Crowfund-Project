@@ -2,7 +2,7 @@ import config from 'config';
 import { Request, Response } from 'express';
 import Stripe from 'stripe';
 import { CreatePledgeInput, FindPledgeInput } from '../schema/pledge.schema';
-import { createPledge, findAllPledges } from '../service/pledge.service';
+import { createPledge, findAllPledges, findPledge } from '../service/pledge.service';
 import { findProject } from '../service/project.service';
 
 const stripe = new Stripe(config.get<string>("stripeKey"),{
@@ -14,16 +14,20 @@ export const createPledgeHandler = async (req: Request<{},{},CreatePledgeInput["
     const userId= res.locals.user._id
     const projectId = req.body.projectId;
     const sessionId = req.body.sessionId;
-    
-    //check if payment with this sessionID exist
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
-    console.log(session)
-    
-    const p = await findProject({projectId:projectId})
 
-  if(p){
+    const pledge = await findPledge({sessionId, projectId})
+
+    //if user is revisiting link just get pledge created the first time
+    if(pledge){
+      return res.send(pledge)
+    }
+    
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    console.log(session.success_url)
+    const p = await findProject({projectId:projectId})
+   if(p){
     try {
-    await createPledge({amount: session.amount_total!, user:userId,project:p,projectName:p.title,sessionId: session.id })
+    await createPledge({amount: session.amount_total!, user:userId,project:p,projectName:p.title,sessionId: session.id, projectId:p._id })
     return res.sendStatus(201)
     } catch (error) {
  console.error(error)

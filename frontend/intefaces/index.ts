@@ -72,4 +72,7 @@ export interface IUser {
       projectName:string;
       amount:string;
       user:string;
+      createdAt: string,
+      updatedAt: string,
+      projectId:string,
   }

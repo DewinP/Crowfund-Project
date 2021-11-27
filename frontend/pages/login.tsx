@@ -5,7 +5,7 @@ import React from "react";
 import { useAppSelector } from "../app/hooks";
 import { selectCurrentUser } from "../app/services/Auth.slice";
 import CardContainer from "../components/CardContainer";
-import Layout, { MotionBox } from "../components/Layout";
+import { MotionBox } from "../components/Layout";
 import LoginForm from "../components/LoginForm";
 
 const variants = {
@@ -23,22 +23,20 @@ const Login: NextPage = () => {
     }
   }, [isLoggedIn]);
   return (
-    <Layout>
-      <MotionBox
-        variants={variants}
-        initial="hidden"
-        animate="enter"
-        exit="exit"
-        transition={{ duration: "0.4" }}
-      >
-        <CardContainer>
-          <Box textAlign="center">
-            <Heading>Login into DSP</Heading>
-          </Box>
-          <LoginForm />
-        </CardContainer>
-      </MotionBox>
-    </Layout>
+    <MotionBox
+      variants={variants}
+      initial="hidden"
+      animate="enter"
+      exit="exit"
+      transition={{ duration: "0.4" }}
+    >
+      <CardContainer>
+        <Box textAlign="center">
+          <Heading>Login into DSP</Heading>
+        </Box>
+        <LoginForm />
+      </CardContainer>
+    </MotionBox>
   );
 };
 

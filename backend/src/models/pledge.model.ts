@@ -12,6 +12,7 @@ export interface PledgeDocument extends mongoose.Document {
     pledgeId: string;
     projectName:string;
     sessionId:string;
+    projectId:string;
     amount: number;
 }
 
@@ -19,7 +20,8 @@ const pledgeSchema = new mongoose.Schema(
     {
         user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
         project:{type: mongoose.Schema.Types.ObjectId,ref:"Project" },
-        sessionId:{type:String,required:true},
+        sessionId:{type:String,required:true,unique:true},
+        projectId: {type:String, required:true},
         pledgeId:{
             type: String,
             required:true,
