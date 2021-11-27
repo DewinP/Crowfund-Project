@@ -1,19 +1,16 @@
-import { number, object, string, TypeOf } from 'zod'
+import { object, string, TypeOf } from 'zod'
 
 
 const payload = {
     body: object({
-        address: string().nonempty("Address is required"),
-        amount: number(),
-        status: string().nonempty("Status is required")
+        sessionId: string(),
+        projectId:string()
     })
 }
 
 const params = {
     params: object({
-        projectId: string(),
         pledgeId: string(),
-
     })
 }
 

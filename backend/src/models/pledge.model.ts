@@ -10,24 +10,23 @@ export interface PledgeDocument extends mongoose.Document {
     user: UserDocument["_id"];
     project: ProjectDocument["_id"]
     pledgeId: string;
+    projectName:string;
     amount: number;
-    address: string;
-    status: string;
 }
 
 const pledgeSchema = new mongoose.Schema(
     {
         user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
         project:{type: mongoose.Schema.Types.ObjectId,ref:"Project" },
+        sessionId:{type:String,required:true},
         pledgeId:{
             type: String,
             required:true,
             unique: true,
             default:()=> `order_${nanoId()}`
         },
+        projectName:{type:String,required:true},
         amount: {type:Number, required:true},
-        address:{type:Object, required:true},
-        status: {type: "string", default: 'pending'}
     },
       {
         timestamps: true,

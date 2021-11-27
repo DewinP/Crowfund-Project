@@ -6,8 +6,8 @@ import { createUserSchema } from '../schema/user.schema';
 
 const router = Router()
 
-router.post("/api/users", validateResource(createUserSchema),createUserHandler)
-router.get("/api/me", currentUserCheck,getCurrentUserHandler)
+router.post("/", validateResource(createUserSchema),createUserHandler)
+router.get("/me", currentUserCheck,getCurrentUserHandler)
 
 
 export default router

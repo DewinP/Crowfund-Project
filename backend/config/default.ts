@@ -6,7 +6,7 @@ export default {
     refreshTokenTTL: "1y",
     origin:"http://localhost:3000",
     cookieDomain: 'localhost',
-    stripeKey: "sk_test_51JzwivLkrdmaDmMUA6AVQcsYBtIPTsloUvpukYXgVmBC1yXeV0cFucWxwIbOP604k0tsQgtXMIi2F2Rw44pbAXZI00z0WceNg2",
+    stripeKey: "sk_test_4eC39HqLyjWDarjtT1zdp7dc",
     publicKey: `-----BEGIN PUBLIC KEY-----
     MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAj3d09LoHc/OugCC0jLHd
     KBcIJyuQn7HeFCQ5bGHVeALY/WHf9vb3QIEgTEBvZbG+uScgF/WfUcebtDZGyGc9

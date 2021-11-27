@@ -6,9 +6,9 @@ import { createSessionSchema } from '../schema/session.schema';
 
 const router = Router();
 
-router.post("/api/sessions", validateResource(createSessionSchema),createSessionHandler)
-router.get("/api/sessions", requireUser, getUserSessionsHandler)
-router.delete("/api/sessions", requireUser, deleteSessionHandler)
+router.post("/", validateResource(createSessionSchema),createSessionHandler)
+router.get("/", requireUser, getUserSessionsHandler)
+router.delete("/", requireUser, deleteSessionHandler)
 
 export default router;
 

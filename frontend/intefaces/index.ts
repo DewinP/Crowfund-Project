@@ -47,3 +47,26 @@ export interface IUser {
       pledgeGoal: number;
       dueDate: Date;
   }
+
+  export interface IPaymentSessionInput{
+      amount: number
+      projectName:string
+      projectId:string
+  }
+
+
+  export interface IPaymentPayload{
+      data?: IPaymentPayload
+      error?: string
+  }
+
+  export interface IPaymentSession{
+    id:string,
+    intent:string,
+    totalAmount:number
+  }
+
+  export interface IPledgeInput{
+      projectId:string;
+      sessionId:string;
+  }

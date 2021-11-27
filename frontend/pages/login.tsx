@@ -1,4 +1,5 @@
 import { Box, Heading } from "@chakra-ui/react";
+import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React from "react";
 import { useAppSelector } from "../app/hooks";
@@ -13,7 +14,7 @@ const variants = {
   exit: { opacity: 0 },
 };
 
-const Login: React.FC = () => {
+const Login: NextPage = () => {
   const router = useRouter();
   let { isLoggedIn } = useAppSelector(selectCurrentUser);
   React.useEffect(() => {

@@ -1,4 +1,4 @@
-export default interface AuthUser{
+export  interface AuthUser{
     _id: string,
   email: string,
   firstName: string,
@@ -10,3 +10,4 @@ export default interface AuthUser{
   iat: number,
   exp: number
 }
+

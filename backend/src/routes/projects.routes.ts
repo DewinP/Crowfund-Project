@@ -6,9 +6,9 @@ import { createProjectSchema, updateProjectSchema } from '../schema/project.sche
 
 const router = Router()
 
-router.get("/api/projects/:projectId", findProjectHandler)
-router.get("/api/projects/", findAllProjectsHandler)
-router.post("/api/projects/", [requireUser,validateResource(createProjectSchema)], createProjectHandler)
-router.put("/api/projects",[requireUser,validateResource(updateProjectSchema)],updateProjectHandler)
+router.get("/:projectId", findProjectHandler)
+router.get("/", findAllProjectsHandler)
+router.post("/", [requireUser,validateResource(createProjectSchema)], createProjectHandler)
+router.put("/",[requireUser,validateResource(updateProjectSchema)],updateProjectHandler)
 
 export default router

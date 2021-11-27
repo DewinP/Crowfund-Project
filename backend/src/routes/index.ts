@@ -13,7 +13,7 @@ const routes = (app: Express) => {
     //sessions
     app.use('/api/sessions', sessionRoute)
 
-    //project
+    //projects
     app.use('/api/projects', projectRoute)
 
     //pledges

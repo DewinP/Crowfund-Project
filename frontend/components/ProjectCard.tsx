@@ -2,6 +2,7 @@ import { Button, Center, Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
 import { IProject } from "../intefaces";
+import { calculateTimeUntil } from "../utils/calculateTimeUntil";
 
 interface ProjectCardProps {
   project: IProject;
@@ -38,7 +39,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               textAlign="center"
               letterSpacing={1.1}
             >
-              {project?.dueDate} days left
+              {`${calculateTimeUntil(project?.dueDate)} days left`}
             </Text>
           </Flex>
           <Text color="gray.500">

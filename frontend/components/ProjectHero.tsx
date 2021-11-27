@@ -8,6 +8,7 @@ import {
   StatNumber,
   Text,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import React from "react";
 import { IProject } from "../intefaces";
 import { calculateTimeUntil } from "../utils/calculateTimeUntil";
@@ -51,9 +52,11 @@ const ProjectHero: React.FC<{ p: IProject }> = ({ p }) => {
           </Text>
           <Progress height="32px" colorScheme="teal" value={80} />
 
-          <Button isFullWidth size="lg" colorScheme="pink">
-            Become a Backer
-          </Button>
+          <Link href={`/projects/${p.projectId}/pledge`} passHref>
+            <Button isFullWidth size="lg" colorScheme="pink">
+              Become a Backer
+            </Button>
+          </Link>
         </Stack>
       </Stack>
     </SimpleGrid>
