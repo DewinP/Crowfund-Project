@@ -3,14 +3,12 @@ import { BoxProps, Center } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import React from "react";
 import { useAppSelector } from "../app/hooks";
-import { useMeQuery } from "../app/services/api";
 import { selectCurrentUser } from "../app/services/Auth.slice";
 import FullPageLoader from "./FullPageLoader";
 import Navbar from "./Navbar/Navbar";
 
 export const MotionBox = motion<BoxProps>(Box);
 const Layout: React.FC<{}> = ({ children }) => {
-  useMeQuery();
   let { isLoggedIn, isFetching, user } = useAppSelector(selectCurrentUser);
 
   if (isFetching) {

@@ -5,7 +5,7 @@ import requireUser from '../middleware/requireUser';
 const router = Router();
 
 router.get('/project/:projectId',requireUser,findAllPledgesByProjectHandler)
-router.get('/', findAllPledgesByUserHandler)
+router.get('/',requireUser, findAllPledgesByUserHandler)
 router.post('/',requireUser, createPledgeHandler)
 
 export default router;

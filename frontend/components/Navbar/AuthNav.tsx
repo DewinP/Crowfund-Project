@@ -30,7 +30,9 @@ const AuthNav: React.FC<{ user: IUser }> = ({ user }) => {
               {user.firstName + " " + user.lastName.charAt(0) + "."}
             </MenuButton>
             <MenuList m={0} p={0}>
-              <MenuItem>Backed Projects</MenuItem>
+              <MenuItem onClick={() => router.push("/pledges")}>
+                Backed Projects
+              </MenuItem>
               <MenuItem>Owned Projects</MenuItem>
               <MenuDivider p={0} m={0} />
               <MenuItem

@@ -34,14 +34,6 @@ const LeftNav: React.FC<{ isLoggedIn?: string; isMobile?: boolean }> = ({
           Projects
         </Button>
       </Link>
-      <Link href="/funded" passHref>
-        <Button
-          isFullWidth={isMobile}
-          variant={pathName !== "/funded" ? "ghost" : null}
-        >
-          Fully Funded
-        </Button>
-      </Link>
     </Stack>
   );
 };

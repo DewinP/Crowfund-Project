@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useAppSelector } from "../app/hooks";
+import { useMeQuery } from "../app/services/api";
 import { selectCurrentUser } from "../app/services/Auth.slice";
 import FullPageLoader from "../components/FullPageLoader";
 
@@ -13,6 +14,7 @@ const PrivateRoutes: React.FC<PrivateRoutesProps> = ({
   protectedRoutes,
   children,
 }) => {
+  useMeQuery();
   const router = useRouter();
   let { isLoggedIn, isFetching } = useAppSelector(selectCurrentUser);
 

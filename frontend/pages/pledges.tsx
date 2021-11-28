@@ -1,4 +1,4 @@
-import { Button, Heading, Tbody, Td } from "@chakra-ui/react";
+import { Button, Center, Heading, Tbody, Td } from "@chakra-ui/react";
 import { Table, TableCaption, Th, Thead, Tr } from "@chakra-ui/table";
 import dayjs from "dayjs";
 import { NextPage } from "next";
@@ -8,11 +8,14 @@ import { useFindAllPledgesQuery } from "../app/services/api";
 import CardContainer from "../components/CardContainer";
 
 const Pledges: NextPage = () => {
-  const { data: pledges, isLoading } = useFindAllPledgesQuery();
+  const { data: pledges } = useFindAllPledgesQuery();
   return (
     <CardContainer width="100%">
+      <Center p={3}>
+        <Heading variant="h3">List of all your pledges</Heading>
+      </Center>
       <Table size="lg" variant="simple">
-        <TableCaption>Pledges made by you</TableCaption>
+        <TableCaption>{pledges?.length} pledges on file</TableCaption>
         <Thead>
           <Tr>
             <Th>Date</Th>
@@ -38,9 +41,6 @@ const Pledges: NextPage = () => {
             })
           : null}
       </Table>
-      {pledges?.length < 1 && !isLoading && (
-        <Heading>You havent supported any projects yet.</Heading>
-      )}
     </CardContainer>
   );
 };

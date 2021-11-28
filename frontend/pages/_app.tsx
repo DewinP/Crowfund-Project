@@ -12,12 +12,10 @@ import "../styles/DatePicker.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
-
   const protectedRoutes = [
     "/pledges",
     "/create-project",
-    `/projects/${router.pathname}/pledge`,
-    `/projects/${router.pathname}/success`,
+    `/projects/${router.query.projectId}/success`,
   ];
   return (
     <Provider store={store}>
