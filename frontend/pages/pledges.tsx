@@ -8,14 +8,19 @@ import { useFindAllPledgesQuery } from "../app/services/api";
 import CardContainer from "../components/CardContainer";
 
 const Pledges: NextPage = () => {
-  const { data: pledges } = useFindAllPledgesQuery();
+  const { data: pledges, isLoading } = useFindAllPledgesQuery();
   return (
     <CardContainer width="100%">
       <Center p={3}>
         <Heading variant="h3">List of all your pledges</Heading>
       </Center>
       <Table size="lg" variant="simple">
-        <TableCaption>{pledges?.length} pledges on file</TableCaption>
+        <TableCaption>
+          {" "}
+          {!isLoading
+            ? `${pledges.length} pledges on file`
+            : "Fetching pledges..."}
+        </TableCaption>
         <Thead>
           <Tr>
             <Th>Date</Th>
