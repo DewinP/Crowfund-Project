@@ -1,7 +1,7 @@
 import { DocumentDefinition, FilterQuery, QueryOptions } from "mongoose"
 import PledgeModel, { PledgeDocument } from "../models/pledge.model"
 
-export const createPledge = async(input: DocumentDefinition<Omit<PledgeDocument,"createdAt" | "updatedAt"|"pledgeId">>)=>{
+export const createPledge = async(input: DocumentDefinition<Omit<PledgeDocument,"createdAt" | "updatedAt">>)=>{
     return PledgeModel.create(input)
 }
 export const findPledge = async(query:FilterQuery<PledgeDocument>,options:QueryOptions = {lean:true})=>{

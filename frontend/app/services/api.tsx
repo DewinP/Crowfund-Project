@@ -16,7 +16,7 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}`,
   }),
-  tagTypes: ["Project", "Me"],
+  tagTypes: ["Project", "Me", "Pledge"],
   endpoints: (build) => {
     return {
       signupUser: build.mutation<{}, ISignupInput>({
@@ -63,13 +63,22 @@ export const api = createApi({
         query: (projectId) => ({
           url: `projects/${projectId}`,
         }),
-        providesTags: (p) => [{ type: "Project", id: p?.projectId }],
+        providesTags: (p) => [{ type: "Project", id: p?._id }],
       }),
       findAllProjects: build.query<IProject[], void>({
         query: () => ({
           url: "projects",
         }),
-        providesTags: [{ type: "Project", id: "LIST" }],
+        providesTags: (result) =>
+          result
+            ? [
+                ...result.map(({ _id }) => ({
+                  type: "Project" as const,
+                  id: _id,
+                })),
+                { type: "Project" as const, id: "LIST" },
+              ]
+            : [{ type: "Project" as const, id: "LIST" }],
       }),
       createCheckoutSession: build.mutation<
         IPaymentSession,
@@ -95,6 +104,16 @@ export const api = createApi({
           url: "pledges",
           method: "GET",
           credentials: "include",
+          providesTags: (result) =>
+            result
+              ? [
+                  ...result.map(({ _id, project, user }) => ({
+                    type: "Pledge" as const,
+                    id: result._id,
+                  })),
+                  { type: "Pledge" as const, id: "LIST" },
+                ]
+              : [{ type: "Pledge" as const, id: "LIST" }],
         }),
       }),
     };

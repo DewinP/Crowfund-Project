@@ -34,7 +34,7 @@ const Projects: React.FC = () => {
       <Stack direction={["column", "row"]} wrap="wrap" justifyContent="center">
         {projects?.length > 0 &&
           projects?.map((project) => (
-            <ProjectCard key={project.projectId} project={project} />
+            <ProjectCard key={project._id} project={project} />
           ))}
       </Stack>
     </Stack>

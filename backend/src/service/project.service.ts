@@ -10,7 +10,7 @@ export const findAllProjects = async()=>{
 }
 
 
-export const createProject = async(input: DocumentDefinition<Omit<ProjectDocument,"createdAt" | "updatedAt"|"projectId">>)=>{
+export const createProject = async(input: DocumentDefinition<Omit<ProjectDocument,"createdAt" | "updatedAt">>)=>{
     return ProjectModel.create(input)
 }
 

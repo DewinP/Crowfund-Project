@@ -53,7 +53,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           alignItems="center"
           justifyContent="space-between"
         >
-          <Link href={`projects/${project.projectId}`}>
+          <Link href={`projects/${project._id}`}>
             <Button variant="ghost" colorScheme="red">
               Read more
             </Button>

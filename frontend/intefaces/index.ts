@@ -38,7 +38,6 @@ export interface IUser {
     createdAt: Date;
     updatedAt: Date;
     dueDate: Date;
-    projectId:string
   }
 
   export interface IProjectInput{
@@ -74,5 +73,9 @@ export interface IUser {
       user:string;
       createdAt: string,
       updatedAt: string,
-      projectId:string,
+  }
+
+  export interface IFindAllPledgesInput{
+      projectId: string;
+      userId: string;
   }

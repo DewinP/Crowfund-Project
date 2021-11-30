@@ -38,7 +38,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ project }) => {
     const session = await createSession({
       amount: input.customPayment,
       projectName: project.title,
-      projectId: project.projectId,
+      projectId: project._id,
     }).unwrap();
 
     // Redirect to Checkout.

@@ -52,7 +52,7 @@ const ProjectHero: React.FC<{ p: IProject }> = ({ p }) => {
           </Text>
           <Progress height="32px" colorScheme="teal" value={80} />
 
-          <Link href={`/projects/${p.projectId}/pledge`} passHref>
+          <Link href={`/projects/${p._id}/pledge`} passHref>
             <Button isFullWidth size="lg" colorScheme="pink">
               Become a Backer
             </Button>

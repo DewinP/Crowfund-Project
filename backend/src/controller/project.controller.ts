@@ -6,7 +6,7 @@ export const createProjectHandler = async (req: Request<{},{},CreateProjectInput
     const userId= res.locals.user._id;
     const body = req.body;
     const project = await createProject({...body, user:userId});
-    return res.status(200).json(project.projectId);
+    return res.status(200).json(project._id);
 }
 
 export const updateProjectHandler = async (req: Request<UpdateProjectInput["params"]>, res: Response) => {
@@ -14,7 +14,7 @@ export const updateProjectHandler = async (req: Request<UpdateProjectInput["para
     const projectId = req.params.projectId;
 
     const updateBody = req.body;
-    const project = await findProject({projectId})
+    const project = await findProject({_id:projectId})
     if(!project){
         return res.sendStatus(404)
     }
@@ -22,7 +22,7 @@ export const updateProjectHandler = async (req: Request<UpdateProjectInput["para
         return res.sendStatus(403)
     }
 
-    await findAndUpdateProject({projectId}, updateBody, {
+    await findAndUpdateProject({_id:projectId}, updateBody, {
         new:true
     })
 
@@ -34,7 +34,7 @@ export const updateProjectHandler = async (req: Request<UpdateProjectInput["para
     res: Response
   ) {
     const projectId = req.params.projectId;
-    const project = await findProject({projectId});
+    const project = await findProject({_id:projectId});
   
     if (!project) {
       return res.sendStatus(404);
