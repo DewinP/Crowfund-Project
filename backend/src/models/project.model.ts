@@ -8,6 +8,7 @@ export interface ProjectDocument extends mongoose.Document {
     pledgeGoal: number;
     createdAt: Date;
     updatedAt: Date;
+    creator: string;
 }
 
 const projectSchema = new mongoose.Schema(
@@ -17,6 +18,7 @@ const projectSchema = new mongoose.Schema(
         description:{type:String, required: true},
         pledgeGoal:{ type:Number, required:true},
         dueDate:{type:Date, required:true},
+        creator:{type:String, required:true},
       },
       {
         timestamps: true,

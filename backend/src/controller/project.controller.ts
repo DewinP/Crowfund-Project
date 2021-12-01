@@ -3,9 +3,9 @@ import { CreateProjectInput, FindProjectInput, UpdateProjectInput } from '../sch
 import { createProject, findAllProjects, findAndUpdateProject, findProject } from '../service/project.service';
 
 export const createProjectHandler = async (req: Request<{},{},CreateProjectInput["body"]>, res: Response) => {
-    const userId= res.locals.user._id;
+    const user= res.locals.user;
     const body = req.body;
-    const project = await createProject({...body, user:userId});
+    const project = await createProject({...body, user:user._id, creator:user.name});
     return res.status(200).json(project._id);
 }
 

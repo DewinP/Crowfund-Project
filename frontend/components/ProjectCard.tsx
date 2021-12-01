@@ -4,6 +4,7 @@ import {
   Flex,
   Heading,
   Icon,
+  Skeleton,
   Stack,
   Text,
 } from "@chakra-ui/react";
@@ -12,14 +13,24 @@ import React from "react";
 import { IProject } from "../intefaces";
 import { calculateTimeUntil } from "../utils/calculateTimeUntil";
 import { FaRegClock } from "react-icons/fa";
+import { useFindAllPledgesByProjectQuery } from "../app/services/api";
+import { calculatePercentage } from "../utils/calculatePercentage";
 
 interface ProjectCardProps {
   project: IProject;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-  const daysLeft = calculateTimeUntil(project.dueDate);
-
+  const daysLeft = calculateTimeUntil(project?.dueDate);
+  const { isLoading: isLoadingPledges, data: pledges } =
+    useFindAllPledgesByProjectQuery({ projectId: project?._id });
+  const currentFunding = pledges
+    ?.map(({ amount }) => amount)
+    .reduce((prev, curr) => prev + curr, 0);
+  const currentFundingPercentage = calculatePercentage(
+    currentFunding,
+    project?.pledgeGoal
+  );
   return (
     <Center py={6}>
       <Stack
@@ -34,15 +45,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         <Stack>
           <Heading fontSize="2xl">{project.name}</Heading>
           <Flex justifyContent="space-between" textAlign="center">
-            <Text
-              color="green.500"
-              fontWeight={800}
-              fontSize="sm"
-              letterSpacing={1.1}
-              textAlign="center"
-            >
-              000% funded
-            </Text>
+            <Skeleton isLoaded={!isLoadingPledges}>
+              <Text
+                color="green.500"
+                fontWeight={800}
+                fontSize="sm"
+                letterSpacing={1.1}
+                textAlign="center"
+              >
+                {currentFundingPercentage}% funded
+              </Text>
+            </Skeleton>
 
             <Flex color="gray.500" align="center">
               <Icon as={FaRegClock} />

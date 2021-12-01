@@ -5,14 +5,8 @@ import React from "react";
 import { useAppSelector } from "../app/hooks";
 import { selectCurrentUser } from "../app/services/Auth.slice";
 import CardContainer from "../components/CardContainer";
-import { MotionBox } from "../components/Layout";
+import CoolTransition from "../components/CoolTransition";
 import LoginForm from "../components/LoginForm";
-
-const variants = {
-  hidden: { opacity: 0 },
-  enter: { opacity: 1 },
-  exit: { opacity: 0 },
-};
 
 const Login: NextPage = () => {
   const router = useRouter();
@@ -23,20 +17,14 @@ const Login: NextPage = () => {
     }
   }, [isLoggedIn]);
   return (
-    <MotionBox
-      variants={variants}
-      initial="hidden"
-      animate="enter"
-      exit="exit"
-      transition={{ duration: "0.4" }}
-    >
+    <CoolTransition>
       <CardContainer>
         <Box textAlign="center">
           <Heading>Login into DSP</Heading>
         </Box>
         <LoginForm />
       </CardContainer>
-    </MotionBox>
+    </CoolTransition>
   );
 };
 

@@ -4,12 +4,10 @@ import { motion } from "framer-motion";
 import React from "react";
 import { useAppSelector } from "../app/hooks";
 import { selectCurrentUser } from "../app/services/Auth.slice";
-import FullPageLoader from "./FullPageLoader";
 import Navbar from "./Navbar/Navbar";
 
-export const MotionBox = motion<BoxProps>(Box);
 const Layout: React.FC<{}> = ({ children }) => {
-  let { isLoggedIn, isFetching, user } = useAppSelector(selectCurrentUser);
+  let { isLoggedIn, user } = useAppSelector(selectCurrentUser);
 
   return (
     <Box px={{ base: 4, md: 8 }}>

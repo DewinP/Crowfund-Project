@@ -1,22 +1,11 @@
 import { Center } from "@chakra-ui/layout";
 import { Spinner } from "@chakra-ui/spinner";
 import React from "react";
-import { MotionBox } from "./Layout";
+import CoolTransition from "./CoolTransition";
 
 const FullPageLoader: React.FC = () => {
-  const variants = {
-    hidden: { opacity: 0 },
-    enter: { opacity: 1 },
-    exit: { opacity: 0 },
-  };
   return (
-    <MotionBox
-      variants={variants}
-      initial="hidden"
-      animate="enter"
-      exit="exit"
-      transition={{ duration: "0.4" }}
-    >
+    <CoolTransition>
       <Center w="100%" h="100vh">
         <Spinner
           thickness="10px"
@@ -27,7 +16,7 @@ const FullPageLoader: React.FC = () => {
           h="200px"
         />
       </Center>
-    </MotionBox>
+    </CoolTransition>
   );
 };
 
