@@ -59,6 +59,17 @@ export const api = createApi({
         }),
         invalidatesTags: [{ type: "Project", id: "LIST" }],
       }),
+      updateProject: build.mutation<
+        string,
+        Partial<IProject> & Pick<IProject, "_id">
+      >({
+        query: (input) => ({
+          url: "projects",
+          method: "PATCH",
+          body: input,
+          credentials: "include",
+        }),
+      }),
       findProject: build.query<IProject, string>({
         query: (projectId) => ({
           url: `projects/${projectId}`,

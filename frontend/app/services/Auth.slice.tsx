@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {  IUser } from "../../intefaces";
+import { IUser } from "../../intefaces";
 import { RootState } from "../store";
 import { api } from "./api";
 
@@ -21,7 +21,7 @@ export const authSlice = createSlice({
   reducers: {},
   extraReducers: (build) => {
     build.addMatcher(api.endpoints.me.matchFulfilled, (state, { payload }) => {
-      if(payload._id){
+      if (payload._id) {
         state.user = payload;
         state.isLoggedIn = true;
       }
@@ -35,7 +35,6 @@ export const authSlice = createSlice({
     });
     build.addMatcher(api.endpoints.logout.matchRejected, (state) => {
       state.user = undefined;
-      state.isLoggedIn = false;
     });
   },
 });

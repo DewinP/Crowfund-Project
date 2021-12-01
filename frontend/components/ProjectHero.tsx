@@ -11,11 +11,10 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
-import {
-  useFindAllPledgesByProjectQuery,
-  useFindProjectQuery,
-} from "../app/services/api";
-import { IPledge, IProject } from "../intefaces";
+import { useAppSelector } from "../app/hooks";
+import { useFindAllPledgesByProjectQuery } from "../app/services/api";
+import { selectCurrentUser } from "../app/services/Auth.slice";
+import { IProject, IProjectInput } from "../intefaces";
 import { calculatePercentage } from "../utils/calculatePercentage";
 import { calculateTimeUntil } from "../utils/calculateTimeUntil";
 
@@ -24,6 +23,8 @@ interface IProjectHeroProps {
 }
 
 const ProjectHero: React.FC<IProjectHeroProps> = ({ project }) => {
+  let { user } = useAppSelector(selectCurrentUser);
+
   const { isLoading: isLoadingPledges, data: pledges } =
     useFindAllPledgesByProjectQuery(
       { projectId: project?._id },
@@ -45,6 +46,21 @@ const ProjectHero: React.FC<IProjectHeroProps> = ({ project }) => {
     project.pledgeGoal
   );
 
+  const [projectEditableInfo, setProjectEditableInfo] =
+    React.useState<IProjectInput>({
+      name: project?.name,
+      description: project?.description,
+      dueDate: project?.dueDate,
+      pledgeGoal: project?.pledgeGoal,
+    });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setProjectEditableInfo({
+      ...projectEditableInfo,
+      [e.target.name]: e.target.value,
+    });
+    console.log("ehehehehehehehehehhehehe", projectEditableInfo);
+  };
+
   return (
     <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
       <Image
@@ -54,12 +70,12 @@ const ProjectHero: React.FC<IProjectHeroProps> = ({ project }) => {
         objectFit={"cover"}
       />
       <Stack>
-        <Heading>{project?.name}</Heading>
+        <Heading fontSize="2xl">project?.name</Heading>
         <Stack spacing={0}>
           <Stat>
             <StatNumber fontSize={{ base: "20px", md: "30px" }}>
               <Text as="span" fontWeight="bold" color="green">
-                {!isLoadingPledges && currentFunding}
+                ${!isLoadingPledges && currentFunding}
               </Text>
             </StatNumber>
             <StatHelpText fontSize="15">

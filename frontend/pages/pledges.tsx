@@ -4,10 +4,7 @@ import dayjs from "dayjs";
 import { NextPage } from "next";
 import Link from "next/link";
 import React from "react";
-import {
-  useFindAllPledgesByUserQuery,
-  useFindProjectQuery,
-} from "../app/services/api";
+import { useFindAllPledgesByUserQuery } from "../app/services/api";
 import CardContainer from "../components/CardContainer";
 import CoolTransition from "../components/CoolTransition";
 
@@ -19,11 +16,11 @@ const Pledges: NextPage = () => {
         <Center p={3}>
           <Heading variant="h3">List of all your pledges</Heading>
         </Center>
-        <Table size="lg" variant="simple">
+        <Table size="md" variant="simple">
           <TableCaption>
             {" "}
             {!isLoading
-              ? `${pledges.length} pledges on file`
+              ? `${pledges?.length} pledges on file`
               : "Fetching pledges..."}
           </TableCaption>
           <Thead>
@@ -34,7 +31,7 @@ const Pledges: NextPage = () => {
             </Tr>
           </Thead>
           {pledges?.length > 0
-            ? pledges.map((p) => {
+            ? pledges?.map((p) => {
                 return (
                   <Tbody>
                     <Tr>

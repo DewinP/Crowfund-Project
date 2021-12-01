@@ -33,6 +33,7 @@ export interface IUser {
   export interface IProject {
     _id: string;
     name:string;
+    user:string;
     description: string;
     pledgeGoal: number;
     createdAt: Date;
