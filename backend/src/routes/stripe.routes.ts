@@ -8,10 +8,10 @@ const stripe = new Stripe(config.get<string>("stripeKey"),{
   })
 
 
-  router.post("/session", async (req: Request, res:Response) => {
+  router.post("/session/", async (req: Request, res:Response) => {
     const projectName = req.body.projectName
     const amount = req.body.amount
-    const projectId = req.params.projectId
+    const projectId = req.body.projectId
     const params: Stripe.Checkout.SessionCreateParams = {
       payment_method_types: ['card'],
       line_items:[

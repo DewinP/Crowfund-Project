@@ -4,11 +4,14 @@ import dayjs from "dayjs";
 import { NextPage } from "next";
 import Link from "next/link";
 import React from "react";
-import { useFindAllPledgesQuery } from "../app/services/api";
+import {
+  useFindAllPledgesByUserQuery,
+  useFindProjectQuery,
+} from "../app/services/api";
 import CardContainer from "../components/CardContainer";
 
 const Pledges: NextPage = () => {
-  const { data: pledges, isLoading } = useFindAllPledgesQuery();
+  const { data: pledges, isLoading } = useFindAllPledgesByUserQuery();
   return (
     <CardContainer width="100%">
       <Center p={3}>
@@ -35,8 +38,8 @@ const Pledges: NextPage = () => {
                   <Tr>
                     <Td>{dayjs(p.createdAt).format("MMMM D, YYYY h:mm A")}</Td>
                     <Td>
-                      <Link href={`/projects/${p._id}`} passHref>
-                        <Button variant="link">{p.projectName}</Button>
+                      <Link href={`/projects/${p.project}`} passHref>
+                        <Button variant="link">{p.project}</Button>
                       </Link>
                     </Td>
                     <Td isNumeric>{p.amount}</Td>

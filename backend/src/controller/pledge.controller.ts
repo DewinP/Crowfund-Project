@@ -9,9 +9,9 @@ const stripe = new Stripe(config.get<string>("stripeKey"),{
 })
 
 
-export const createPledgeHandler = async (req: Request<CreatePledgeInput["params"],{},CreatePledgeInput["body"]>, res: Response) => {
+export const createPledgeHandler = async (req: Request<{},{},CreatePledgeInput["body"]>, res: Response) => {
     const userId= res.locals.user._id
-    const projectId = req.params.projectId;
+    const projectId = req.body.projectId;
     const sessionId = req.body.sessionId;
 
     const pledge = await findPledge({sessionId, project: projectId})

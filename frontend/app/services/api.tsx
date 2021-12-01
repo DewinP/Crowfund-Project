@@ -85,7 +85,7 @@ export const api = createApi({
         IPaymentSessionInput
       >({
         query: (input) => ({
-          url: "stripe/session",
+          url: `stripe/session/`,
           method: "POST",
           body: input,
           credentials: "include",
@@ -116,6 +116,23 @@ export const api = createApi({
               : [{ type: "Pledge" as const, id: pledgeResult[0].user }],
         }),
       }),
+      findAllPledgesByProject: build.query<IPledge[], { projectId: string }>({
+        query: ({ projectId }) => ({
+          url: `pledges/project/${projectId}`,
+          method: "GET",
+          credentials: "include",
+          providesTags: (pledgeResult: IPledge[]) =>
+            pledgeResult
+              ? [
+                  ...pledgeResult.map(({ _id }) => ({
+                    type: "Pledge" as const,
+                    id: _id,
+                  })),
+                  { type: "Pledge" as const, id: pledgeResult[0].project },
+                ]
+              : [{ type: "Pledge" as const, id: pledgeResult[0].project }],
+        }),
+      }),
     };
   },
 });
@@ -131,4 +148,5 @@ export const {
   useCreateProjectMutation,
   useCreateCheckoutSessionMutation,
   useCreatePledgeMutation,
+  useFindAllPledgesByProjectQuery,
 } = api;

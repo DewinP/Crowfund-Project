@@ -10,10 +10,21 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
+import {
+  useFindAllPledgesByProjectQuery,
+  useFindProjectQuery,
+} from "../app/services/api";
 import { IProject } from "../intefaces";
 import { calculateTimeUntil } from "../utils/calculateTimeUntil";
 
 const ProjectHero: React.FC<{ p: IProject }> = ({ p }) => {
+  const { isLoading: isLoadingPledges, data: pledges } =
+    useFindAllPledgesByProjectQuery({ projectId: p._id });
+
+  const currentFunding = pledges
+    ?.map((p) => p.amount)
+    .reduce((prev, curr) => prev + curr, 0);
+
   return (
     <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
       <Image
@@ -28,11 +39,11 @@ const ProjectHero: React.FC<{ p: IProject }> = ({ p }) => {
           <Stat>
             <StatNumber fontSize={{ base: "20px", md: "30px" }}>
               <Text as="span" fontWeight="bold" color="green">
-                10,340
+                {!isLoadingPledges ? currentFunding : 0}
               </Text>
             </StatNumber>
             <StatHelpText fontSize="15">
-              Pledged out of ${p?.pledgeGoal.toLocaleString("en-US")} goal
+              Pledged out of ${p.pledgeGoal.toLocaleString("en-US")} goal
             </StatHelpText>
           </Stat>
           <Stat>
@@ -41,7 +52,7 @@ const ProjectHero: React.FC<{ p: IProject }> = ({ p }) => {
           </Stat>
           <Stat>
             <StatNumber fontSize={{ base: "20px", md: "30px" }}>
-              {calculateTimeUntil(p?.dueDate)}
+              {calculateTimeUntil(p.dueDate)}
             </StatNumber>
             <StatHelpText fontSize="15">Days Left</StatHelpText>
           </Stat>

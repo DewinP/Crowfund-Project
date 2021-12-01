@@ -68,7 +68,7 @@ export interface IUser {
   export interface IPledge{
       _id:string;
       project: string;
-      amount:string;
+      amount:number
       user:string;
       createdAt: string,
       updatedAt: string,

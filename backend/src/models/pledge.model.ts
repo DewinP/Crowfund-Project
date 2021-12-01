@@ -15,7 +15,6 @@ const pledgeSchema = new mongoose.Schema(
         user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
         project:{type: mongoose.Schema.Types.ObjectId,ref:"Project" },
         sessionId:{type:String,required:true,unique:true},
-        projectName:{type:String,required:true},
         amount: {type:Number, required:true},
     },
       {

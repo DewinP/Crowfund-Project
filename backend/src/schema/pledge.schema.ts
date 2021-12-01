@@ -4,13 +4,14 @@ import { object, string, TypeOf } from 'zod'
 const payload = {
     body: object({
         sessionId: string().nonempty(),
+        projectId:string().nonempty()
+
     })
 }
 
 const params = {
     params: object({
         pledgeId: string(),
-        projectId:string().nonempty()
     })
 }
 

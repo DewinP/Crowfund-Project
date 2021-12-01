@@ -11,9 +11,6 @@ export const MotionBox = motion<BoxProps>(Box);
 const Layout: React.FC<{}> = ({ children }) => {
   let { isLoggedIn, isFetching, user } = useAppSelector(selectCurrentUser);
 
-  if (isFetching) {
-    return <FullPageLoader />;
-  }
   return (
     <Box px={{ base: 4, md: 8 }}>
       <Navbar isLoggedIn={isLoggedIn} user={user} />
