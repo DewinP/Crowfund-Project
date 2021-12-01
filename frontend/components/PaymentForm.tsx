@@ -25,6 +25,8 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ project }) => {
   });
   let { isLoggedIn } = useAppSelector(selectCurrentUser);
 
+  console.log("input:", input.customPayment);
+
   const [createSession] = useCreateCheckoutSessionMutation();
   const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) =>
     setInput({
@@ -41,7 +43,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ project }) => {
       projectId: project._id,
     }).unwrap();
 
-    // Redirect to Checkout.
+    // Redirect to stripe checkout page.
     const stripe = await getStripe();
     const { error } = await stripe!.redirectToCheckout({
       sessionId: session.id,

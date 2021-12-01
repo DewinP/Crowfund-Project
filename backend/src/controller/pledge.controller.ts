@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import Stripe from 'stripe';
 import { CreatePledgeInput, FindPledgeInput } from '../schema/pledge.schema';
 import { createPledge, findAllPledges, findPledge } from '../service/pledge.service';
+import { findProject } from '../service/project.service';
 
 const stripe = new Stripe(config.get<string>("stripeKey"),{
   apiVersion: '2020-08-27',
@@ -24,8 +25,10 @@ export const createPledgeHandler = async (req: Request<{},{},CreatePledgeInput["
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 
     //If success_url doesnt include the project id that means that the current project is not the recipient of the pledge
-    if(session.success_url.includes(projectId)){
-      await createPledge({amount: session.amount_total!, user:userId,sessionId: session.id, project: projectId })
+    if(session.success_url.includes(projectId) && session.amount_total){
+      const project = await findProject({_id:projectId})
+      
+      await createPledge({amount: session.amount_total/100, user:userId,sessionId: session.id, project: projectId, projectName: project!.name, userName: res.locals.user.name})
       return res.sendStatus(201)
     }else{
       return res.sendStatus(403)

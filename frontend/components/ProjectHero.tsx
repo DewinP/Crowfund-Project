@@ -21,8 +21,15 @@ const ProjectHero: React.FC<{ p: IProject }> = ({ p }) => {
   const { isLoading: isLoadingPledges, data: pledges } =
     useFindAllPledgesByProjectQuery({ projectId: p._id });
 
+  //filter pledges by user and make sure they are not repeated
+
+  const numOfBackers =
+    pledges?.length > 0
+      ? [...new Set(pledges?.map(({ user }) => user))].length
+      : 0;
+
   const currentFunding = pledges
-    ?.map((p) => p.amount)
+    ?.map(({ amount }) => amount)
     .reduce((prev, curr) => prev + curr, 0);
 
   return (
@@ -39,7 +46,7 @@ const ProjectHero: React.FC<{ p: IProject }> = ({ p }) => {
           <Stat>
             <StatNumber fontSize={{ base: "20px", md: "30px" }}>
               <Text as="span" fontWeight="bold" color="green">
-                {!isLoadingPledges ? currentFunding : 0}
+                {!isLoadingPledges && currentFunding}
               </Text>
             </StatNumber>
             <StatHelpText fontSize="15">
@@ -47,7 +54,9 @@ const ProjectHero: React.FC<{ p: IProject }> = ({ p }) => {
             </StatHelpText>
           </Stat>
           <Stat>
-            <StatNumber fontSize={{ base: "20px", md: "30px" }}>400</StatNumber>
+            <StatNumber fontSize={{ base: "20px", md: "30px" }}>
+              {!isLoadingPledges && numOfBackers}
+            </StatNumber>
             <StatHelpText fontSize="15">Backers</StatHelpText>
           </Stat>
           <Stat>

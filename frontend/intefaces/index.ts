@@ -72,6 +72,8 @@ export interface IUser {
       user:string;
       createdAt: string,
       updatedAt: string,
+      userName:string,
+      projectName:string,
   }
 
   export interface IFindAllPledgesInput{

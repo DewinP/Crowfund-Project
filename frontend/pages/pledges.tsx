@@ -39,10 +39,10 @@ const Pledges: NextPage = () => {
                     <Td>{dayjs(p.createdAt).format("MMMM D, YYYY h:mm A")}</Td>
                     <Td>
                       <Link href={`/projects/${p.project}`} passHref>
-                        <Button variant="link">{p.project}</Button>
+                        <Button variant="link">{p.projectName}</Button>
                       </Link>
                     </Td>
-                    <Td isNumeric>{p.amount}</Td>
+                    <Td isNumeric>${p.amount}</Td>
                   </Tr>
                 </Tbody>
               );

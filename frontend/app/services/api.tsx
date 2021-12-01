@@ -98,6 +98,7 @@ export const api = createApi({
           body: input,
           credentials: "include",
         }),
+        invalidatesTags: (result) => [{ type: "Pledge", id: result?.project }],
       }),
       findAllPledgesByUser: build.query<IPledge[], void>({
         query: () => ({

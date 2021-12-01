@@ -1,14 +1,25 @@
-import { Button, Center, Flex, Heading, Stack, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Center,
+  Flex,
+  Heading,
+  Icon,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
 import { IProject } from "../intefaces";
 import { calculateTimeUntil } from "../utils/calculateTimeUntil";
+import { FaRegClock } from "react-icons/fa";
 
 interface ProjectCardProps {
   project: IProject;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  const daysLeft = calculateTimeUntil(project.dueDate);
+
   return (
     <Center py={6}>
       <Stack
@@ -21,7 +32,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         justifyContent="space-between"
       >
         <Stack>
-          <Heading fontSize="2xl">{project?.name}</Heading>
+          <Heading fontSize="2xl">{project.name}</Heading>
           <Flex justifyContent="space-between" textAlign="center">
             <Text
               color="green.500"
@@ -32,18 +43,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             >
               000% funded
             </Text>
-            <Text
-              color="gray.500"
-              fontWeight={800}
-              fontSize="sm"
-              textAlign="center"
-              letterSpacing={1.1}
-            >
-              {`${calculateTimeUntil(project?.dueDate)} days left`}
-            </Text>
+
+            <Flex color="gray.500" align="center">
+              <Icon as={FaRegClock} />
+              <Text
+                color="gray.500"
+                fontWeight={800}
+                fontSize="sm"
+                textAlign="center"
+                letterSpacing={1.1}
+                ml={1}
+              >
+                {`${daysLeft} days left`}
+              </Text>
+            </Flex>
           </Flex>
           <Text color="gray.500">
-            {project?.description.substring(0, 200) + "..."}
+            {project.description.substring(0, 200) + "..."}
           </Text>
         </Stack>
         <Stack

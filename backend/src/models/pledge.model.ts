@@ -7,9 +7,9 @@ export interface PledgeDocument extends mongoose.Document {
     user: UserDocument["_id"];
     project: ProjectDocument["_id"]
     sessionId:string;
-    projectName:string;
-    userName: string
     amount: number;
+    userName: string;
+    projectName:string;
 }
 
 const pledgeSchema = new mongoose.Schema(
@@ -18,6 +18,8 @@ const pledgeSchema = new mongoose.Schema(
         project:{type: mongoose.Schema.Types.ObjectId,ref:"Project" },
         sessionId:{type:String,required:true,unique:true},
         amount: {type:Number, required:true},
+        userName:{type:String,required:true},
+        projectName:{type:String,required:true}
     },
       {
         timestamps: true,
