@@ -3,17 +3,14 @@ import bcrypt from 'bcrypt';
 import config from 'config'
 
 export interface UserInput{
-    firstName: string;
-    lastName: string;
-
+    name: string;
     email: string;
     password: string;
 }
 
 export interface UserDocument extends mongoose.Document {
     email: string;
-    firstName: string;
-    lastName: string;
+    name: string;
     password: string;
     createdAt: Date;
     updatedAt: Date;
@@ -23,8 +20,7 @@ export interface UserDocument extends mongoose.Document {
 // User Schema
 const userSchema = new mongoose.Schema({
     email: {type: String, required: true, unique: true},
-    firstName: {type: String, required: true},
-    lastName: {type: String, required: true},
+    name: {type: String, required: true},
     password: {type: String, required: true},
 },{timestamps: true});
 

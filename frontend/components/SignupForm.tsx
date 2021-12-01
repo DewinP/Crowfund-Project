@@ -16,7 +16,7 @@ const SignupForm: React.FC = () => {
     email: "",
     password: "",
     passwordConfirmation: "",
-    firstName: "",
+    name: "",
     lastName: "",
   };
   return (
@@ -38,17 +38,11 @@ const SignupForm: React.FC = () => {
           <Form>
             <Flex flexDir={{ base: "column", md: "row" }}>
               <InputField
-                label="First Name"
+                label="Name"
                 type="text"
-                name="firstName"
-                placeholder="First name"
+                name="name"
+                placeholder="Name"
                 marginRight={{ md: 6 }}
-              />
-              <InputField
-                label="Last Name"
-                type="text"
-                name="lastName"
-                placeholder="Last name"
               />
             </Flex>
 

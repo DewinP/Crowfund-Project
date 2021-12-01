@@ -2,7 +2,7 @@ export interface ISignupInput {
     email: string;
     password: string;
     passwordConfirmation: string;
-    firstName: string;
+    name: string;
     lastName: string;
 }
 
@@ -20,7 +20,7 @@ export interface IFieldError {
 export interface IUser {
     _id: string;
     email: string;
-    firstName: string;
+    name: string;
     lastName: string;
     createdAt: Date;
     updatedAt: Date;
@@ -32,7 +32,7 @@ export interface IUser {
 
   export interface IProject {
     _id: string;
-    title:string;
+    name:string;
     description: string;
     pledgeGoal: number;
     createdAt: Date;
@@ -41,7 +41,7 @@ export interface IUser {
   }
 
   export interface IProjectInput{
-      title:string;
+      name:string;
       description: string;
       pledgeGoal: number;
       dueDate: Date;

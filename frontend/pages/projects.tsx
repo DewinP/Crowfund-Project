@@ -14,7 +14,7 @@ const Projects: React.FC = () => {
   };
   const projects = searchTerm
     ? data.filter((project) => {
-        if (project.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+        if (project.name.toLowerCase().includes(searchTerm.toLowerCase())) {
           return project;
         }
       })

@@ -27,7 +27,7 @@ const AuthNav: React.FC<{ user: IUser }> = ({ user }) => {
               rightIcon={!isOpen ? <FaChevronDown /> : <FaChevronUp />}
               isActive={isOpen}
             >
-              {user.firstName + " " + user.lastName.charAt(0) + "."}
+              {user.name}
             </MenuButton>
             <MenuList m={0} p={0}>
               <MenuItem onClick={() => router.push("/pledges")}>

@@ -12,6 +12,7 @@ const payload = {
 const params = {
     params: object({
         pledgeId: string(),
+        projectId:string()
     })
 }
 

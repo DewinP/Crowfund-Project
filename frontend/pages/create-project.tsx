@@ -23,7 +23,7 @@ const CreateProject: React.FC = () => {
   const router = useRouter();
   const [createProject] = useCreateProjectMutation();
   const initalValues: IProjectInput = {
-    title: "",
+    name: "",
     description: "",
     dueDate: monthFromNow,
     pledgeGoal: 1000,
@@ -51,8 +51,8 @@ const CreateProject: React.FC = () => {
             <Form>
               <InputField
                 type="text"
-                name="title"
-                label="Project Title"
+                name="name"
+                label="Project Name"
                 helperText="Limit: 50 chars"
               />
 

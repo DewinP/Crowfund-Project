@@ -37,7 +37,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ project }) => {
     // Create a Checkout Session.
     const session = await createSession({
       amount: input.customPayment,
-      projectName: project.title,
+      projectName: project.name,
       projectId: project._id,
     }).unwrap();
 
@@ -53,7 +53,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ project }) => {
   return (
     <form onSubmit={handleSubmit}>
       <CustomPaymentInput
-        projectName={project.title}
+        projectName={project.name}
         projectGoal={project.pledgeGoal}
         name={"customDonation"}
         value={input.customPayment}

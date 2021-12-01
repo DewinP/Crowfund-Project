@@ -1,8 +1,7 @@
 export  interface AuthUser{
     _id: string,
   email: string,
-  firstName: string,
-  lastName: string,
+  name: string,
   createdAt: string,
   updatedAt: string,
   __v: number,

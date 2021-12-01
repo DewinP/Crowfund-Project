@@ -3,7 +3,7 @@ import { UserDocument } from './user.model';
 
 export interface ProjectDocument extends mongoose.Document {
     user: UserDocument["_id"];
-    title:string;
+    name:string;
     description: string;
     pledgeGoal: number;
     createdAt: Date;
@@ -13,7 +13,7 @@ export interface ProjectDocument extends mongoose.Document {
 const projectSchema = new mongoose.Schema(
     {
         user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-        title:{type:String, required:true},
+        name:{type:String, required:true},
         description:{type:String, required: true},
         pledgeGoal:{ type:Number, required:true},
         dueDate:{type:Date, required:true},

@@ -7,6 +7,8 @@ export interface PledgeDocument extends mongoose.Document {
     user: UserDocument["_id"];
     project: ProjectDocument["_id"]
     sessionId:string;
+    projectName:string;
+    userName: string
     amount: number;
 }
 

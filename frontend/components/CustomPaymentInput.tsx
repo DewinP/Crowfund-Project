@@ -29,7 +29,7 @@ const CustomPaymentInput = ({
   onChange,
 }: Props) => (
   <FormControl>
-    <FormLabel>Amoun to pledge</FormLabel>
+    <FormLabel>Amount to pledge</FormLabel>
     <NumberInput
       min={min}
       name={name}

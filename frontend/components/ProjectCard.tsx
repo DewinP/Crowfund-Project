@@ -21,7 +21,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         justifyContent="space-between"
       >
         <Stack>
-          <Heading fontSize="2xl">{project?.title}</Heading>
+          <Heading fontSize="2xl">{project?.name}</Heading>
           <Flex justifyContent="space-between" textAlign="center">
             <Text
               color="green.500"

@@ -3,7 +3,7 @@ import { date, number, object, string, TypeOf } from 'zod'
 
 const payload = {
     body: object({
-        title: string().nonempty("Email is required").max(50,"Title must be 50 chars or less"),
+        name: string().nonempty("Email is required").max(50,"Name must be 50 chars or less"),
         pledgeGoal: number().min(1000,"Funding goal must be 1,000 or more"),
         description: string().nonempty("Description can't be empty"),
         dueDate: date()

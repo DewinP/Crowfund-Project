@@ -34,7 +34,7 @@ const ProjectHero: React.FC<{ p: IProject }> = ({ p }) => {
         objectFit={"cover"}
       />
       <Stack>
-        <Heading>{p?.title}</Heading>
+        <Heading>{p?.name}</Heading>
         <Stack spacing={0}>
           <Stat>
             <StatNumber fontSize={{ base: "20px", md: "30px" }}>
