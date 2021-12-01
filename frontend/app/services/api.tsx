@@ -63,7 +63,7 @@ export const api = createApi({
         query: (projectId) => ({
           url: `projects/${projectId}`,
         }),
-        providesTags: (p) => [{ type: "Project", id: p?._id }],
+        providesTags: (p) => [{ type: "Project" as const, id: p?._id }],
       }),
       findAllProjects: build.query<IProject[], void>({
         query: () => ({
@@ -99,21 +99,21 @@ export const api = createApi({
           credentials: "include",
         }),
       }),
-      findAllPledges: build.query<IPledge[], void>({
+      findAllPledgesByUser: build.query<IPledge[], void>({
         query: () => ({
           url: "pledges",
           method: "GET",
           credentials: "include",
-          providesTags: (result) =>
-            result
+          providesTags: (pledgeResult: IPledge[]) =>
+            pledgeResult
               ? [
-                  ...result.map(({ _id, project, user }) => ({
+                  ...pledgeResult.map(({ _id }) => ({
                     type: "Pledge" as const,
-                    id: result._id,
+                    id: _id,
                   })),
-                  { type: "Pledge" as const, id: "LIST" },
+                  { type: "Pledge" as const, id: pledgeResult[0].user },
                 ]
-              : [{ type: "Pledge" as const, id: "LIST" }],
+              : [{ type: "Pledge" as const, id: pledgeResult[0].user }],
         }),
       }),
     };
@@ -122,7 +122,7 @@ export const api = createApi({
 
 export const {
   useSignupUserMutation,
-  useFindAllPledgesQuery,
+  useFindAllPledgesByUserQuery,
   useLoginUserMutation,
   useLogoutMutation,
   useMeQuery,

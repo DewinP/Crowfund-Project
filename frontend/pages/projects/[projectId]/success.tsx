@@ -44,7 +44,7 @@ const Pledge: NextPage = () => {
             </Text>
           </Heading>
           <Text color={"gray.500"}>
-            Thank you for believing in {pledge?.projectName}
+            Thank you for your pledge!
           </Text>
           <ButtonGroup
             mt={3}

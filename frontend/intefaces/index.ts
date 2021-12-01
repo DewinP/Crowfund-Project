@@ -68,7 +68,6 @@ export interface IUser {
   export interface IPledge{
       _id:string;
       project: string;
-      projectName:string;
       amount:string;
       user:string;
       createdAt: string,
