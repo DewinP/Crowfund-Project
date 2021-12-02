@@ -2,12 +2,16 @@ import { Divider, Heading, Stack } from "@chakra-ui/layout";
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import React from "react";
 import { FaSearch } from "react-icons/fa";
-import { useFindAllProjectsQuery } from "../app/services/api";
+import {
+  useFindAllPledgesByProjectQuery,
+  useFindAllProjectsQuery,
+} from "../app/services/api";
 import CoolTransition from "../components/CoolTransition";
 import ProjectList from "../components/ProjectList";
 
 const Projects: React.FC = () => {
-  const { data } = useFindAllProjectsQuery();
+  const { data, isLoading } = useFindAllProjectsQuery();
+
   const [searchTerm, setSearchTerm] = React.useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +42,7 @@ const Projects: React.FC = () => {
           <Divider mb={3} />
         </CoolTransition>
       )}
-      <ProjectList projects={projects} />
+      <ProjectList isLoading={isLoading} projects={projects} />
     </Stack>
   );
 };

@@ -9,6 +9,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {
   useCreateProjectMutation,
+  useFindAllPledgesByProjectQuery,
   useUpdateProjectMutation,
 } from "../app/services/api";
 import CardContainer from "../components/CardContainer";
@@ -25,6 +26,13 @@ interface IProjectFormProps {
 
 const ProjectForm: React.FC<IProjectFormProps> = ({ label, project }) => {
   const monthFromNow = new Date(dayjs().add(1, "month").format("YYYY-MM-DD"));
+  const { isLoading: isLoadingPledges, data: pledges } =
+    useFindAllPledgesByProjectQuery(
+      { projectId: project?._id },
+      { skip: !project?._id }
+    );
+
+  console.log(pledges);
 
   const router = useRouter();
   const initalValues: IProjectInput = {
@@ -41,7 +49,7 @@ const ProjectForm: React.FC<IProjectFormProps> = ({ label, project }) => {
       <Center>
         <Heading>{label}</Heading>
       </Center>
-      <Box my={8} textAlign="left">
+      <Box mt={8} textAlign="left">
         <Formik
           initialValues={initalValues}
           onSubmit={async (values, { setErrors }) => {
@@ -63,7 +71,7 @@ const ProjectForm: React.FC<IProjectFormProps> = ({ label, project }) => {
             }
           }}
         >
-          {({ isSubmitting, initialValues }) => (
+          {({ isSubmitting }) => (
             <Form>
               <InputField
                 type="text"
@@ -95,23 +103,21 @@ const ProjectForm: React.FC<IProjectFormProps> = ({ label, project }) => {
                   allowSameDay={false}
                 />
               </Flex>
+              <Button onClick={() => router.back()} width="full" mt={2}>
+                Cancel
+              </Button>
               <Button
                 type="submit"
                 isLoading={isSubmitting}
                 colorScheme="teal"
                 width="full"
-                mt={4}
+                mt={2}
               >
                 {project ? "Update Project" : "Create Project"}
               </Button>
-              {project && (
-                <Button
-                  onClick={() => router.back()}
-                  colorScheme="red"
-                  width="full"
-                  mt={4}
-                >
-                  Cancel
+              {project && !pledges?.length && (
+                <Button colorScheme="red" width="full" mt={2}>
+                  Delete Project
                 </Button>
               )}
             </Form>

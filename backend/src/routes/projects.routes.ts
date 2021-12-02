@@ -12,5 +12,6 @@ router.get("/", findAllProjectsHandler)
 router.patch("/:projectId", [requireUser, validateResource(updateProjectSchema)], updateProjectHandler)
 router.post("/", [requireUser,validateResource(createProjectSchema)], createProjectHandler)
 router.put("/",[requireUser,validateResource(updateProjectSchema)],updateProjectHandler)
+router.delete("/:projectId", requireUser)
 
 export default router

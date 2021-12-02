@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { Result } from "postcss";
 import {
   ILoginInput,
   IPaymentSession,
@@ -108,6 +109,21 @@ export const api = createApi({
                 { type: "Project" as const, id: "LIST" },
               ]
             : [{ type: "Project" as const, id: "LIST" }],
+      }),
+      deleteProject: build.mutation<IProject, { projectId: string }>({
+        query: ({ projectId }) => ({
+          url: `projects/${projectId}`,
+          method: "DELETE",
+          credentials: "include",
+        }),
+        invalidatesTags: (result) =>
+          result
+            ? [
+                { type: "Project" as const, id: result?._id },
+                { type: "Project" as const, id: "LIST" },
+                { type: "Project" as const, id: result?.user },
+              ]
+            : [],
       }),
       createCheckoutSession: build.mutation<
         IPaymentSession,
