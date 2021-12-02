@@ -29,3 +29,7 @@ To install the `backend` run the fallowing commands in the command line, from th
     $ cd config
 
     open the `default.ts` file and add/change the variables according to your liking.
+
+    $ npm run dev
+
+    code will run in the port on the localhost:`port set in config.ts`
