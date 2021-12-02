@@ -1,8 +1,9 @@
-import { Stack } from "@chakra-ui/layout";
+import { Divider, Heading, Stack } from "@chakra-ui/layout";
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { useFindAllProjectsQuery } from "../app/services/api";
+import CoolTransition from "../components/CoolTransition";
 import ProjectCard from "../components/ProjectCard";
 
 const Projects: React.FC = () => {
@@ -21,7 +22,7 @@ const Projects: React.FC = () => {
     : data;
 
   return (
-    <Stack>
+    <Stack px={{ base: 0, md: 10 }}>
       <InputGroup maxW="600px">
         <InputLeftElement children={<FaSearch />} />
         <Input
@@ -31,9 +32,18 @@ const Projects: React.FC = () => {
           placeholder="Search projects"
         />
       </InputGroup>
+      {searchTerm && (
+        <CoolTransition>
+          <Heading>Search results for '{searchTerm}'</Heading>
+          <Divider mb={3} />
+        </CoolTransition>
+      )}
       {projects?.map((project) => {
         return <ProjectCard key={project._id} project={project} />;
       })}
+      {!projects?.length && (
+        <Heading textAlign="center">no projects found</Heading>
+      )}
     </Stack>
   );
 };

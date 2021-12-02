@@ -103,12 +103,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             : project?.description}
         </Text>
       </Stack>
-      <Stack
-        mt={6}
-        direction="row"
-        alignItems="center"
-        justifyContent="space-between"
-      >
+      <Stack mt={6} direction="row" alignItems="center">
         <Link href={`projects/${project._id}`}>
           <Button colorScheme="green">Read more</Button>
         </Link>

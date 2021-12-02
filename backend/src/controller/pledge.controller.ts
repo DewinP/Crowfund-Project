@@ -28,8 +28,8 @@ export const createPledgeHandler = async (req: Request<{},{},CreatePledgeInput["
     if(session.success_url.includes(projectId) && session.amount_total){
       const project = await findProject({_id:projectId})
       
-      await createPledge({amount: session.amount_total/100, user:userId,sessionId: session.id, project: projectId, projectName: project!.name, userName: res.locals.user.name})
-      return res.sendStatus(201)
+      let pledge = await createPledge({amount: session.amount_total/100, user:userId,sessionId: session.id, project: projectId, projectName: project!.name, userName: res.locals.user.name})
+      return res.status(201).json(pledge)
     }else{
       return res.sendStatus(403)
     }

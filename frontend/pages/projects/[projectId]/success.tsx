@@ -22,6 +22,7 @@ const Pledge: NextPage = () => {
     const createOrder = async () => {
       try {
         let pledge = await createPledge({ projectId, sessionId }).unwrap();
+        console.log("ee2e2e2 e2e1e12e");
         setIsLoading(false);
         setPledge(pledge);
       } catch (error) {
@@ -30,7 +31,7 @@ const Pledge: NextPage = () => {
     };
     sessionId && projectId && createOrder();
   }, [sessionId, projectId]);
-  console.log(pledge);
+
   return (
     <CoolTransition>
       <CardContainer>

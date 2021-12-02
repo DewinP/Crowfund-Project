@@ -12,11 +12,11 @@ const Pledges: NextPage = () => {
   const { data: pledges, isLoading } = useFindAllPledgesByUserQuery();
   return (
     <CoolTransition>
-      <CardContainer width="100%">
+      <CardContainer width="100vw">
         <Center p={3}>
           <Heading variant="h3">List of all your pledges</Heading>
         </Center>
-        <Table size="md" variant="simple">
+        <Table size="sm" variant="simple">
           <TableCaption>
             {" "}
             {!isLoading
@@ -33,7 +33,7 @@ const Pledges: NextPage = () => {
           {pledges?.length > 0
             ? pledges?.map((p) => {
                 return (
-                  <Tbody>
+                  <Tbody key={p._id}>
                     <Tr>
                       <Td>
                         {dayjs(p.createdAt).format("MMMM D, YYYY h:mm A")}
