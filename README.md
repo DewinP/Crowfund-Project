@@ -23,7 +23,7 @@ A logged in user can
 To get this project ot run localy, download or clone this repository. You should now have two folders `frontend` and `backend`.
 
 To install the `backend` run the fallowing commands in the command line, from the root directory.
-    $ cd backend        *visit mongodb.com and create a database and make sure you add you whitelist your ip address so that you can access your database*
+    $ cd backend        **visit mongodb.com and create a database and make sure you add you whitelist your ip address so that you can access your database**
     $ npm i or npm install
     $ cd config         
     - open the default.ts file and add/change the variables according to your liking
