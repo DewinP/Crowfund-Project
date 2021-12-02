@@ -67,7 +67,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 variant="outline"
                 colorScheme="green"
               >
-                <TagLabel>Backer </TagLabel>
+                <TagLabel>Backer</TagLabel>
                 <TagRightIcon as={FaHandHoldingUsd} />
               </Tag>
             )}

@@ -1,9 +1,19 @@
-import { Button, Center, Heading, Tbody, Td } from "@chakra-ui/react";
+import {
+  Button,
+  Center,
+  Heading,
+  Tag,
+  TagLabel,
+  TagRightIcon,
+  Tbody,
+  Td,
+} from "@chakra-ui/react";
 import { Table, TableCaption, Th, Thead, Tr } from "@chakra-ui/table";
 import dayjs from "dayjs";
 import { NextPage } from "next";
 import Link from "next/link";
 import React from "react";
+import { FaHandHoldingUsd } from "react-icons/fa";
 import { useFindAllPledgesByUserQuery } from "../app/services/api";
 import CardContainer from "../components/CardContainer";
 import CoolTransition from "../components/CoolTransition";
@@ -13,8 +23,28 @@ const Pledges: NextPage = () => {
   return (
     <CoolTransition>
       <CardContainer width="100vw">
-        <Center p={3} my={2}>
+        <Center p={3} my={2} justifyContent="space-between">
+          <Tag
+            mx={2}
+            aria-label="Backer Badge"
+            size="sm"
+            variant="outline"
+            colorScheme="green"
+          >
+            <TagLabel>Backer </TagLabel>
+            <TagRightIcon as={FaHandHoldingUsd} />
+          </Tag>
           <Heading variant="h3">List of all your pledges</Heading>
+          <Tag
+            mx={2}
+            aria-label="Backer Badge"
+            size="sm"
+            variant="outline"
+            colorScheme="green"
+          >
+            <TagLabel>Backer </TagLabel>
+            <TagRightIcon as={FaHandHoldingUsd} />
+          </Tag>
         </Center>
         <Table size="sm" variant="simple">
           <TableCaption fontSize="md">

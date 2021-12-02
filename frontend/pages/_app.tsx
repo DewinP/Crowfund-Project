@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import React from "react";
 import { Provider } from "react-redux";
 import { store } from "../app/store";
-import CoolTransition from "../components/CoolTransition";
 import Layout from "../components/Layout";
 import PrivateRoutes from "../components/PrivateRoutes";
 import "../styles/DatePicker.css";
