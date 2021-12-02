@@ -197,4 +197,5 @@ export const {
   useFindAllPledgesByProjectQuery,
   useUpdateProjectMutation,
   useFindAllProjectsByUserQuery,
+  useDeleteProjectMutation,
 } = api;

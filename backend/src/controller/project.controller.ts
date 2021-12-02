@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { CreateProjectInput, FindProjectInput, UpdateProjectInput } from '../schema/project.schema';
-import { createProject, findAllProjects, findAndUpdateProject, findProject } from '../service/project.service';
+import { createProject, deleteProject, findAllProjects, findAndUpdateProject, findProject } from '../service/project.service';
 
 export const createProjectHandler = async (req: Request<{},{},CreateProjectInput["body"]>, res: Response) => {
     const user= res.locals.user;
@@ -62,4 +62,15 @@ export const updateProjectHandler = async (req: Request<UpdateProjectInput["para
     const projects = await findAllProjects({user:userId});
 
     return res.send(projects);
+  }
+
+  export async function deleteProjectHandler(
+    req: Request,
+    res: Response
+  ) {
+    const projectId = req.params.projectId;
+    
+    const project = await deleteProject({_id:projectId});
+
+    return res.send(project);
   }

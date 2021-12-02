@@ -1,10 +1,8 @@
 import {
   Button,
-  Center,
   Flex,
   Heading,
   Icon,
-  IconButton,
   Skeleton,
   Stack,
   Tag,
@@ -45,6 +43,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   let { user } = useAppSelector(selectCurrentUser);
   const isBacker = pledges?.some((pledge) => pledge.user === user?._id);
   const isCreator = project.user === user?._id;
+  console.log(project);
   return (
     <CoolTransition>
       <Stack
@@ -107,15 +106,25 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               : project?.description}
           </Text>
         </Stack>
-        <Stack mt={6} direction="row" alignItems="center">
-          <Link href={`projects/${project._id}`}>
-            <Button colorScheme="green">Read more</Button>
-          </Link>
-          {isCreator && (
-            <Link href={`/projects/${project._id}/edit`}>
-              <Button>Edit</Button>
+        <Stack
+          mt={6}
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Stack direction="row" spacing={2}>
+            <Link href={`projects/${project._id}`}>
+              <Button colorScheme="green">Read more</Button>
             </Link>
-          )}
+            {isCreator && (
+              <Link href={`/projects/${project._id}/edit`}>
+                <Button>Edit</Button>
+              </Link>
+            )}
+          </Stack>
+          <Text color="gray.500" fontWeight={700}>
+            By {project?.creator}
+          </Text>
         </Stack>
       </Stack>
     </CoolTransition>

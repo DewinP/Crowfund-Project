@@ -9,6 +9,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {
   useCreateProjectMutation,
+  useDeleteProjectMutation,
   useFindAllPledgesByProjectQuery,
   useUpdateProjectMutation,
 } from "../app/services/api";
@@ -43,6 +44,7 @@ const ProjectForm: React.FC<IProjectFormProps> = ({ label, project }) => {
   };
 
   const [createProject] = useCreateProjectMutation();
+  const [deleteProject] = useDeleteProjectMutation();
   const [updateProject] = useUpdateProjectMutation();
   return (
     <CardContainer>
@@ -116,7 +118,15 @@ const ProjectForm: React.FC<IProjectFormProps> = ({ label, project }) => {
                 {project ? "Update Project" : "Create Project"}
               </Button>
               {project && !pledges?.length && (
-                <Button colorScheme="red" width="full" mt={2}>
+                <Button
+                  onClick={async () => {
+                    deleteProject({ projectId: project?._id }).unwrap();
+                    router.back();
+                  }}
+                  colorScheme="red"
+                  width="full"
+                  mt={2}
+                >
                   Delete Project
                 </Button>
               )}

@@ -39,6 +39,7 @@ export interface IUser {
     createdAt: Date;
     updatedAt: Date;
     dueDate: Date;
+    creator: string;
   }
 
   export interface IProjectInput{

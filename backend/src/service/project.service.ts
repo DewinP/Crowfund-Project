@@ -19,3 +19,8 @@ export const findAndUpdateProject = async(query: FilterQuery<ProjectDocument>,
     options: QueryOptions)=>{
         return ProjectModel.findOneAndUpdate(query, update, options);
 }
+
+export const deleteProject = async(query: FilterQuery<ProjectDocument>,
+  )=> {
+    return ProjectModel.findOneAndDelete(query);
+  }

@@ -30,6 +30,11 @@ export const findProjectSchema = object({
     ...params
 })
 
+export const deleteProjectSchema = object({
+    ...params
+})
+
 export type CreateProjectInput = TypeOf<typeof createProjectSchema>
 export type UpdateProjectInput = TypeOf<typeof updateProjectSchema>
 export type FindProjectInput = TypeOf<typeof findProjectSchema>
+export type DeleteProjectInput = TypeOf<typeof deleteProjectSchema>
