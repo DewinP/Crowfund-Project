@@ -15,6 +15,7 @@ A logged in user can
 
 - Create a project
 - Edit their project's name, description and/or due date
+- Delete their project if no pledges/contributions have been made by another user
 - Pledge/contribute towards a project and recieve a **backer badge** for said project
 - See all information about all pledges made by the user
 
