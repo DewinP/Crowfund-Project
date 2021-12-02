@@ -4,7 +4,7 @@ import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { useFindAllProjectsQuery } from "../app/services/api";
 import CoolTransition from "../components/CoolTransition";
-import ProjectCard from "../components/ProjectCard";
+import ProjectList from "../components/ProjectList";
 
 const Projects: React.FC = () => {
   const { data } = useFindAllProjectsQuery();
@@ -38,12 +38,7 @@ const Projects: React.FC = () => {
           <Divider mb={3} />
         </CoolTransition>
       )}
-      {projects?.map((project) => {
-        return <ProjectCard key={project._id} project={project} />;
-      })}
-      {!projects?.length && (
-        <Heading textAlign="center">no projects found</Heading>
-      )}
+      <ProjectList projects={projects} />
     </Stack>
   );
 };

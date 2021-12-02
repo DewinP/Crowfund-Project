@@ -15,7 +15,7 @@ A logged in user can
 
 - Create a project
 - Edit their project's name, description and/or due date
-- Pledge/contribute towards a project
+- Pledge/contribute towards a project and recieve a **backer badge** for said project
 - See all information about all pledges made by the user
 
 # Installation
@@ -48,3 +48,5 @@ $ touch .env
 $ npm run dev
 - add the NEXT_PUBLIC_SERVER_ENDPOINT and NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY to the .env file - code will run in the port on the localhost:3000, unless changed in the `.env` file
 ```
+
+# Best Practices

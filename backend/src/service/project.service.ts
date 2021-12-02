@@ -5,8 +5,8 @@ export const findProject = async(query:FilterQuery<ProjectDocument>,options:Quer
     return ProjectModel.findOne(query,{},options)
 }
 
-export const findAllProjects = async()=>{
-    return ProjectModel.find({},{},{lean:true})
+export const findAllProjects = async(query:FilterQuery<ProjectDocument>,options:QueryOptions = {lean:true})=>{
+    return ProjectModel.find(query,{},options)
 }
 
 

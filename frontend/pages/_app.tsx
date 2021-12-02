@@ -17,6 +17,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     "/pledges",
     "/create-project",
     `/projects/${router.query.projectId}/success`,
+    "/projects/me",
   ];
   return (
     <Provider store={store}>

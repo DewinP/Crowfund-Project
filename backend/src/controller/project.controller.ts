@@ -49,7 +49,17 @@ export const updateProjectHandler = async (req: Request<UpdateProjectInput["para
     _: Request,
     res: Response
   ) {
-    const projects = await findAllProjects();
+    const projects = await findAllProjects({});
   
+    return res.send(projects);
+  }
+
+  export async function findAllProjectsByUserHandler(
+    _: Request,
+    res: Response
+  ) {
+    const userId= res.locals.user._id;
+    const projects = await findAllProjects({user:userId});
+
     return res.send(projects);
   }

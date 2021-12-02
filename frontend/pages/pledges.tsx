@@ -13,11 +13,11 @@ const Pledges: NextPage = () => {
   return (
     <CoolTransition>
       <CardContainer width="100vw">
-        <Center p={3}>
+        <Center p={3} my={2}>
           <Heading variant="h3">List of all your pledges</Heading>
         </Center>
         <Table size="sm" variant="simple">
-          <TableCaption>
+          <TableCaption fontSize="md">
             {" "}
             {!isLoading
               ? `${pledges?.length} pledges on file`

@@ -93,6 +93,22 @@ export const api = createApi({
               ]
             : [{ type: "Project" as const, id: "LIST" }],
       }),
+      findAllProjectsByUser: build.query<IProject[], void>({
+        query: () => ({
+          url: "projects/user",
+          credentials: "include",
+        }),
+        providesTags: (result) =>
+          result
+            ? [
+                ...result.map(({ _id }) => ({
+                  type: "Project" as const,
+                  id: _id,
+                })),
+                { type: "Project" as const, id: "LIST" },
+              ]
+            : [{ type: "Project" as const, id: "LIST" }],
+      }),
       createCheckoutSession: build.mutation<
         IPaymentSession,
         IPaymentSessionInput
@@ -164,4 +180,5 @@ export const {
   useCreatePledgeMutation,
   useFindAllPledgesByProjectQuery,
   useUpdateProjectMutation,
+  useFindAllProjectsByUserQuery,
 } = api;

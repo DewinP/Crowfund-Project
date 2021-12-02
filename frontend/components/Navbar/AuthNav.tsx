@@ -31,14 +31,20 @@ const AuthNav: React.FC<{ user: IUser }> = ({ user }) => {
             </MenuButton>
             <MenuList m={0} p={0}>
               <MenuItem onClick={() => router.push("/pledges")}>
-                Backed Projects
+                My Pledges
               </MenuItem>
-              <MenuItem>Owned Projects</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  router.push("/projects/me");
+                }}
+              >
+                Owned Projects
+              </MenuItem>
               <MenuDivider p={0} m={0} />
               <MenuItem
                 onClick={() => {
                   logout();
-                  router.replace("/login");
+                  router.push("/login");
                 }}
               >
                 <Icon as={FiPower} mr={2} />

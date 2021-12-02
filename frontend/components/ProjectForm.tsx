@@ -104,6 +104,16 @@ const ProjectForm: React.FC<IProjectFormProps> = ({ label, project }) => {
               >
                 {project ? "Update Project" : "Create Project"}
               </Button>
+              {project && (
+                <Button
+                  onClick={() => router.back()}
+                  colorScheme="red"
+                  width="full"
+                  mt={4}
+                >
+                  Cancel
+                </Button>
+              )}
             </Form>
           )}
         </Formik>
