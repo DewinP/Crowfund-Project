@@ -6,8 +6,6 @@ export const createProjectHandler = async (req: Request<{},{},CreateProjectInput
     const user= res.locals.user;
     const body = req.body;
 
-    console.log(body);
-
     const project = await createProject({...body, user:user._id, creator:user.name});
     return res.status(200).json(project._id);
 }

@@ -1,5 +1,7 @@
+import Projects from "./projects";
+
 const Index: React.FC = () => {
-  return <h1>Hello Next.js</h1>;
+  return <Projects />;
 };
 
 export default Index;

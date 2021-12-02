@@ -43,7 +43,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   let { user } = useAppSelector(selectCurrentUser);
   const isBacker = pledges?.some((pledge) => pledge.user === user?._id);
   const isCreator = project.user === user?._id;
-  console.log(project);
   return (
     <CoolTransition>
       <Stack

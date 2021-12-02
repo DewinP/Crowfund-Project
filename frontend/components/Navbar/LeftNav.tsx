@@ -29,7 +29,9 @@ const LeftNav: React.FC<{ isLoggedIn?: string; isMobile?: boolean }> = ({
       <Link href="/projects" passHref>
         <Button
           isFullWidth={isMobile}
-          variant={pathName !== "/projects" ? "ghost" : null}
+          variant={
+            pathName === "/projects" || pathName === "/" ? null : "ghost"
+          }
         >
           Projects
         </Button>
