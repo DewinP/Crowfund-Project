@@ -8,6 +8,7 @@ const router = Router()
 
 router.get("/:projectId", findProjectHandler)
 router.get("/", findAllProjectsHandler)
+router.patch("/:projectId", [requireUser, validateResource(updateProjectSchema)], updateProjectHandler)
 router.post("/", [requireUser,validateResource(createProjectSchema)], createProjectHandler)
 router.put("/",[requireUser,validateResource(updateProjectSchema)],updateProjectHandler)
 

@@ -5,6 +5,9 @@ import { createProject, findAllProjects, findAndUpdateProject, findProject } fro
 export const createProjectHandler = async (req: Request<{},{},CreateProjectInput["body"]>, res: Response) => {
     const user= res.locals.user;
     const body = req.body;
+
+    console.log(body);
+
     const project = await createProject({...body, user:user._id, creator:user.name});
     return res.status(200).json(project._id);
 }
@@ -22,11 +25,9 @@ export const updateProjectHandler = async (req: Request<UpdateProjectInput["para
         return res.sendStatus(403)
     }
 
-    await findAndUpdateProject({_id:projectId}, updateBody, {
-        new:true
-    })
+    let updated = await findAndUpdateProject({_id:projectId}, updateBody,{new:true})
 
-    return res.sendStatus(204)
+    return res.send(updated)
 }
 
  export async function findProjectHandler(

@@ -3,7 +3,6 @@ import {
   Button,
   Image,
   Progress,
-  Skeleton,
   Stat,
   StatHelpText,
   StatNumber,
@@ -14,9 +13,10 @@ import React from "react";
 import { useAppSelector } from "../app/hooks";
 import { useFindAllPledgesByProjectQuery } from "../app/services/api";
 import { selectCurrentUser } from "../app/services/Auth.slice";
-import { IProject, IProjectInput } from "../intefaces";
+import { IProject } from "../intefaces";
 import { calculatePercentage } from "../utils/calculatePercentage";
 import { calculateTimeUntil } from "../utils/calculateTimeUntil";
+import { toLocale } from "../utils/toLocale";
 
 interface IProjectHeroProps {
   project: IProject;
@@ -46,20 +46,7 @@ const ProjectHero: React.FC<IProjectHeroProps> = ({ project }) => {
     project.pledgeGoal
   );
 
-  const [projectEditableInfo, setProjectEditableInfo] =
-    React.useState<IProjectInput>({
-      name: project?.name,
-      description: project?.description,
-      dueDate: project?.dueDate,
-      pledgeGoal: project?.pledgeGoal,
-    });
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setProjectEditableInfo({
-      ...projectEditableInfo,
-      [e.target.name]: e.target.value,
-    });
-    console.log("ehehehehehehehehehhehehe", projectEditableInfo);
-  };
+  const isCreator = project.user === user?._id;
 
   return (
     <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
@@ -70,16 +57,16 @@ const ProjectHero: React.FC<IProjectHeroProps> = ({ project }) => {
         objectFit={"cover"}
       />
       <Stack>
-        <Heading fontSize="2xl">project?.name</Heading>
+        <Heading fontSize="2xl">{project?.name}</Heading>
         <Stack spacing={0}>
           <Stat>
             <StatNumber fontSize={{ base: "20px", md: "30px" }}>
               <Text as="span" fontWeight="bold" color="green">
-                ${!isLoadingPledges && currentFunding}
+                ${!isLoadingPledges && toLocale(currentFunding)}
               </Text>
             </StatNumber>
             <StatHelpText fontSize="15">
-              pledged out of ${project.pledgeGoal.toLocaleString("en-US")} goal
+              pledged out of ${toLocale(project.pledgeGoal)} goal
             </StatHelpText>
           </Stat>
           <Stat>
@@ -105,11 +92,19 @@ const ProjectHero: React.FC<IProjectHeroProps> = ({ project }) => {
             value={currentFundingPercentage}
           />
 
-          <Link href={`/projects/${project?._id}/pledge`} passHref>
-            <Button isFullWidth size="lg" colorScheme="pink">
-              Become a Backer
-            </Button>
-          </Link>
+          {isCreator ? (
+            <Link href={`/projects/${project?._id}/edit`} passHref>
+              <Button isFullWidth size="lg" colorScheme="teal">
+                Edit Project
+              </Button>
+            </Link>
+          ) : (
+            <Link href={`/projects/${project?._id}/pledge`} passHref>
+              <Button isFullWidth size="lg" colorScheme="pink">
+                Become a Backer
+              </Button>
+            </Link>
+          )}
         </Stack>
       </Stack>
     </SimpleGrid>

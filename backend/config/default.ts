@@ -2,7 +2,7 @@ export default {
     port: 1337,
     dbUri: "mongodb+srv://admin:dewin@test1.dudnr.mongodb.net/coinbase?retryWrites=true&w=majority",
     saltWorkFactor: 10,
-    accessTokenTTL: "30m",
+    accessTokenTTL: "2h",
     refreshTokenTTL: "1y",
     origin:"http://localhost:3000",
     cookieDomain: 'localhost',

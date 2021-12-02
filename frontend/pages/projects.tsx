@@ -23,7 +23,7 @@ const Projects: React.FC = () => {
 
   return (
     <CoolTransition>
-      <Stack alignItems="center">
+      <Stack>
         <InputGroup maxW="600px">
           <InputLeftElement children={<FaSearch />} />
           <Input
@@ -33,11 +33,7 @@ const Projects: React.FC = () => {
             placeholder="Search projects"
           />
         </InputGroup>
-        <Stack
-          direction={["column", "row"]}
-          wrap="wrap"
-          justifyContent="center"
-        >
+        <Stack direction={["column", "row"]} wrap="wrap" justifyContent="left">
           {projects?.length > 0 &&
             projects?.map((project) => (
               <ProjectCard key={project._id} project={project} />

@@ -41,21 +41,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
   let { user } = useAppSelector(selectCurrentUser);
 
-  const [projectEditableInfo, setProjectEditableInfo] =
-    React.useState<IProjectInput>({
-      name: project?.name,
-      description: project?.description,
-      dueDate: project?.dueDate,
-      pledgeGoal: project?.pledgeGoal,
-    });
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setProjectEditableInfo({
-      ...projectEditableInfo,
-      [e.target.name]: e.target.value,
-    });
-    console.log(projectEditableInfo);
-  };
-
   const isCreator = project.user === user?._id;
   return (
     <Center py={6}>

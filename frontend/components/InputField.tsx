@@ -34,7 +34,7 @@ export const InputField: React.FC<InputFieldProps> = ({
   textArea,
   ...props
 }) => {
-  const [field, { error }, { setValue }] = useField(props.name);
+  const [field, { error }] = useField(props.name);
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
   return (

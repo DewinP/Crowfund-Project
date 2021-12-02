@@ -59,16 +59,18 @@ export const api = createApi({
         }),
         invalidatesTags: [{ type: "Project", id: "LIST" }],
       }),
-      updateProject: build.mutation<
-        string,
-        Partial<IProject> & Pick<IProject, "_id">
-      >({
+      updateProject: build.mutation<IProject, Partial<IProject>>({
         query: (input) => ({
-          url: "projects",
+          url: `projects/${input._id}`,
           method: "PATCH",
           body: input,
           credentials: "include",
         }),
+        invalidatesTags: (result) => [
+          { type: "Project" as const, id: "LIST" },
+          { type: "Project" as const, id: result._id },
+          { type: "Project" as const, id: result.user },
+        ],
       }),
       findProject: build.query<IProject, string>({
         query: (projectId) => ({
@@ -161,4 +163,5 @@ export const {
   useCreateCheckoutSessionMutation,
   useCreatePledgeMutation,
   useFindAllPledgesByProjectQuery,
+  useUpdateProjectMutation,
 } = api;
