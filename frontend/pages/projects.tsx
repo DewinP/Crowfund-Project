@@ -3,7 +3,6 @@ import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { useFindAllProjectsQuery } from "../app/services/api";
-import CoolTransition from "../components/CoolTransition";
 import ProjectCard from "../components/ProjectCard";
 
 const Projects: React.FC = () => {
@@ -22,25 +21,20 @@ const Projects: React.FC = () => {
     : data;
 
   return (
-    <CoolTransition>
-      <Stack>
-        <InputGroup maxW="600px">
-          <InputLeftElement children={<FaSearch />} />
-          <Input
-            type="text"
-            value={searchTerm}
-            onChange={handleChange}
-            placeholder="Search projects"
-          />
-        </InputGroup>
-        <Stack direction={["column", "row"]} wrap="wrap" justifyContent="left">
-          {projects?.length > 0 &&
-            projects?.map((project) => (
-              <ProjectCard key={project._id} project={project} />
-            ))}
-        </Stack>
-      </Stack>
-    </CoolTransition>
+    <Stack>
+      <InputGroup maxW="600px">
+        <InputLeftElement children={<FaSearch />} />
+        <Input
+          type="text"
+          value={searchTerm}
+          onChange={handleChange}
+          placeholder="Search projects"
+        />
+      </InputGroup>
+      {projects?.map((project) => {
+        return <ProjectCard key={project._id} project={project} />;
+      })}
+    </Stack>
   );
 };
 
