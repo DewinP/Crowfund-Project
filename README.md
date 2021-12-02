@@ -23,13 +23,24 @@ A logged in user can
 To get this project ot run localy, download or clone this repository. You should now have two folders `frontend` and `backend`.
 
 To install the `backend` run the fallowing commands in the command line, from the root directory.
+    $ cd backend        *visit mongodb.com and create a database and make sure you add you whitelist your ip address so that you can access your database*
+    $ npm i or npm install
+    $ cd config         
+    - open the default.ts file and add/change the variables according to your liking
 
+To run the `backend` server.
+    $ npm run dev           *code will run in the port on the localhost:1337, unless changed in the `config.ts` file*
+
+
+To setup and run the `frontend` run the fallowing commands in the command line, from the root directory.
     $ cd backend
-    $ npm `i` or npm `install`
-    $ cd config
+    $ npm i or npm install
+    $ touch .env            *add the NEXT_PUBLIC_SERVER_ENDPOINT and NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY to the .env file*
+    $ npm run dev           *code will run in the port on the localhost:3000, unless changed in the `.env` file*
 
-    open the `default.ts` file and add/change the variables according to your liking.
 
-    $ npm run dev
 
-    code will run in the port on the localhost:`port set in config.ts`
+
+
+
+
