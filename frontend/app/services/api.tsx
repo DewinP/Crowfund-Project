@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Result } from "postcss";
 import {
+  IComment,
+  ICommentInput,
   ILoginInput,
   IPaymentSession,
   IPaymentSessionInput,
@@ -17,7 +19,7 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}`,
   }),
-  tagTypes: ["Project", "Me", "Pledge"],
+  tagTypes: ["Project", "Me", "Pledge", "Comment"],
   endpoints: (build) => {
     return {
       signupUser: build.mutation<{}, ISignupInput>({
@@ -179,6 +181,43 @@ export const api = createApi({
               : [{ type: "Pledge" as const, id: pledgeResult[0].project }],
         }),
       }),
+      createComment: build.mutation<IComment, ICommentInput>({
+        query: ({ body, projectId }) => ({
+          url: `comments/${projectId}`,
+          method: "POST",
+          body: body,
+          credentials: "include",
+        }),
+        invalidatesTags: (result) => [{ type: "Comment", id: result?.project }],
+      }),
+      updateComment: build.mutation<IComment, Partial<IComment>>({
+        query: (input) => ({
+          url: `comments/${input._id}`,
+          method: "POST",
+          body: input,
+          credentials: "include",
+        }),
+        invalidatesTags: (result) => [
+          { type: "Comment", id: result?.project },
+          { type: "Comment", id: result?._id },
+        ],
+      }),
+      findCommentsByProject: build.query<IComment[], { projectId: string }>({
+        query: ({ projectId }) => ({
+          url: `comments/${projectId}`,
+          method: "POST",
+        }),
+        providesTags: (result: IComment[]) =>
+          result
+            ? [
+                ...result.map(({ _id }) => ({
+                  type: "Comment" as const,
+                  id: _id,
+                })),
+                { type: "Comment" as const, id: result[0].project },
+              ]
+            : [{ type: "Comment" as const, id: result[0].project }],
+      }),
     };
   },
 });
@@ -198,4 +237,7 @@ export const {
   useUpdateProjectMutation,
   useFindAllProjectsByUserQuery,
   useDeleteProjectMutation,
+  useCreateCommentMutation,
+  useUpdateCommentMutation,
+  useFindCommentsByProjectQuery,
 } = api;

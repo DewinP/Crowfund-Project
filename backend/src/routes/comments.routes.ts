@@ -8,6 +8,6 @@ const router = Router();
 
 router.get('/project/:projectId',findAllCommentsByProjectHandler)
 router.patch('/:commentId',[requireUser, validateResource(updateCommentSchema)],updateCommentHandler )
-router.post('/',[requireUser, validateResource(createCommentSchema)],createCommentHandler )
+router.post('/:projectId',[requireUser, validateResource(createCommentSchema)],createCommentHandler )
 
 export default router;

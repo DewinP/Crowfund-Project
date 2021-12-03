@@ -16,6 +16,7 @@ import {
   useFindAllPledgesByProjectQuery,
   useFindProjectQuery,
 } from "../../app/services/api";
+import CommentList from "../../components/CommentList";
 import CoolTransition from "../../components/CoolTransition";
 import FullPageLoader from "../../components/FullPageLoader";
 import ProjectHero from "../../components/ProjectHero";
@@ -36,14 +37,17 @@ const ProjectPage: NextPage = () => {
       <Tabs>
         <TabList>
           <Tab>Description</Tab>
+          <Tab>Comments</Tab>
         </TabList>
 
         <TabPanels>
           <TabPanel>
             <Stack my={4}>
-              <Heading>Description</Heading>
               <Text>{project?.description}</Text>
             </Stack>
+          </TabPanel>
+          <TabPanel>
+            <CommentList />
           </TabPanel>
         </TabPanels>
       </Tabs>

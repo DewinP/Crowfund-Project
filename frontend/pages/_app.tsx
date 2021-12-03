@@ -21,13 +21,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <ChakraProvider resetCSS theme={theme}>
-        <AnimatePresence>
-          <Layout>
+        <Layout>
+          <AnimatePresence>
             <PrivateRoutes protectedRoutes={protectedRoutes}>
               <Component {...pageProps} />
             </PrivateRoutes>
-          </Layout>
-        </AnimatePresence>
+          </AnimatePresence>
+        </Layout>
       </ChakraProvider>
     </Provider>
   );

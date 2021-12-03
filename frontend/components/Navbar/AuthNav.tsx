@@ -12,6 +12,7 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { FiPower } from "react-icons/fi";
 import { useLogoutMutation } from "../../app/services/api";
 import { IUser } from "../../intefaces";
+import UserInfo from "../UserInfo";
 
 const AuthNav: React.FC<{ user: IUser }> = ({ user }) => {
   const [logout] = useLogoutMutation();
@@ -27,7 +28,7 @@ const AuthNav: React.FC<{ user: IUser }> = ({ user }) => {
               rightIcon={!isOpen ? <FaChevronDown /> : <FaChevronUp />}
               isActive={isOpen}
             >
-              {user.name}
+              <UserInfo name={user.name} />
             </MenuButton>
             <MenuList m={0} p={0}>
               <MenuItem onClick={() => router.push("/pledges")}>

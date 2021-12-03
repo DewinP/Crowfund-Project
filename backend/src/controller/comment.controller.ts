@@ -2,12 +2,11 @@ import { CreateCommentInput } from "../schema/comment.schema";
 import { createComment, findAndUpdateCommnet, findComments } from "../service/comment.service";
 import { Request, Response } from "express";
 
-export const createCommentHandler = async (req: Request<CreateCommentInput["params"],CreateCommentInput["body"]>, res: Response) => {
-    const userId= res.locals.user._id
+export const createCommentHandler = async (req: Request<CreateCommentInput["params"],{},CreateCommentInput["body"]>, res: Response) => {
+    const user= res.locals.user
     const projectId = req.params.projectId
-    const body = req.body;
 
-    return await createComment({...body,user: userId, project: projectId})
+    return await createComment({...req.body,project:projectId,user: user._id,userName:user.name})
 }
 
 export const updateCommentHandler = async (req: Request<CreateCommentInput["params"],{},CreateCommentInput["body"]>, res: Response) => {

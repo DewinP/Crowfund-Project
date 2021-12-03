@@ -15,7 +15,6 @@ interface PaymentFormProps {
 }
 
 const PaymentForm: React.FC<PaymentFormProps> = ({ project }) => {
-  const router = useRouter();
   const MAX_AMOUNT = 1000;
   const AMOUNT_STEP = 5;
   const MIN_AMOUNT = 5;

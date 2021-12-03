@@ -21,6 +21,7 @@ import { useAppSelector } from "../app/hooks";
 import { selectCurrentUser } from "../app/services/Auth.slice";
 import CoolTransition from "./CoolTransition";
 import { FiEdit } from "react-icons/fi";
+import UserInfo from "./UserInfo";
 
 interface ProjectCardProps {
   project: IProject;
@@ -122,9 +123,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               </Link>
             )}
           </Stack>
-          <Text color="gray.500" fontWeight={700}>
-            By {project?.creator}
-          </Text>
+          <UserInfo name={project.creator} fontWeight="700" />
         </Stack>
       </Stack>
     </CoolTransition>

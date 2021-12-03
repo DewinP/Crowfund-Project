@@ -1,6 +1,7 @@
 import { Heading, SimpleGrid, Stack } from "@chakra-ui/layout";
 import {
   Button,
+  Flex,
   Image,
   Progress,
   Stat,
@@ -18,6 +19,7 @@ import { IProject } from "../intefaces";
 import { calculatePercentage } from "../utils/calculatePercentage";
 import { calculateTimeUntil } from "../utils/calculateTimeUntil";
 import { toLocale } from "../utils/toLocale";
+import UserInfo from "./UserInfo";
 
 interface IProjectHeroProps {
   project: IProject;
@@ -54,11 +56,14 @@ const ProjectHero: React.FC<IProjectHeroProps> = ({ project }) => {
       <Image
         rounded={"md"}
         alt={"feature image"}
-        src={`https://picsum.photos/seed/${project._id}/700/500`}
+        src={`https://picsum.photos/seed/${project._id}/500/400`}
         objectFit={"cover"}
       />
       <Stack>
-        <Heading fontSize="2xl">{project?.name}</Heading>
+        <Flex justifyContent="space-between">
+          <Heading fontSize="2xl">{project?.name}</Heading>
+          <UserInfo fontWeight="700" name={project.creator} />
+        </Flex>
         <Stack spacing={0}>
           <Stat>
             <StatNumber fontSize={{ base: "15px", md: "25px" }}>

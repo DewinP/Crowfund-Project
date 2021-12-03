@@ -15,6 +15,7 @@ const CoolTransition: React.FC = ({ children }) => {
       animate="enter"
       exit="exit"
       transition={{ duration: "0.3" }}
+      justifyContent="center"
     >
       {children}
     </MotionBox>

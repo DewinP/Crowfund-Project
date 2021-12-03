@@ -25,7 +25,7 @@ const Pledges: NextPage = () => {
     <CoolTransition>
       <Stack px={{ base: 0, md: 10 }}>
         <Heading mb={4}>List of all your pledges</Heading>
-        <CardContainer width="100vw">
+        <CardContainer width="100%">
           <Table size="sm" variant="simple">
             <TableCaption fontSize="md">
               {" "}

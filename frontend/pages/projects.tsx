@@ -23,7 +23,7 @@ const Projects: React.FC = () => {
     : data;
 
   return (
-    <Stack px={{ base: 0, md: 10 }}>
+    <Stack px={{ base: 0, md: "10" }}>
       <InputGroup maxW="600px">
         <InputLeftElement children={<FaSearch />} />
         <Input

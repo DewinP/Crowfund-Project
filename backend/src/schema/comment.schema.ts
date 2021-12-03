@@ -4,6 +4,7 @@ import { object, string, TypeOf } from 'zod'
 const payload = {
     body: object({
         body:string().nonempty(),
+        
     })
 }
 

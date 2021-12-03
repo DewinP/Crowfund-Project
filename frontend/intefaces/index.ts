@@ -21,7 +21,6 @@ export interface IUser {
     _id: string;
     email: string;
     name: string;
-    lastName: string;
     createdAt: Date;
     updatedAt: Date;
     __v: number;
@@ -67,6 +66,12 @@ export interface IUser {
       sessionId:string;
   }
 
+  export interface ICommentInput{
+    projectId:string;
+    body:string;
+}
+
+
   export interface IPledge{
       _id:string;
       project: string;
@@ -81,4 +86,14 @@ export interface IUser {
   export interface IFindAllPledgesInput{
       projectId: string;
       userId: string;
+  }
+
+  export interface IComment{
+        _id:string;
+        user:string;
+        userName:string;
+        project:string;
+        body:string;
+        createdAt:string;
+        updatedAt:string;
   }
