@@ -1,10 +1,13 @@
 import { Router } from 'express';
+import { createCommentHandler, findAllCommentsByProjectHandler, updateCommentHandler } from '../controller/comment.controller';
 import requireUser from '../middleware/requireUser';
+import validateResource from '../middleware/validateResource';
+import { createCommentSchema, updateCommentSchema } from '../schema/comment.schema';
 
 const router = Router();
 
-router.get('/:projectId',)
-router.get('/',requireUser, )
-router.post('/',requireUser, )
+router.get('/project/:projectId',findAllCommentsByProjectHandler)
+router.patch('/:commentId',[requireUser, validateResource(updateCommentSchema)],updateCommentHandler )
+router.post('/',[requireUser, validateResource(createCommentSchema)],createCommentHandler )
 
 export default router;

@@ -19,6 +19,10 @@ const params = {
        ...payload,
        ...params
    })
+   export const updateCommentSchema = object({
+    ...payload,
+    ...params
+})
    
    export const findCommentSchema = object({
        ...params
@@ -26,3 +30,4 @@ const params = {
 
 export type CreateCommentInput = TypeOf<typeof createCommentSchema>
 export type FindCommentInput = TypeOf<typeof findCommentSchema>
+export type UpdateCommentInput = TypeOf<typeof updateCommentSchema>
