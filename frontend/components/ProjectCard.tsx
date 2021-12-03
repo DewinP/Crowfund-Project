@@ -114,7 +114,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           justifyContent="space-between"
         >
           <Stack direction="row" spacing={2}>
-            <Link href={`projects/${project._id}`}>
+            <Link href={`/projects/${project._id}`}>
               <Button colorScheme="green">Read more</Button>
             </Link>
             {isCreator && (

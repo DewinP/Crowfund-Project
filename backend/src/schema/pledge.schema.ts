@@ -1,10 +1,11 @@
-import { object, string, TypeOf } from 'zod'
+import { boolean, object, string, TypeOf } from 'zod'
 
 
 const payload = {
     body: object({
         sessionId: string().nonempty(),
-        projectId:string().nonempty()
+        projectId:string().nonempty(),
+        isBacker: boolean().default(false),
 
     })
 }

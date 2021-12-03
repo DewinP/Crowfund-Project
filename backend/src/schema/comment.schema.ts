@@ -1,16 +1,15 @@
-import { object, string, TypeOf } from 'zod'
+import { boolean, object, string, TypeOf } from 'zod'
 
 
 const payload = {
     body: object({
-        body:string().nonempty(),
-        
+        body:string().nonempty("Comment content is required"),
     })
 }
 
 const params = {
     params: object({
-        commentId: string(),
+        commentId: string().nullish(),
         projectId:string()
     })
 }

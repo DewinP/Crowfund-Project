@@ -10,18 +10,13 @@ import CommentForm from "./CommentForm";
 
 const CommentList: React.FC<{ comments: IComment[] }> = ({ comments }) => {
   let { user } = useAppSelector(selectCurrentUser);
-  const { data: pledges } = useFindAllPledgesByUserQuery();
-  const isBacker = pledges?.some(
-    (pledge) => pledge.user === comments?.[0]?.user
-  );
+
   return (
     <CoolTransition>
       <Stack justifyContent="center">
-        {user && <CommentForm isBacker={isBacker} />}
+        {user && <CommentForm />}
         {comments?.map((comment) => {
-          return (
-            <Comment key={comment._id} isBacker={isBacker} comment={comment} />
-          );
+          return <Comment key={comment._id} comment={comment} />;
         })}
         {!comments?.length && <Text>No comments yet</Text>}
       </Stack>

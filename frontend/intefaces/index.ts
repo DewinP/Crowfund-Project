@@ -96,4 +96,5 @@ export interface IUser {
         body:string;
         createdAt:string;
         updatedAt:string;
+
   }

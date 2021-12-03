@@ -6,7 +6,7 @@ import { createCommentSchema, updateCommentSchema } from '../schema/comment.sche
 
 const router = Router();
 
-router.get('/project/:projectId',findAllCommentsByProjectHandler)
+router.get('/:projectId',findAllCommentsByProjectHandler)
 router.patch('/:commentId',[requireUser, validateResource(updateCommentSchema)],updateCommentHandler )
 router.post('/:projectId',[requireUser, validateResource(createCommentSchema)],createCommentHandler )
 

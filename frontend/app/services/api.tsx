@@ -182,10 +182,10 @@ export const api = createApi({
         }),
       }),
       createComment: build.mutation<IComment, ICommentInput>({
-        query: ({ body, projectId }) => ({
-          url: `comments/${projectId}`,
+        query: (input) => ({
+          url: `comments/${input.projectId}`,
           method: "POST",
-          body: body,
+          body: input,
           credentials: "include",
         }),
         invalidatesTags: (result) => [{ type: "Comment", id: result?.project }],
@@ -205,7 +205,7 @@ export const api = createApi({
       findCommentsByProject: build.query<IComment[], { projectId: string }>({
         query: ({ projectId }) => ({
           url: `comments/${projectId}`,
-          method: "POST",
+          method: "GET",
         }),
         providesTags: (result: IComment[]) =>
           result
@@ -214,7 +214,7 @@ export const api = createApi({
                   type: "Comment" as const,
                   id: _id,
                 })),
-                { type: "Comment" as const, id: result[0].project },
+                { type: "Comment" as const, id: result[0]?.project },
               ]
             : [{ type: "Comment" as const }],
       }),

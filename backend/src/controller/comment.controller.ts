@@ -6,7 +6,8 @@ export const createCommentHandler = async (req: Request<CreateCommentInput["para
     const user= res.locals.user
     const projectId = req.params.projectId
 
-    return await createComment({...req.body,project:projectId,user: user._id,userName:user.name})
+    const comment = createComment({...req.body,project:projectId,user: user._id,userName:user.name})
+    res.status(201).json(comment)
 }
 
 export const updateCommentHandler = async (req: Request<CreateCommentInput["params"],{},CreateCommentInput["body"]>, res: Response) => {

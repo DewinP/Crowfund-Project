@@ -15,7 +15,7 @@ const commentSchema = new mongoose.Schema(
         user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
         project:{type: mongoose.Schema.Types.ObjectId,ref:"Project" },
         userName:{type:String,required:true},
-        body:{type:String,required:true}
+        body:{type:String,required:true},
     },
       {
         timestamps: true,
