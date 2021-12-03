@@ -64,7 +64,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               <Tag
                 aria-label="Backer Badge"
                 size="sm"
-                variant="outline"
+                variant=""
                 colorScheme="green"
               >
                 <TagLabel>Backer</TagLabel>
