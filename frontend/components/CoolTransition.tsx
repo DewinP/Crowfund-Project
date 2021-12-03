@@ -2,7 +2,7 @@ import { BoxProps, Box } from "@chakra-ui/layout";
 import { motion } from "framer-motion";
 import React from "react";
 
-const CoolTransition: React.FC = ({ children }) => {
+const CoolTransition: React.FC<{ width?: string }> = ({ children, width }) => {
   const variants = {
     hidden: { opacity: 0 },
     enter: { opacity: 1 },
@@ -16,6 +16,7 @@ const CoolTransition: React.FC = ({ children }) => {
       exit="exit"
       transition={{ duration: "0.3" }}
       justifyContent="center"
+      width={width}
     >
       {children}
     </MotionBox>
