@@ -14,6 +14,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import {
   useFindAllPledgesByProjectQuery,
+  useFindCommentsByProjectQuery,
   useFindProjectQuery,
 } from "../../app/services/api";
 import CommentList from "../../components/CommentList";
@@ -27,7 +28,14 @@ const ProjectPage: NextPage = () => {
   const { isLoading, data: project } = useFindProjectQuery(projectId, {
     skip: !projectId,
   });
-
+  const { data: comments } = useFindCommentsByProjectQuery(
+    {
+      projectId: projectId,
+    },
+    {
+      skip: !projectId,
+    }
+  );
   if (isLoading) return <FullPageLoader />;
 
   return (
@@ -42,12 +50,12 @@ const ProjectPage: NextPage = () => {
 
         <TabPanels>
           <TabPanel>
-            <Stack my={4}>
+            <Stack>
               <Text>{project?.description}</Text>
             </Stack>
           </TabPanel>
           <TabPanel>
-            <CommentList />
+            <CommentList comments={comments} />
           </TabPanel>
         </TabPanels>
       </Tabs>

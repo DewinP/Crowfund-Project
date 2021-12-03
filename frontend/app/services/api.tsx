@@ -216,7 +216,7 @@ export const api = createApi({
                 })),
                 { type: "Comment" as const, id: result[0].project },
               ]
-            : [{ type: "Comment" as const, id: result[0].project }],
+            : [{ type: "Comment" as const }],
       }),
     };
   },

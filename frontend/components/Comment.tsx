@@ -1,32 +1,42 @@
 import { Stack, Flex, Text } from "@chakra-ui/layout";
 import { Tag, TagLabel, TagRightIcon } from "@chakra-ui/react";
+import dayjs from "dayjs";
 import React from "react";
 import { FaHandHoldingUsd } from "react-icons/fa";
 import { IComment } from "../intefaces";
 import CardContainer from "./CardContainer";
 import UserInfo from "./UserInfo";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
 
-const Comment: React.FC<{ comment?: IComment }> = ({ comment }) => {
+const Comment: React.FC<{ comment: IComment; isBacker: boolean }> = ({
+  comment,
+  isBacker,
+}) => {
   return (
     <CardContainer width="100%" boxShadow="sm">
       <Stack>
         <Flex justifyContent="space-between">
-          <UserInfo name="dewin" fontWeight="700" />
+          <UserInfo name={comment.userName} fontWeight="700" />
           <Flex>
-            <Tag mr={2} aria-label="Backer Badge" size="sm" colorScheme="green">
-              <TagLabel>Backer</TagLabel>
-              <TagRightIcon as={FaHandHoldingUsd} />
-            </Tag>
+            {isBacker && (
+              <Tag
+                mr={2}
+                aria-label="Backer Badge"
+                size="sm"
+                colorScheme="green"
+              >
+                <TagLabel>Backer</TagLabel>
+                <TagRightIcon as={FaHandHoldingUsd} />
+              </Tag>
+            )}
             <Text fontSize="sm" color="gray.500">
-              2 days ago
+              {dayjs(comment.createdAt).fromNow()}
             </Text>
           </Flex>
         </Flex>
         <Text fontSize="sm" color="gray.500" align="left">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam eos
-          quia doloremque, quae, quam dolorum quisquam sum dolor sit amet
-          consectetur adipisicing elit. Quisquam eos quia doloremque, quae, quam
-          dolorum quisquam
+          {comment.body}
         </Text>
       </Stack>
     </CardContainer>

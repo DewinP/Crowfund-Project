@@ -16,7 +16,7 @@ const CommentForm: React.FC<{ comment?: IComment; isBacker?: boolean }> = ({
     projectId: comment?.project || "",
   };
   return (
-    <Box my={8} textAlign="left">
+    <Box textAlign="left">
       <Formik
         initialValues={initialValues}
         onSubmit={async (values, { setErrors }) => {}}
