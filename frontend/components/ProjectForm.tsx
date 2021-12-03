@@ -33,8 +33,6 @@ const ProjectForm: React.FC<IProjectFormProps> = ({ label, project }) => {
       { skip: !project?._id }
     );
 
-  console.log(pledges);
-
   const router = useRouter();
   const initalValues: IProjectInput = {
     name: project?.name || "",
@@ -85,7 +83,7 @@ const ProjectForm: React.FC<IProjectFormProps> = ({ label, project }) => {
               <InputField
                 type="text"
                 name="description"
-                label="Describe your project"
+                label="Project Description"
                 textArea
               />
               <Flex flexDir={{ base: "column", md: "row" }}>

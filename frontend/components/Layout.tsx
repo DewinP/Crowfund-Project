@@ -16,7 +16,7 @@ const Layout: React.FC<{}> = ({ children }) => {
       <Center>
         <Box
           marginTop={8}
-          maxW="1400px"
+          maxW="1200px"
           minW={{
             base: "100%",
             sm: "40em",

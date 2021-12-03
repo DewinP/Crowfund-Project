@@ -25,8 +25,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ project }) => {
   });
   let { isLoggedIn } = useAppSelector(selectCurrentUser);
 
-  console.log("input:", input.customPayment);
-
   const [createSession] = useCreateCheckoutSessionMutation();
   const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) =>
     setInput({

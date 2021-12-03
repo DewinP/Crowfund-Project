@@ -33,7 +33,7 @@ const LeftNav: React.FC<{ isLoggedIn?: string; isMobile?: boolean }> = ({
             pathName === "/projects" || pathName === "/" ? null : "ghost"
           }
         >
-          Projects
+          Discover
         </Button>
       </Link>
     </Stack>

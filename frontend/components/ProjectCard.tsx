@@ -20,6 +20,7 @@ import { calculatePercentage } from "../utils/calculatePercentage";
 import { useAppSelector } from "../app/hooks";
 import { selectCurrentUser } from "../app/services/Auth.slice";
 import CoolTransition from "./CoolTransition";
+import { FiEdit } from "react-icons/fi";
 
 interface ProjectCardProps {
   project: IProject;
@@ -117,7 +118,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             </Link>
             {isCreator && (
               <Link href={`/projects/${project._id}/edit`}>
-                <Button>Edit</Button>
+                <Button leftIcon={<FiEdit />}>Edit</Button>
               </Link>
             )}
           </Stack>

@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
+import { FiEdit } from "react-icons/fi";
 import { useAppSelector } from "../app/hooks";
 import { useFindAllPledgesByProjectQuery } from "../app/services/api";
 import { selectCurrentUser } from "../app/services/Auth.slice";
@@ -53,14 +54,14 @@ const ProjectHero: React.FC<IProjectHeroProps> = ({ project }) => {
       <Image
         rounded={"md"}
         alt={"feature image"}
-        src={`https://picsum.photos/seed/${1}/700/500`}
+        src={`https://picsum.photos/seed/${project._id}/700/500`}
         objectFit={"cover"}
       />
       <Stack>
         <Heading fontSize="2xl">{project?.name}</Heading>
         <Stack spacing={0}>
           <Stat>
-            <StatNumber fontSize={{ base: "20px", md: "30px" }}>
+            <StatNumber fontSize={{ base: "15px", md: "25px" }}>
               <Text as="span" fontWeight="bold" color="green">
                 ${!isLoadingPledges && toLocale(currentFunding)}
               </Text>
@@ -88,13 +89,19 @@ const ProjectHero: React.FC<IProjectHeroProps> = ({ project }) => {
           </Text>
           <Progress
             height="32px"
-            colorScheme="teal"
+            colorScheme="green"
+            hasStripe
             value={currentFundingPercentage}
           />
 
           {isCreator ? (
             <Link href={`/projects/${project?._id}/edit`} passHref>
-              <Button isFullWidth size="lg" colorScheme="teal">
+              <Button
+                leftIcon={<FiEdit />}
+                isFullWidth
+                size="lg"
+                colorScheme="teal"
+              >
                 Edit Project
               </Button>
             </Link>
