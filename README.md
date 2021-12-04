@@ -54,14 +54,37 @@ $ npm run dev
 
 # Crowfund Screenshots
 
-Signup Page:
+###### Signup Page:
+
 ![Signup page](https://i.imgur.com/37We2vU.png)
 
-Login Page:
+###### Login Page:
+
 ![Login page](https://i.imgur.com/H9fABrz.png)
 
-Create Project Page:
+###### Landing Page
+
+![Landing Page](https://i.imgur.com/Rlbp2hv.png)
+
+###### Create Project Page:
+
 ![Create Project](https://i.imgur.com/TMXk5m9.png)
 
-Update Project Page:
+###### Project Page:
+
+Shows the project page with the project's information and the pledges made with a progress bar showing the percentage towards the goal.
+![Project Page](https://i.imgur.com/YUumS9X.png)
+
+###### Update Project Page:
+
 ![Update Project](https://i.imgur.com/N28ptPB.png)
+
+###### Pledge Page:
+
+Shows the user's pledge history
+![Pledge Page](https://i.imgur.com/1Ss4FRh.png)
+
+###### Users Projects Page:
+
+Shows the user's own projects
+![Users Projects Page](https://i.imgur.com/kzuUrG4.png)
