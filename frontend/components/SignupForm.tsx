@@ -70,7 +70,9 @@ const SignupForm: React.FC = () => {
             <Stack isInline justifyContent="right" mt={4}>
               <Link href="/login">
                 <Box>
-                  <ChakraLink color="teal.800">Login instead?</ChakraLink>
+                  <ChakraLink color="teal.800">
+                    Already have an account? Login
+                  </ChakraLink>
                 </Box>
               </Link>
             </Stack>

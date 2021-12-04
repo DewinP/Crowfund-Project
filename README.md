@@ -51,3 +51,17 @@ $ npm run dev
 ```
 
 # Best Practices
+
+# Crowfund Screenshots
+
+Signup Page:
+![Signup page](https://i.imgur.com/37We2vU.png)
+
+Login Page:
+![Login page](https://i.imgur.com/H9fABrz.png)
+
+Create Project Page:
+![Create Project](https://i.imgur.com/TMXk5m9.png)
+
+Update Project Page:
+![Update Project](https://i.imgur.com/N28ptPB.png)

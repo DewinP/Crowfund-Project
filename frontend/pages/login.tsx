@@ -20,7 +20,7 @@ const Login: NextPage = () => {
     <CoolTransition>
       <CardContainer>
         <Box textAlign="center">
-          <Heading>Login into DSP</Heading>
+          <Heading>Login</Heading>
         </Box>
         <LoginForm />
       </CardContainer>

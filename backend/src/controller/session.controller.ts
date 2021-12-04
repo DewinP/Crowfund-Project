@@ -5,7 +5,6 @@ import { validatePassword } from '../service/user.service';
 import { signJWT } from './../utils/jwt.utils';
 
 export async function createSessionHandler(req: Request, res: Response) {
-
     const user = await validatePassword(req.body)
     if(!user) {
         return res.status(401).json({
@@ -18,6 +17,8 @@ export async function createSessionHandler(req: Request, res: Response) {
         {...user, session: session._id},
         {expiresIn: config.get<string>('accessTokenTTL')}
     );
+
+
     const refreshToken = signJWT(
         {...user, session: session._id},
         {expiresIn: config.get("refreshTokenTTL")}
