@@ -2,6 +2,8 @@
 
 Crowfund is a crowdfunding web application developed primarily in Typescript, React.Js, Express.Js and MongoDB.
 
+It allows users to create campaigns and allow other users to contribute to them to help them reach their goal. This is a simple example of a crowdfunding web application. However, it has been developed to be as robust as possible in the 12 days that it has been in development.
+
 # Functionalities
 
 As a guest/unathorized user, they can
@@ -52,11 +54,15 @@ $ npm run dev
 
 # Architechture pattern
 
-...
+The architecture pattern used in this project is the [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) pattern.
+
+The MVC pattern is used in this project to separate the logic of the application from the presentation layer. This is done by separating the logic of the application into the `backend` folder and the `frontend` folder. The `backend` folder contains the logic of the application and the `frontend` folder contains the presentation layer.
 
 # Best Practices
 
-...
+The best practices used in this project are the [KISS](https://en.wikipedia.org/wiki/KISS_principle) and [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
+
+One example of this is by creating components that are reusable. This allows you to create a component that can be used in multiple places in the application. This is a good practice to follow because it makes the code more readable and easier to maintain.
 
 # Crowfund Screenshots
 
