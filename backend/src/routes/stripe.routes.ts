@@ -8,6 +8,10 @@ const stripe = new Stripe(config.get<string>("stripeKey"),{
   })
 
 
+/**
+ * Route to create a new customer session on stripe and return some of the customer's information to the client
+**/
+
   router.post("/session/", async (req: Request, res:Response) => {
     const projectName = req.body.projectName
     const amount = req.body.amount

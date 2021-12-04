@@ -2,6 +2,8 @@ import { DocumentDefinition, FilterQuery, QueryOptions, UpdateQuery } from "mong
 import CommentModel, { CommentDocument } from "../models/comment.model"
 
 
+
+
 export const createComment = async(input: DocumentDefinition<Omit<CommentDocument,"createdAt" | "updatedAt">>)=>{
     return CommentModel.create(input)
 }

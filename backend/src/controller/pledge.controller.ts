@@ -10,6 +10,10 @@ const stripe = new Stripe(config.get<string>("stripeKey"),{
 })
 
 
+
+/**
+ * Controller for creating a pledge
+**/
 export const createPledgeHandler = async (req: Request<{},{},CreatePledgeInput["body"]>, res: Response) => {
     const userId= res.locals.user._id
     const projectId = req.body.projectId;
@@ -22,6 +26,7 @@ export const createPledgeHandler = async (req: Request<{},{},CreatePledgeInput["
       return res.send(pledge)
     }
     
+    // check if stripe session is valid
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 
     //If success_url doesnt include the project id that means that the current project is not the recipient of the pledge
@@ -30,9 +35,8 @@ export const createPledgeHandler = async (req: Request<{},{},CreatePledgeInput["
       
       let pledge = await createPledge({amount: session.amount_total/100, user:userId,sessionId: session.id, project: projectId, projectName: project!.name, userName: res.locals.user.name})
       return res.status(201).json(pledge)
-    }else{
-      return res.sendStatus(403)
     }
+    return res.sendStatus(403)
 
 }
 

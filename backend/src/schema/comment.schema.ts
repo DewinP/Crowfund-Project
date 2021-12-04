@@ -1,4 +1,4 @@
-import { boolean, object, string, TypeOf } from 'zod'
+import {  object, string, TypeOf } from 'zod'
 
 
 const payload = {
@@ -10,7 +10,7 @@ const payload = {
 const params = {
     params: object({
         commentId: string().nullish(),
-        projectId:string()
+        projectId:string().nullish()
     })
 }
 

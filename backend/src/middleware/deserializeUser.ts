@@ -4,6 +4,11 @@ import { get } from 'lodash';
 import { reIssueAccessToken } from '../service/session.service';
 import { verifyJWT } from './../utils/jwt.utils';
 
+
+/**
+ * Middleware to deserialize user from access token in cookies. 
+**/
+
 const deserializeUser = async (
     req: Request,
     res: Response,

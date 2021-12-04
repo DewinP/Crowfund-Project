@@ -64,6 +64,8 @@ The best practices used in this project are the [KISS](https://en.wikipedia.org/
 
 One example of this is by creating components that are reusable. This allows you to create a component that can be used in multiple places in the application. This is a good practice to follow because it makes the code more readable and easier to maintain.
 
+This project also follows TypeScript do's and don'ts. One example of this is by making sure
+
 # Crowfund Screenshots
 
 ###### Signup Page:
