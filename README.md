@@ -50,7 +50,13 @@ $ npm run dev
 - add the NEXT_PUBLIC_SERVER_ENDPOINT and NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY to the .env file - code will run in the port on the localhost:3000, unless changed in the `.env` file
 ```
 
+# Architechture pattern
+
+...
+
 # Best Practices
+
+...
 
 # Crowfund Screenshots
 
@@ -88,3 +94,14 @@ Shows the user's pledge history
 
 Shows the user's own projects
 ![Users Projects Page](https://i.imgur.com/kzuUrG4.png)
+
+###### Pledge Feature:
+
+| Pledge Page                                     | Redirection to Stripe Checkout                      |
+| ----------------------------------------------- | --------------------------------------------------- |
+| ![Pledge Page](https://i.imgur.com/m5pB139.png) | ![Stripe Checkpit](https://i.imgur.com/vHpF9aW.png) |
+
+Success Page:
+
+- If the stripe checkout is successful, the user will be redirected to the success page. Otherwise, the user will be redirected to the pledge page.
+  ![Success Page](https://i.imgur.com/bUtgrvL.png)
