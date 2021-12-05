@@ -19,6 +19,10 @@ export const api = createApi({
   reducerPath: "apiPath",
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}`,
+    headers: {
+      "x-refresh-token": localStorage.getItem("refreshToken"),
+      "x-access-token": localStorage.getItem("accessToken"),
+    },
   }),
   tagTypes: ["Project", "Me", "Pledge", "Comment"],
   endpoints: (build) => {
