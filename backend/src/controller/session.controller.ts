@@ -32,14 +32,14 @@ export async function createSessionHandler(req: Request, res: Response) {
         httpOnly: true,
         path: '/',
         sameSite: 'strict',
-        secure: false
+        secure: true
     })
     res.cookie("refreshToken",refreshToken,{
         maxAge: 24*60*60*1000*365,
         httpOnly: true,
         path: '/',
         sameSite: 'strict',
-        secure: false
+        secure: true
     })
 
     return res.send({accessToken, refreshToken})
