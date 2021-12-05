@@ -4,9 +4,10 @@
   "description": "",
   "main": "tsc && node /dist/src/app.js",
   "scripts": {
-    "start": "node /dist/src/app.js",
-    "build": "tsc",
-    "dev": "ts-node-dev --respawn --transpile-only src/app.ts"
+    "start": "tsc && node ./dist/src/app.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
+    "tsc": "tsc",
+    "postinstall": "npm run tsc"
   },
   "author": "",
   "license": "ISC",
