@@ -4,7 +4,7 @@ import { Form, Formik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import { useLoginUserMutation, useMeQuery } from "../app/services/api";
+import { useLoginUserMutation } from "../app/services/api";
 import { ILoginInput } from "../intefaces";
 import { toErrorMap } from "../utils/toErrorMap";
 import InputField from "./InputField";
@@ -27,7 +27,7 @@ const LoginForm: React.FC = () => {
             ).unwrap();
             localStorage.setItem("accessToken", accessToken);
             localStorage.setItem("refreshToken", refreshToken);
-            router.push("/");
+            window.location.href = "/";
           } catch (error) {
             if (error.status === 400) {
               setErrors(toErrorMap(error.data));

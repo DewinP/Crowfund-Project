@@ -76,6 +76,7 @@ export interface IUser {
 export interface ISessionPayload{
     refreshToken:string;
     accessToken:string;
+    user:IUser;
 }
 
 

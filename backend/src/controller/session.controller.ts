@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { createSession, deleteSessions, findSession } from '../service/session.service';
-import { validatePassword } from '../service/user.service';
+import { findUser, validatePassword } from '../service/user.service';
 import { signJWT } from './../utils/jwt.utils';
 import config from 'config'
 
@@ -44,7 +44,9 @@ export async function createSessionHandler(req: Request, res: Response) {
         sameSite: 'none'
     })
 
-    return res.send({accessToken, refreshToken})
+    let userObj = findUser({name: req.body.name})
+
+    return res.send({accessToken, refreshToken, user:userObj})
 }
 
 export async function getUserSessionsHandler(_: Request, res: Response) {

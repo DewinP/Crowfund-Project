@@ -66,6 +66,42 @@ The MVC pattern is used in this project to separate the logic of the application
 
 ![Database Schema](https://i.imgur.com/XLJl9FD.png)
 
+//example of a expected payload and response from the database
+
+---
+
+`POST: /api/projects/${productId}`
+GET:
+
+```
+{
+  "name": "Crowfund",
+  "description": "Crowfund is a crowdfunding web application developed primarily in Typescript, React.Js, Redux-Toolkit, Express.Js and MongoDB.",
+  "dueDate": "2020-12-31T23:59:59.999Z",
+  "pledgeGoal": "10000",
+  "HeroImage": "https://i.imgur.com/XLJl9FD.png",
+}
+
+```
+
+OK 200 Response:
+
+```
+{
+  "_id": "5f3f8f8f8f8f8f8f8f8f8f8",
+}
+```
+
+Error 400 Response:
+
+```
+{
+  "field": "error message"
+}
+```
+
+---
+
 # Accessibility
 
 Accessibility is a very important part of the development of a web application. It is important to make sure that the application is accessible to all users. Crowfund aims to make sure that the application is accessible to all users by using Chakra-UI. Chakra UI is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications. One example of this is the use of the `Progress` component. This component is used to display the progress of a project. `Progress` component has a role set to `progressbar`. This means that the component is used to display the progress of a project. It also has a aria-valuenow set to the current progress of the project. This is used to ensure the current progress percent is visible to screen readers and other assistive technologies.
@@ -153,3 +189,7 @@ Shows the user's own projects
 ![Success Page](https://i.imgur.com/bUtgrvL.png)
 
 > If the stripe checkout is successful, the user will be redirected to the success page. Otherwise, the user will be redirected to the pledge page.
+
+```
+
+```

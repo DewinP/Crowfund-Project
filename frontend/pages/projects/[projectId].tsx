@@ -50,10 +50,10 @@ const ProjectPage: NextPage = () => {
         <TabPanels>
           <TabPanel>
             <Stack>
-              <Text as="body">{project?.description}</Text>
+              <Text whiteSpace="pre-wrap">{project?.description}</Text>
             </Stack>
           </TabPanel>
-          <TabPanel>
+          <TabPanel p={2}>
             <CommentList projectId={projectId} comments={comments} />
           </TabPanel>
         </TabPanels>
