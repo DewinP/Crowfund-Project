@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { createSession, deleteSessions, findSession } from '../service/session.service';
 import { validatePassword } from '../service/user.service';
 import { signJWT } from './../utils/jwt.utils';
+import config from 'config'
 
 export async function createSessionHandler(req: Request, res: Response) {
     const user = await validatePassword(req.body)
@@ -14,13 +15,13 @@ export async function createSessionHandler(req: Request, res: Response) {
 
     const accessToken = signJWT(
         {...user, session: session._id},
-        {expiresIn: process.env.ACCESS_TOKEN_TTL}
+        {expiresIn: config.get<string>('accessTokenTTL')}
     );
 
 
     const refreshToken = signJWT(
         {...user, session: session._id},
-        {expiresIn: process.env.REFRESH_TOKEN_TTL}
+        {expiresIn: config.get<string>('accessTokenTTL')}
     );
     
     res.cookie("accessToken", accessToken,{

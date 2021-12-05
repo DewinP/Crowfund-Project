@@ -3,6 +3,7 @@ import { FilterQuery } from "mongoose";
 import SessionModel, { SessionDocument } from "../models/session.model"
 import { signJWT, verifyJWT } from "../utils/jwt.utils";
 import { findUser } from "./user.service";
+import config from 'config'
 
 export const createSession = async (userId: string)=> {
     const session = await SessionModel.create({ user: userId});
@@ -33,7 +34,7 @@ export async function reIssueAccessToken({
 
   const accessToken = signJWT(
     { ...user, session: session._id },
-    { expiresIn: process.env.ACCESS_TOKEN_TTL }
+    { expiresIn: config.get<string>('accessTokenTTL')}
   );
 
   return accessToken;

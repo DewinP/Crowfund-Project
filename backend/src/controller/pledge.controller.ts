@@ -3,8 +3,9 @@ import Stripe from 'stripe';
 import { CreatePledgeInput, FindPledgeInput } from '../schema/pledge.schema';
 import { createPledge, findAllPledges, findPledge } from '../service/pledge.service';
 import { findProject } from '../service/project.service';
+import config from 'config'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!,{
+const stripe = new Stripe(config.get<string>('stripeKey'),{
   apiVersion: '2020-08-27',
 })
 

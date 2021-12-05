@@ -6,13 +6,14 @@ import deserializeUser from './middleware/deserializeUser';
 import routes from './routes';
 import connect from './utils/connect';
 import logger from './utils/logger';
+import config from 'config'
 
-const port = process.env.PORT;
+const port = config.get<number>('port');
 
 const app = express();
 app.use(cors(
     {
-        origin: process.env.ORIGIN_HOST,
+        origin: config.get<string>('origin'),
         credentials: true,
     }
 ));
