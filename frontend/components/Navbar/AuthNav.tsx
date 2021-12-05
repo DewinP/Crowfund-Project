@@ -44,9 +44,10 @@ const AuthNav: React.FC<{ user: IUser }> = ({ user }) => {
               <MenuDivider p={0} m={0} />
               <MenuItem
                 onClick={async () => {
+                  localStorage.removeItem("accessToken");
+                  localStorage.removeItem("refreshToken");
                   await logout();
-                  localStorage.delete("accessToken");
-                  localStorage.delete("refreshToken");
+
                   router.push("/login");
                 }}
               >
