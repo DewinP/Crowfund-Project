@@ -12,7 +12,6 @@ export async function createSessionHandler(req: Request, res: Response) {
         })
     } 
 
-    console.log('herrororororo')
     const session = await createSession(String(user._id));
 
 
@@ -42,6 +41,7 @@ export async function createSessionHandler(req: Request, res: Response) {
         sameSite: 'strict',
         secure: false
     })
+
     return res.send({accessToken, refreshToken})
 }
 
