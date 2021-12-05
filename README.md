@@ -71,7 +71,6 @@ The MVC pattern is used in this project to separate the logic of the application
 ---
 
 `POST: /api/projects/${productId}`
-GET:
 
 ```
 {
