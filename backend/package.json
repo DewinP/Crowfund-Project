@@ -6,8 +6,8 @@
   "scripts": {
     "lint": "eslint --fix . && prettier --write .",
     "prestart": "rimraf dist",
-    "start": "tsc && cross-env NODE_ENV=production node dist/src/app.js",
-    "dev": "cross-env NODE_ENV=development ts-node-dev --respawn --transpile-only src/app.ts"
+    "start": "tsc && cross-env SET NODE_ENV=production node dist/src/app.js",
+    "dev": "cross-env SET NODE_ENV=development ts-node-dev --respawn --transpile-only src/app.ts"
   },
   "author": "",
   "license": "ISC",
