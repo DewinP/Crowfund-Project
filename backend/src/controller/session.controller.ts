@@ -28,18 +28,20 @@ export async function createSessionHandler(req: Request, res: Response) {
     );
     
     res.cookie("accessToken", accessToken,{
-        maxAge: 90000000000,
+        maxAge: 24*60*60*1000*365,
         httpOnly: true,
-        domain: 'https://crowfund-project.vercel.app',
+        domain: '.crowfund-project.vercel.app',
         path: '/',
-        secure: true
+        secure: true,
+        sameSite: 'none'
     })
     res.cookie("refreshToken",refreshToken,{
         maxAge: 24*60*60*1000*365,
         httpOnly: true,
-        domain: 'https://crowfund-project.vercel.app',
+        domain: '.crowfund-project.vercel.app',
         path: '/',
-        secure: true
+        secure: true,
+        sameSite: 'none'
     })
 
     return res.send({accessToken, refreshToken})
