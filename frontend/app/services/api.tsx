@@ -193,7 +193,7 @@ export const api = createApi({
       updateComment: build.mutation<IComment, Partial<IComment>>({
         query: (input) => ({
           url: `comments/${input._id}`,
-          method: "POST",
+          method: "PATCH",
           body: input,
           credentials: "include",
         }),

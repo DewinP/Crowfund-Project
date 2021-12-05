@@ -16,7 +16,14 @@ const CommentList: React.FC<{ comments: IComment[] }> = ({ comments }) => {
       <Stack justifyContent="center">
         {user && <CommentForm />}
         {comments?.map((comment) => {
-          return <Comment key={comment._id} comment={comment} />;
+          const isCreator = comment.user === user?._id;
+          return (
+            <Comment
+              isCreator={isCreator}
+              key={comment._id}
+              comment={comment}
+            />
+          );
         })}
         {!comments?.length && <Text>No comments yet</Text>}
       </Stack>

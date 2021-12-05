@@ -12,7 +12,15 @@ import { toErrorMap } from "../utils/toErrorMap";
 import InputField from "./InputField";
 import { useRouter } from "next/router";
 
-const CommentForm: React.FC<{ comment?: IComment }> = ({ comment }) => {
+interface ICommentFormProps {
+  comment?: IComment;
+  setEditComment?: () => void;
+}
+
+const CommentForm: React.FC<ICommentFormProps> = ({
+  comment,
+  setEditComment,
+}) => {
   const [createComment] = useCreateCommentMutation();
   const [updateComment] = useUpdateCommentMutation();
   const router = useRouter();
@@ -37,18 +45,35 @@ const CommentForm: React.FC<{ comment?: IComment }> = ({ comment }) => {
             }
           } else {
             try {
-              await updateComment(values).unwrap();
+              await updateComment({ ...values, _id: comment?._id }).unwrap();
             } catch (error) {
               setErrors(toErrorMap(error));
             }
           }
+          setEditComment();
         }}
       >
         {({ isSubmitting }) => (
           <Form>
-            <InputField textArea label="Add Commnet" type="text" name="body" />
+            <InputField
+              textArea
+              label={comment ? "Edit comment" : "Add comment"}
+              type="text"
+              name="body"
+            />
 
             <Flex justify="flex-end">
+              {setEditComment && (
+                <Button
+                  alignSelf="right"
+                  type="submit"
+                  onClick={setEditComment}
+                  mr={4}
+                  mt={1}
+                >
+                  Cancel
+                </Button>
+              )}
               <Button
                 alignSelf="right"
                 type="submit"
