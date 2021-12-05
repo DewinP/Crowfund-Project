@@ -2,13 +2,13 @@ import { Divider, Heading, Stack } from "@chakra-ui/layout";
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import React from "react";
 import { FaSearch } from "react-icons/fa";
-import { useFindAllProjectsQuery } from "../app/services/api";
+import { useFindAllProjectsQuery, useMeQuery } from "../app/services/api";
 import CoolTransition from "../components/CoolTransition";
 import ProjectList from "../components/ProjectList";
 
 const Projects: React.FC = () => {
   const { data, isLoading } = useFindAllProjectsQuery();
-
+  useMeQuery();
   const [searchTerm, setSearchTerm] = React.useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

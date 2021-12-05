@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Result } from "postcss";
 import {
   IComment,
   ICommentInput,

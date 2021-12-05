@@ -13,8 +13,8 @@ const deserializeUser = async (
     res: Response,
     next: NextFunction
   ) => {
-    const accessToken:string = get(req,"cookies.accessToken") || get(req, "headers.x-access-token", "");
-    const refreshToken:string = get(req,"cookies.refreshToken") || get(req, "headers.x-refresh-token", "");
+    const accessToken:string =  get(req, "headers.x-access-token", "");
+    const refreshToken:string =  get(req, "headers.x-refresh-token", "");
     if (!accessToken) {
       return next();
     }

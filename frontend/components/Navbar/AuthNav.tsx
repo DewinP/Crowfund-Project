@@ -10,7 +10,7 @@ import router from "next/router";
 import React from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { FiPower } from "react-icons/fi";
-import { api, useLogoutMutation } from "../../app/services/api";
+import { useLogoutMutation, useMeQuery } from "../../app/services/api";
 import { IUser } from "../../intefaces";
 import UserInfo from "../UserInfo";
 
@@ -47,8 +47,7 @@ const AuthNav: React.FC<{ user: IUser }> = ({ user }) => {
                   await logout();
                   localStorage.removeItem("accessToken");
                   localStorage.removeItem("refreshToken");
-                  api.endpoints.me.useQuery();
-                  router.push("/login");
+                  router.push("/");
                 }}
               >
                 <Icon as={FiPower} mr={2} />

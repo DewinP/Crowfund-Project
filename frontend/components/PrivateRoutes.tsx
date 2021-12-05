@@ -17,7 +17,6 @@ const PrivateRoutes: React.FC<PrivateRoutesProps> = ({
   const router = useRouter();
   let { isLoggedIn, isFetching } = useAppSelector(selectCurrentUser);
 
-  useMeQuery();
   const pathIsProtected = protectedRoutes.indexOf(router.pathname) !== -1;
 
   useEffect(() => {
