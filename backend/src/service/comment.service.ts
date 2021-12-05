@@ -16,3 +16,7 @@ export const findAndUpdateCommnet = async(query: FilterQuery<CommentDocument>,
     options: QueryOptions)=>{
         return CommentModel.findOneAndUpdate(query, update, options);
 }
+export const deleteComment = async(query: FilterQuery<CommentDocument>,
+    )=> {
+      return CommentModel.findOneAndDelete(query);
+    }

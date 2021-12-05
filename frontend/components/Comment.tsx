@@ -11,6 +11,7 @@ import { useAppSelector } from "../app/hooks";
 import { selectCurrentUser } from "../app/services/Auth.slice";
 import { cpuUsage } from "process";
 import CommentForm from "./CommentForm";
+import { useDeleteCommentMutation } from "../app/services/api";
 dayjs.extend(relativeTime);
 
 const Comment: React.FC<{ comment: IComment; isCreator: boolean }> = ({
@@ -18,6 +19,7 @@ const Comment: React.FC<{ comment: IComment; isCreator: boolean }> = ({
   isCreator,
 }) => {
   const [editComment, setEditComment] = React.useState(false);
+  const [deleteComment] = useDeleteCommentMutation();
   const handleEditComment = () => {
     setEditComment(!editComment);
   };
@@ -46,9 +48,18 @@ const Comment: React.FC<{ comment: IComment; isCreator: boolean }> = ({
             {isCreator && (
               <>
                 <Divider />
-                <Button width="100px" size="xs" onClick={handleEditComment}>
-                  Edit Comment
-                </Button>
+                <Flex>
+                  <Button size="xs" mr={4} onClick={handleEditComment}>
+                    Edit Comment
+                  </Button>
+                  <Button
+                    colorScheme="red"
+                    size="xs"
+                    onClick={() => deleteComment({ commentId: comment?._id })}
+                  >
+                    Delete
+                  </Button>
+                </Flex>
               </>
             )}
           </Stack>

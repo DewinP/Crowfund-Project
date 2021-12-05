@@ -1,11 +1,9 @@
 import { Button } from "@chakra-ui/button";
-import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Box, Center, Flex, Heading } from "@chakra-ui/layout";
 import dayjs from "dayjs";
 import { Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import React from "react";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {
   useCreateProjectMutation,
@@ -27,11 +25,10 @@ interface IProjectFormProps {
 
 const ProjectForm: React.FC<IProjectFormProps> = ({ label, project }) => {
   const monthFromNow = new Date(dayjs().add(1, "month").format("YYYY-MM-DD"));
-  const { isLoading: isLoadingPledges, data: pledges } =
-    useFindAllPledgesByProjectQuery(
-      { projectId: project?._id },
-      { skip: !project?._id }
-    );
+  const { data: pledges } = useFindAllPledgesByProjectQuery(
+    { projectId: project?._id },
+    { skip: !project?._id }
+  );
 
   const router = useRouter();
   const initalValues: IProjectInput = {

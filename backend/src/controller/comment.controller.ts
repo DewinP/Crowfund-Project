@@ -1,11 +1,9 @@
 import { CreateCommentInput, UpdateCommentInput } from "../schema/comment.schema";
-import { createComment, findAndUpdateCommnet, findComments } from "../service/comment.service";
+import { createComment, findAndUpdateCommnet, findComments, deleteComment } from "../service/comment.service";
 import { Request, Response } from "express";
 
 
-/** 
- * @desc Comment Controller
-*/
+
 export const createCommentHandler = async (req: Request<CreateCommentInput["params"],{},CreateCommentInput["body"]>, res: Response) => {
     const user= res.locals.user
     const projectId = req.params.projectId
@@ -29,3 +27,16 @@ export const findAllCommentsByProjectHandler = async (req: Request<CreateComment
     const comments= await findComments({project: projectId})
     return res.send(comments)
 }
+
+export async function deleteCommentHandler(
+    req: Request,
+    res: Response
+  ) {
+    const commentId = req.params.commentId;
+    
+    const comment = await deleteComment({_id:commentId});
+
+    return res.send(comment);
+  }
+
+

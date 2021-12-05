@@ -9,6 +9,7 @@ It allows users to create campaigns and allow other users to contribute to them 
 As a guest/unathorized user, they can
 
 - Read projects
+- Read projects comments made by other users
 - Sort projects
 - Create an account
 - Login to their account
@@ -18,6 +19,7 @@ A logged in user can
 - Create a project
 - Edit their project's name, description and/or due date
 - Delete their project if no pledges/contributions have been made by another user
+- Create, edit and delete their comments
 - Pledge/contribute towards a project.
 - See all information about all pledges made by the user
 

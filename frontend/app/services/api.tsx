@@ -202,6 +202,14 @@ export const api = createApi({
           { type: "Comment", id: result?._id },
         ],
       }),
+      deleteComment: build.mutation<IComment, { commentId: string }>({
+        query: ({ commentId }) => ({
+          url: `comments/${commentId}`,
+          method: "DELETE",
+          credentials: "include",
+        }),
+        invalidatesTags: (result) => [{ type: "Comment", id: result?.project }],
+      }),
       findCommentsByProject: build.query<IComment[], { projectId: string }>({
         query: ({ projectId }) => ({
           url: `comments/${projectId}`,
@@ -240,4 +248,5 @@ export const {
   useCreateCommentMutation,
   useUpdateCommentMutation,
   useFindCommentsByProjectQuery,
+  useDeleteCommentMutation,
 } = api;
