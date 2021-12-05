@@ -22,5 +22,8 @@
     "resolveJsonModule": true,
     "baseUrl": ""
   },
-  "exclude": ["node_modules"]
+  "include": [
+    "config"
+  ],
+  "exclude": ["node_modules"],
 }
