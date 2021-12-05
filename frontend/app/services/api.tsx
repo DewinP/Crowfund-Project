@@ -19,7 +19,7 @@ export const api = createApi({
   reducerPath: "apiPath",
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}`,
-    prepareHeaders: (headers, { getState }) => {
+    prepareHeaders: (headers) => {
       headers.set("x-access-token", localStorage.getItem("accessToken"));
       headers.set("x-refresh-token", localStorage.getItem("refreshToken"));
 
@@ -43,7 +43,6 @@ export const api = createApi({
           body: input,
           credentials: "include",
         }),
-        invalidatesTags: ["Me"],
       }),
       logout: build.mutation<{}, void>({
         query: () => ({
@@ -51,12 +50,15 @@ export const api = createApi({
           method: "DELETE",
           credentials: "include",
         }),
-        invalidatesTags: ["Me"],
       }),
       me: build.query<IUser, void>({
         query: () => ({
           url: "users/me",
           credentials: "include",
+          headers: {
+            "x-refresh-token": localStorage.getItem("refreshToken"),
+            "x-access-token": localStorage.getItem("accessToken"),
+          },
         }),
         providesTags: ["Me"],
       }),
