@@ -58,6 +58,10 @@ The architecture pattern used in this project is the [MVC](https://en.wikipedia.
 
 The MVC pattern is used in this project to separate the logic of the application from the presentation layer. This is done by separating the logic of the application into the `backend` folder and the `frontend` folder. The `backend` folder contains the logic of the application and the `frontend` folder contains the presentation layer.
 
+# Database Schema
+
+![Database Schema](https://i.imgur.com/XLJl9FD.png)
+
 # Accessibility
 
 Accessibility is a very important part of the development of a web application. It is important to make sure that the application is accessible to all users. Crowfund aims to make sure that the application is accessible to all users by using Chakra-UI. Chakra UI is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications. One example of this is the use of the `Progress` component. This component is used to display the progress of a project. `Progress` component has a role set to `progressbar`. This means that the component is used to display the progress of a project. It also has a aria-valuenow set to the current progress of the project. This is used to ensure the current progress percent is visible to screen readers and other assistive technologies.
@@ -104,7 +108,7 @@ One example of this is by creating components that are reusable. This allows you
 
 ![Project Page](https://i.imgur.com/YUumS9X.png)
 
-> A
+> The user just visited the project _Keyless Keyboard_ creaded by John Smith. The user can see the project name, description, pledge goal, due date, and the current progress of the project. The user can also pledge to the project by clicking on the `Become a backer` button. The user can also go ahead and comment on the project by clicking on the `Comment` Tab.
 
 ###### Update Project Page:
 
@@ -119,7 +123,7 @@ One example of this is by creating components that are reusable. This allows you
 Shows the user's pledge history
 ![Pledge Page](https://i.imgur.com/1Ss4FRh.png)
 
-> This is the pledge page of the application. The user can see their pledge history. User can visit the project page by clicking on the pledge's project name.
+> The user can navigate to the pledge page by clicking in the top right navigation menu. The user can see their pledge history. User can visit the project page by clicking on the pledge's project name.
 
 ---
 
@@ -127,6 +131,8 @@ Shows the user's pledge history
 
 Shows the user's own projects
 ![Users Projects Page](https://i.imgur.com/kzuUrG4.png)
+
+> User can see their own projects by navigating to `Owned projects` section in the top right navigation menu.
 
 ---
 
@@ -136,7 +142,10 @@ Shows the user's own projects
 | ----------------------------------------------- | --------------------------------------------------- |
 | ![Pledge Page](https://i.imgur.com/m5pB139.png) | ![Stripe Checkpit](https://i.imgur.com/vHpF9aW.png) |
 
+> The User wants to pledge $45 to a project. On clicking the `Pledge Now` button, the user is redirected to the Stripe Checkout page.
+
 ###### Success Page:
 
-If the stripe checkout is successful, the user will be redirected to the success page. Otherwise, the user will be redirected to the pledge page.
 ![Success Page](https://i.imgur.com/bUtgrvL.png)
+
+> If the stripe checkout is successful, the user will be redirected to the success page. Otherwise, the user will be redirected to the pledge page.
