@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
-import config from 'config'
 
 export interface UserInput{
     name: string;
@@ -28,8 +27,8 @@ userSchema.pre('save',async function(next) {
     let user = this as UserDocument;
     // only hash the password if it has been modified (or is new)
     if(!user.isModified('password')) return next();
-
-    const salt = await bcrypt.genSalt(config.get('saltWorkFactor'));
+    let saltRounds = Number(process.env.SALT_ROUNDS)
+    const salt = await bcrypt.genSalt(saltRounds || 10);
     const hash = await bcrypt.hash(user.password, salt);
     user.password = hash;
     next();

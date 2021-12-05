@@ -1,4 +1,3 @@
-import config from 'config';
 import { NextFunction, Request, Response } from "express";
 import { get } from 'lodash';
 import { reIssueAccessToken } from '../service/session.service';
@@ -39,7 +38,6 @@ const deserializeUser = async (
         res.cookie("accessToken", newAccessToken,{
           maxAge: 900000,
           httpOnly: true,
-          domain: config.get<string>('cookieDomain'),
           path: '/',
           sameSite: 'strict',
           secure: false

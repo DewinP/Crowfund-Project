@@ -1,9 +1,8 @@
 import mongoose from 'mongoose';
-import config from 'config'
 import logger from './logger';
 
 const connect = async () => {
-    const dbUri = config.get<string>('dbUri');
+    const dbUri = process.env.DB_URI!;
     try {
         await mongoose.connect(dbUri);
         logger.info(`Connected to database`);

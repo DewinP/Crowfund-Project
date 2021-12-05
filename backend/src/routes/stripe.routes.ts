@@ -1,9 +1,8 @@
-import config from 'config';
 import { Request, Response, Router } from 'express';
 import Stripe from 'stripe';
 
 const router = Router();
-const stripe = new Stripe(config.get<string>("stripeKey"),{
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!,{
     apiVersion: '2020-08-27',
   })
 

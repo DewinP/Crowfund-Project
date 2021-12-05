@@ -1,4 +1,3 @@
-import config from 'config';
 import { Request, Response } from 'express';
 import { createSession, deleteSessions, findSession } from '../service/session.service';
 import { validatePassword } from '../service/user.service';
@@ -15,13 +14,13 @@ export async function createSessionHandler(req: Request, res: Response) {
 
     const accessToken = signJWT(
         {...user, session: session._id},
-        {expiresIn: config.get<string>('accessTokenTTL')}
+        {expiresIn: process.env.ACCESS_TOKEN_TTL}
     );
 
 
     const refreshToken = signJWT(
         {...user, session: session._id},
-        {expiresIn: config.get("refreshTokenTTL")}
+        {expiresIn: process.env.REFRESH_TOKEN_TTL}
     );
     
     res.cookie("accessToken", accessToken,{
