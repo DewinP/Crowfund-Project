@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "tsc && node ./dist/src/app.js",
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
-    "build": "tsc",
-    "start": "node ./dist/src/app/js",
-    "prepublish": "npm run build"
+    "tsc": "tsc",
+    "postinstall": "npm run tsc"
   },
   "author": "",
   "license": "ISC",
@@ -46,6 +46,6 @@
     "@types/pino-pretty": "^4.7.3",
     "dotenv": "^10.0.0",
     "ts-node-dev": "^1.1.8",
-    "typescript": "^4.5.2"
+    "typescript": "^4.4.4"
   }
 }
