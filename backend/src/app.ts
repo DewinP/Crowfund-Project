@@ -7,7 +7,7 @@ import routes from './routes';
 import connect from './utils/connect';
 import logger from './utils/logger';
 
-const port = process.env.PORT || 1337;
+const port = process.env.PORT;
 
 const app = express();
 app.use(cors(

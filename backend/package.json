@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "tsc && node /dist/src/app.js",
   "scripts": {
     "start": "tsc && node /dist/src/app.js",
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
