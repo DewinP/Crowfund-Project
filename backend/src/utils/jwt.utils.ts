@@ -1,13 +1,13 @@
 import jwt from 'jsonwebtoken';
+import config from 'config'
 
-const private_key = process.env.JWT_PRIVATE_KEY!
-const public_key = process.env.JWT_PUBLIC_KEY!
+
 const privateKey = Buffer.from(
- private_key ,
+  config.get<string>("privateKey"),
   "base64"
 ).toString("ascii").replace(/\n\s+/g, "\n")
 const publicKey = Buffer.from(
-  public_key!,
+  config.get<string>("publicKey"),
   "base64"
 ).toString("ascii").replace(/\n\s+/g, "\n")
 
