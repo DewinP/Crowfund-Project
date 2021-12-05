@@ -13,7 +13,7 @@ const port = config.get<number>('port')
 const app = express();
 app.use(cors(
     {
-        origin: "http://localhost:3000",
+        origin: config.get<string>('origin'),
         credentials: true,
         
     }

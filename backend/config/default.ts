@@ -4,7 +4,7 @@ dotenv.config();
 
 
 export default {
-    port: process.env.PORT,
+    port: process.env.PORT || 1337,
     dbUri: process.env.DB_URI,
     saltWorkFactor: 10,
     accessTokenTTL: "2h",
