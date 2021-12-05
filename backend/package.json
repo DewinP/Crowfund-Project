@@ -7,7 +7,7 @@
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
     "prod": "tsc && node dist/app.js",
     "postinstall": "tsc",
-    "start": "node dist/app.js"
+    "start": "node dist/src/app.js"
   },
   "author": "",
   "license": "ISC",
