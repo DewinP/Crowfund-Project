@@ -30,7 +30,11 @@ const Comment: React.FC<{
         <CardContainer width="100%" boxShadow="sm">
           <Stack justifyContent="left">
             <Flex justifyContent="space-between" align="center">
-              <UserInfo name={comment.userName} fontWeight="700" />
+              <UserInfo
+                name={comment.userName}
+                color={isCreator && "#22577E"}
+                fontWeight="700"
+              />
               {isBacker && <BackerTag />}
               <Box>
                 <Text fontSize="sm" color="gray.500">

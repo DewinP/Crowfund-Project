@@ -22,7 +22,9 @@ const CommentList: React.FC<{ comments: IComment[]; projectId: string }> = ({
         {user && <CommentForm />}
         {comments?.map((comment) => {
           const isCreator = comment.user === user?._id;
-          const isBacker = pledges?.some((pledge) => pledge.user === user?._id);
+          const isBacker = pledges?.some(
+            (pledge) => pledge.user === comment.user
+          );
           return (
             <Comment
               isBacker={isBacker}

@@ -2,6 +2,8 @@
 
 Crowfund is a crowdfunding web application developed primarily in Typescript, React.Js, Redux-Toolkit, Express.Js and MongoDB.
 
+Try the **Crowfund** out: [https://crowfund-project.vercel.app](https://crowfund-project.vercel.app/)
+
 It allows users to create campaigns and allow other users to contribute to them to help them reach their goal. This is a simple example of a crowdfunding web application. However, it has been developed to be as robust as possible in the 12 days that it has been in development.
 
 # Functionalities
@@ -132,7 +134,7 @@ Shows the user's pledge history
 ###### Users Projects Page:
 
 Shows the user's own projects
-![Users Projects Page](https://i.imgur.com/kzuUrG4.png)
+![Users Projects Page](https://i.imgur.com/4XuK4vU.png)
 
 > User can see their own projects by navigating to `Owned projects` section in the top right navigation menu.
 

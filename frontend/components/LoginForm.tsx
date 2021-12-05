@@ -27,7 +27,6 @@ const LoginForm: React.FC = () => {
             ).unwrap();
             localStorage.setItem("accessToken", accessToken);
             localStorage.setItem("refreshToken", refreshToken);
-
             router.push("/");
           } catch (error) {
             if (error.status === 400) {
