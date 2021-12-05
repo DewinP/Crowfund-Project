@@ -36,6 +36,7 @@ const ProjectForm: React.FC<IProjectFormProps> = ({ label, project }) => {
     description: project?.description || "",
     dueDate: project?.dueDate ? new Date(project?.dueDate) : monthFromNow,
     pledgeGoal: project?.pledgeGoal || 1000,
+    heroImage: project?.heroImage || "",
   };
 
   const [createProject] = useCreateProjectMutation();
@@ -75,6 +76,13 @@ const ProjectForm: React.FC<IProjectFormProps> = ({ label, project }) => {
                 name="name"
                 label="Project Name"
                 helperText="Limit: 50 chars"
+              />
+
+              <InputField
+                type="url"
+                name="heroImage"
+                label="Link to project image"
+                helperText="must end in png, jpg, or jpeg"
               />
 
               <InputField

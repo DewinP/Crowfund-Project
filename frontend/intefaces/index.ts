@@ -35,6 +35,7 @@ export interface IUser {
     user:string;
     description: string;
     pledgeGoal: number;
+    heroImage:string;
     createdAt: Date;
     updatedAt: Date;
     dueDate: Date;
@@ -46,6 +47,7 @@ export interface IUser {
       description: string;
       pledgeGoal: number;
       dueDate: Date;
+      heroImage:string;
   }
 
   export interface IPaymentSessionInput{

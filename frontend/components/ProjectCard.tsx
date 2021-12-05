@@ -8,6 +8,7 @@ import {
   Tag,
   TagLabel,
   TagRightIcon,
+  Image,
   Text,
 } from "@chakra-ui/react";
 import Link from "next/link";
@@ -48,82 +49,87 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
     <CoolTransition>
       <Stack
+        direction={{ base: "column", md: "row" }}
         boxShadow="rgba(100, 100, 111, 0.2) 0px 0px 4px 0px"
         rounded={"md"}
         spacing={4}
         w="100%"
-        maxH="250px"
-        h="250px"
         p={6}
-        justifyContent="space-between"
       >
-        <Stack>
-          <Flex justifyContent="space-between">
-            <Heading fontSize="2xl">{project?.name}</Heading>
-            {isBacker && (
-              <Tag
-                aria-label="Backer Badge"
-                size="sm"
-                variant=""
-                colorScheme="green"
-              >
-                <TagLabel>Backer</TagLabel>
-                <TagRightIcon as={FaHandHoldingUsd} />
-              </Tag>
-            )}
-          </Flex>
-
-          <Flex justifyContent="space-between" textAlign="center">
-            <Skeleton isLoaded={!isLoadingPledges}>
-              <Text
-                color="green.500"
-                fontWeight={800}
-                fontSize="sm"
-                letterSpacing={1.1}
-                textAlign="center"
-              >
-                {currentFundingPercentage}% funded
-              </Text>
-            </Skeleton>
-
-            <Flex color="gray.500" align="center">
-              <Icon as={FaRegClock} />
-              <Text
-                color="gray.500"
-                fontWeight={800}
-                fontSize="sm"
-                textAlign="center"
-                letterSpacing={1.1}
-                ml={1}
-              >
-                {`${daysLeft} days left`}
-              </Text>
+        <Image
+          maxW={{ base: "100%", md: "200px" }}
+          borderRadius={10}
+          src={project?.heroImage}
+        />
+        <Stack w="100%">
+          <Stack>
+            <Flex justifyContent="space-between">
+              <Heading fontSize="2xl">{project?.name}</Heading>
+              {isBacker && (
+                <Tag
+                  aria-label="Backer Badge"
+                  size="sm"
+                  variant=""
+                  colorScheme="green"
+                >
+                  <TagLabel>Backer</TagLabel>
+                  <TagRightIcon as={FaHandHoldingUsd} />
+                </Tag>
+              )}
             </Flex>
-          </Flex>
 
-          <Text color="gray.500">
-            {project?.description.length > 100
-              ? project?.description.substring(0, 100) + "..."
-              : project?.description}
-          </Text>
-        </Stack>
-        <Stack
-          mt={6}
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-        >
-          <Stack direction="row" spacing={2}>
-            <Link href={`/projects/${project._id}`}>
-              <Button colorScheme="green">Read more</Button>
-            </Link>
-            {isCreator && (
-              <Link href={`/projects/${project._id}/edit`}>
-                <Button leftIcon={<FiEdit />}>Edit</Button>
-              </Link>
-            )}
+            <Flex justifyContent="space-between" textAlign="center">
+              <Skeleton isLoaded={!isLoadingPledges}>
+                <Text
+                  color="green.500"
+                  fontWeight={800}
+                  fontSize="sm"
+                  letterSpacing={1.1}
+                  textAlign="center"
+                >
+                  {currentFundingPercentage}% funded
+                </Text>
+              </Skeleton>
+
+              <Flex color="gray.500" align="center">
+                <Icon as={FaRegClock} />
+                <Text
+                  color="gray.500"
+                  fontWeight={800}
+                  fontSize="sm"
+                  textAlign="center"
+                  letterSpacing={1.1}
+                  ml={1}
+                >
+                  {`${daysLeft} days left`}
+                </Text>
+              </Flex>
+            </Flex>
+
+            <Text color="gray.500" noOfLines={2}>
+              {project?.description.length > 100
+                ? project?.description.substring(0, 300) + "..."
+                : project?.description}
+            </Text>
           </Stack>
-          <UserInfo name={project.creator} fontWeight="700" />
+          <Stack
+            mt={6}
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Stack direction="row" spacing={2}>
+              <Link href={`/projects/${project._id}`}>
+                <Button colorScheme="green">Read more</Button>
+              </Link>
+              {isCreator && (
+                <Link href={`/projects/${project._id}/edit`}>
+                  <Button leftIcon={<FiEdit />}>Edit</Button>
+                </Link>
+              )}
+            </Stack>
+            <UserInfo name={project.creator} fontWeight="700" />
+          </Stack>
         </Stack>
       </Stack>
     </CoolTransition>

@@ -11,7 +11,9 @@ const UserInfo: React.FC<
   return (
     <Stack direction="row" align="center" spacing={1}>
       {avatar && <Avatar size="xs" w="20px" h="20px" name={name} />}
-      <Text {...props}>{nameCapitalized}</Text>
+      <Text display={{ base: "none", md: "flex" }} {...props}>
+        {nameCapitalized}
+      </Text>
     </Stack>
   );
 };

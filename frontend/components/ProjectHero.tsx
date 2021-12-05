@@ -56,7 +56,8 @@ const ProjectHero: React.FC<IProjectHeroProps> = ({ project }) => {
       <Image
         rounded={"md"}
         alt={"feature image"}
-        src={`https://picsum.photos/seed/${project._id}/500/400`}
+        src={project?.heroImage}
+        fallbackSrc={`https://picsum.photos/seed/${project._id}/500/400`}
         objectFit={"cover"}
       />
       <Stack>
