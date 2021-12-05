@@ -1,6 +1,6 @@
 # Welcome to Crowfund
 
-Crowfund is a crowdfunding web application developed primarily in Typescript, React.Js, Express.Js and MongoDB.
+Crowfund is a crowdfunding web application developed primarily in Typescript, React.Js, Redux-Toolkit, Express.Js and MongoDB.
 
 It allows users to create campaigns and allow other users to contribute to them to help them reach their goal. This is a simple example of a crowdfunding web application. However, it has been developed to be as robust as possible in the 12 days that it has been in development.
 
@@ -58,50 +58,77 @@ The architecture pattern used in this project is the [MVC](https://en.wikipedia.
 
 The MVC pattern is used in this project to separate the logic of the application from the presentation layer. This is done by separating the logic of the application into the `backend` folder and the `frontend` folder. The `backend` folder contains the logic of the application and the `frontend` folder contains the presentation layer.
 
+# Accessibility
+
+Accessibility is a very important part of the development of a web application. It is important to make sure that the application is accessible to all users. Crowfund aims to make sure that the application is accessible to all users by using Chakra-UI. Chakra UI is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications. One example of this is the use of the `Progress` component. This component is used to display the progress of a project. `Progress` component has a role set to `progressbar`. This means that the component is used to display the progress of a project. It also has a aria-valuenow set to the current progress of the project. This is used to ensure the current progress percent is visible to screen readers and other assistive technologies.
+
 # Best Practices
 
 The best practices used in this project are the [KISS](https://en.wikipedia.org/wiki/KISS_principle) and [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
 
 One example of this is by creating components that are reusable. This allows you to create a component that can be used in multiple places in the application. This is a good practice to follow because it makes the code more readable and easier to maintain.
 
-This project also follows TypeScript do's and don'ts. One example of this is by making sure
-
 # Crowfund Screenshots
+
+###### Homepage
+
+![Landing Page](https://i.imgur.com/Rlbp2hv.png)
+
+> This is the landing page of the application. The user can see a list of projects and can create an account or login to their account.
+
+---
 
 ###### Signup Page:
 
 ![Signup page](https://i.imgur.com/37We2vU.png)
 
+> This is the signup page of the application. The user can create an account. The user can also login to their account by clicking on the `Already have an account? Login` link. On signup success, the user is redirected to the login page.
+
+---
+
 ###### Login Page:
 
 ![Login page](https://i.imgur.com/H9fABrz.png)
 
-###### Landing Page
+> This is the login page of the application. The user can login to their account. The user can also create an account by clicking on the `Not Registered? Signup instead` link. On Login success, the user is redirected to the homepage.
 
-![Landing Page](https://i.imgur.com/Rlbp2hv.png)
+---
 
 ###### Create Project Page:
 
-![Create Project](https://i.imgur.com/TMXk5m9.png)
+## ![Create Project](https://i.imgur.com/TMXk5m9.png)
+
+> An authenticated user can create a project. The project must have a name, description, pledge goal and due date. As soon as the user clicks on the `Create Project` button, the project is created and the user is redirected to the project page for said project. Clicking `Cancel` button will redirect the user back one page.
 
 ###### Project Page:
 
-Shows the project page with the project's information and the pledges made with a progress bar showing the percentage towards the goal.
 ![Project Page](https://i.imgur.com/YUumS9X.png)
+
+> A
 
 ###### Update Project Page:
 
 ![Update Project](https://i.imgur.com/N28ptPB.png)
+
+> This is the update project page of the application. The user can update the project's name, description and/or due date. The user can also delete the project if no pledges/contributions have been made by another user.
+
+---
 
 ###### Pledge Page:
 
 Shows the user's pledge history
 ![Pledge Page](https://i.imgur.com/1Ss4FRh.png)
 
+> This is the pledge page of the application. The user can see their pledge history. User can visit the project page by clicking on the pledge's project name.
+
+---
+
 ###### Users Projects Page:
 
 Shows the user's own projects
 ![Users Projects Page](https://i.imgur.com/kzuUrG4.png)
+
+---
 
 ###### Pledge Feature:
 
@@ -109,7 +136,7 @@ Shows the user's own projects
 | ----------------------------------------------- | --------------------------------------------------- |
 | ![Pledge Page](https://i.imgur.com/m5pB139.png) | ![Stripe Checkpit](https://i.imgur.com/vHpF9aW.png) |
 
-Success Page:
+###### Success Page:
 
-- If the stripe checkout is successful, the user will be redirected to the success page. Otherwise, the user will be redirected to the pledge page.
-  ![Success Page](https://i.imgur.com/bUtgrvL.png)
+If the stripe checkout is successful, the user will be redirected to the success page. Otherwise, the user will be redirected to the pledge page.
+![Success Page](https://i.imgur.com/bUtgrvL.png)
