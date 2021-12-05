@@ -13,7 +13,6 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React from "react";
 import {
-  useFindAllPledgesByProjectQuery,
   useFindCommentsByProjectQuery,
   useFindProjectQuery,
 } from "../../app/services/api";
@@ -51,11 +50,11 @@ const ProjectPage: NextPage = () => {
         <TabPanels>
           <TabPanel>
             <Stack>
-              <Text>{project?.description}</Text>
+              <Text as="body">{project?.description}</Text>
             </Stack>
           </TabPanel>
           <TabPanel>
-            <CommentList comments={comments} />
+            <CommentList projectId={projectId} comments={comments} />
           </TabPanel>
         </TabPanels>
       </Tabs>

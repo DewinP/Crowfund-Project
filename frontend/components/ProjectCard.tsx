@@ -23,6 +23,7 @@ import { selectCurrentUser } from "../app/services/Auth.slice";
 import CoolTransition from "./CoolTransition";
 import { FiEdit } from "react-icons/fi";
 import UserInfo from "./UserInfo";
+import BackerTag from "./BackerTag";
 
 interface ProjectCardProps {
   project: IProject;
@@ -65,17 +66,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           <Stack>
             <Flex justifyContent="space-between">
               <Heading fontSize="2xl">{project?.name}</Heading>
-              {isBacker && (
-                <Tag
-                  aria-label="Backer Badge"
-                  size="sm"
-                  variant=""
-                  colorScheme="green"
-                >
-                  <TagLabel>Backer</TagLabel>
-                  <TagRightIcon as={FaHandHoldingUsd} />
-                </Tag>
-              )}
+              {isBacker && <BackerTag />}
             </Flex>
 
             <Flex justifyContent="space-between" textAlign="center">

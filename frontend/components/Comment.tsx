@@ -7,30 +7,31 @@ import CardContainer from "./CardContainer";
 import UserInfo from "./UserInfo";
 import relativeTime from "dayjs/plugin/relativeTime";
 import CoolTransition from "./CoolTransition";
-import { useAppSelector } from "../app/hooks";
-import { selectCurrentUser } from "../app/services/Auth.slice";
-import { cpuUsage } from "process";
 import CommentForm from "./CommentForm";
 import { useDeleteCommentMutation } from "../app/services/api";
+import BackerTag from "./BackerTag";
 dayjs.extend(relativeTime);
 
-const Comment: React.FC<{ comment: IComment; isCreator: boolean }> = ({
-  comment,
-  isCreator,
-}) => {
+const Comment: React.FC<{
+  comment: IComment;
+  isCreator: boolean;
+  isBacker: boolean;
+}> = ({ comment, isCreator, isBacker }) => {
   const [editComment, setEditComment] = React.useState(false);
   const [deleteComment] = useDeleteCommentMutation();
+
   const handleEditComment = () => {
     setEditComment(!editComment);
   };
+
   return (
     <CoolTransition>
       {!editComment ? (
         <CardContainer width="100%" boxShadow="sm">
           <Stack justifyContent="left">
-            <Flex justifyContent="space-between">
+            <Flex justifyContent="space-between" align="center">
               <UserInfo name={comment.userName} fontWeight="700" />
-
+              {isBacker && <BackerTag />}
               <Box>
                 <Text fontSize="sm" color="gray.500">
                   Posted {dayjs(comment.createdAt).fromNow()}

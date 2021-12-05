@@ -5,20 +5,27 @@ import CoolTransition from "./CoolTransition";
 import Comment from "./Comment";
 import { useAppSelector } from "../app/hooks";
 import { selectCurrentUser } from "../app/services/Auth.slice";
-import { useFindAllPledgesByUserQuery } from "../app/services/api";
+import { useFindAllPledgesByProjectQuery } from "../app/services/api";
 import CommentForm from "./CommentForm";
 
-const CommentList: React.FC<{ comments: IComment[] }> = ({ comments }) => {
+const CommentList: React.FC<{ comments: IComment[]; projectId: string }> = ({
+  projectId,
+  comments,
+}) => {
   let { user } = useAppSelector(selectCurrentUser);
-
+  const { data: pledges } = useFindAllPledgesByProjectQuery({
+    projectId: projectId,
+  });
   return (
     <CoolTransition>
       <Stack justifyContent="center">
         {user && <CommentForm />}
         {comments?.map((comment) => {
           const isCreator = comment.user === user?._id;
+          const isBacker = pledges?.some((pledge) => pledge.user === user?._id);
           return (
             <Comment
+              isBacker={isBacker}
               isCreator={isCreator}
               key={comment._id}
               comment={comment}

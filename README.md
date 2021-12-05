@@ -78,7 +78,7 @@ One example of this is by creating components that are reusable. This allows you
 
 ###### Homepage
 
-![Landing Page](https://i.imgur.com/Rlbp2hv.png)
+![Landing Page](https://i.imgur.com/1Hb0D9M.png)
 
 > This is the landing page of the application. The user can see a list of projects and can create an account or login to their account.
 
@@ -114,7 +114,7 @@ One example of this is by creating components that are reusable. This allows you
 
 ###### Update Project Page:
 
-![Update Project](https://i.imgur.com/N28ptPB.png)
+![Update Project](https://i.imgur.com/5L7YgZw.png)
 
 > This is the update project page of the application. The user can update the project's name, description and/or due date. The user can also delete the project if no pledges/contributions have been made by another user.
 
