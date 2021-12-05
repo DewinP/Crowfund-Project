@@ -31,14 +31,12 @@ export async function createSessionHandler(req: Request, res: Response) {
         maxAge: 90000000000,
         httpOnly: true,
         path: '/',
-        sameSite: 'strict',
         secure: true
     })
     res.cookie("refreshToken",refreshToken,{
         maxAge: 24*60*60*1000*365,
         httpOnly: true,
         path: '/',
-        sameSite: 'strict',
         secure: true
     })
 
