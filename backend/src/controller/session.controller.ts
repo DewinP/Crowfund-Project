@@ -30,12 +30,14 @@ export async function createSessionHandler(req: Request, res: Response) {
     res.cookie("accessToken", accessToken,{
         maxAge: 90000000000,
         httpOnly: true,
+        domain: 'crowfund-project.vercel.app',
         path: '/',
         secure: true
     })
     res.cookie("refreshToken",refreshToken,{
         maxAge: 24*60*60*1000*365,
         httpOnly: true,
+        domain: 'crowfund-project.vercel.app',
         path: '/',
         secure: true
     })
