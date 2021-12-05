@@ -1,7 +1,7 @@
 
 import {Request, Response} from 'express'
 import _ from 'lodash'
-import AuthUser from '../interfaces'
+import {AuthUser} from '../interfaces'
 import { CreateUserInputType } from '../schema/user.schema'
 import { createUser } from '../service/user.service'
 import logger from '../utils/logger'
