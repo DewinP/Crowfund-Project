@@ -42,7 +42,7 @@ export async function createSessionHandler(req: Request, res: Response) {
         sameSite: 'strict',
         secure: false
     })
-    return res.sendStatus(200)
+    return res.send({accessToken, refreshToken})
 }
 
 export async function getUserSessionsHandler(_: Request, res: Response) {
