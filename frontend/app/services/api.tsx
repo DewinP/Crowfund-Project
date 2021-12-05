@@ -42,6 +42,7 @@ export const api = createApi({
           body: input,
           credentials: "include",
         }),
+        invalidatesTags: ["Me"],
       }),
       logout: build.mutation<{}, void>({
         query: () => ({
@@ -54,10 +55,6 @@ export const api = createApi({
         query: () => ({
           url: "users/me",
           credentials: "include",
-          headers: {
-            "x-refresh-token": localStorage.getItem("refreshToken"),
-            "x-access-token": localStorage.getItem("accessToken"),
-          },
         }),
         providesTags: ["Me"],
       }),
