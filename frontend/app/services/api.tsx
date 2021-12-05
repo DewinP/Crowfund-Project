@@ -19,9 +19,11 @@ export const api = createApi({
   reducerPath: "apiPath",
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}`,
-    headers: {
-      "x-refresh-token": localStorage.getItem("refreshToken"),
-      "x-access-token": localStorage.getItem("accessToken"),
+    prepareHeaders: (headers, { getState }) => {
+      headers.set("x-access-token", localStorage.getItem("accessToken"));
+      headers.set("x-refresh-token", localStorage.getItem("refreshToken"));
+
+      return headers;
     },
   }),
   tagTypes: ["Project", "Me", "Pledge", "Comment"],
