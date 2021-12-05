@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
-    "build": "tsc",
-    "start": "node ./dist/src/app/js",
-    "prepublish": "npm run build"
+    "lint": "eslint --fix . && prettier --write .",
+    "prestart": "rimraf dist",
+    "start": "tsc && cross-env NODE_ENV=production node dist/src/app.js",
+    "dev": "cross-env NODE_ENV=development ts-node-dev --respawn --transpile-only src/app.ts"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +16,7 @@
     "config": "^3.3.6",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "dayjs": "^1.10.7",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
