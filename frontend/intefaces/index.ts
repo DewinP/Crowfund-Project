@@ -71,6 +71,11 @@ export interface IUser {
     body:string;
 }
 
+export interface ISessionPayload{
+    refreshToken:string;
+    accessToken:string;
+}
+
 
   export interface IPledge{
       _id:string;

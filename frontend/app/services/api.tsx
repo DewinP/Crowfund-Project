@@ -10,6 +10,7 @@ import {
   IPledgeInput,
   IProject,
   IProjectInput,
+  ISessionPayload,
   ISignupInput,
   IUser,
 } from "../../intefaces";
@@ -29,7 +30,7 @@ export const api = createApi({
           body: input,
         }),
       }),
-      loginUser: build.mutation<{}, ILoginInput>({
+      loginUser: build.mutation<ISessionPayload, ILoginInput>({
         query: (input) => ({
           url: "sessions",
           method: "POST",

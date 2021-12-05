@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^1.6.2",
     "@stripe/react-stripe-js": "^1.6.0",
     "@stripe/stripe-js": "^1.21.1",
+    "cookies": "^0.8.0",
     "dayjs": "^1.10.7",
     "dotenv": "^10.0.0",
     "formik": "^2.2.9",
@@ -28,6 +29,7 @@
     "react-stripe-checkout": "^2.6.3"
   },
   "devDependencies": {
+    "@types/cookies": "^0.7.7",
     "@types/node": "^12.12.21",
     "@types/react": "^17.0.2",
     "@types/react-datepicker": "^4.3.2",

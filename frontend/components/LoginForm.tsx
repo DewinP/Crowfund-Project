@@ -22,7 +22,13 @@ const LoginForm: React.FC = () => {
         initialValues={initialValues}
         onSubmit={async (values, { setErrors }) => {
           try {
-            await loginUser(values).unwrap();
+            const { accessToken, refreshToken } = await loginUser(
+              values
+            ).unwrap();
+
+            localStorage.setItem("accessToken", accessToken);
+            localStorage.setItem("refreshToken", refreshToken);
+
             router.push("/");
           } catch (error) {
             if (error.status === 400) {
